@@ -4,7 +4,9 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
-
+.settings/*
+.classpath
+.project
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 

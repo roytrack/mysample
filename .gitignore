@@ -7,6 +7,7 @@ Desktop.ini
 .settings/*
 .classpath
 .idea
+.idea/*
 .project
 # Recycle Bin used on file shares
 $RECYCLE.BIN/

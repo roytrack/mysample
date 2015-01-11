@@ -22,12 +22,6 @@
             <version>3.2.8</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.3.2</version>
@@ -133,7 +127,16 @@
             <version>${logback.version}</version>
             <scope>runtime</scope>
         </dependency>
-
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.org.springside</groupId>
+            <artifactId>springside-redis</artifactId>
+            <version>4.3.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>learnMybatis</finalName>

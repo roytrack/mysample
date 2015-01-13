@@ -5,7 +5,7 @@ import org.springside.modules.nosql.redis.pool.JedisPool;
 import org.springside.modules.nosql.redis.pool.JedisPoolBuilder;
 
 /**
- * Created by ruanchangming on 2015/1/5.
+ * Created by roytrack on 2015/1/5.
  */
 public class GetFileFromJar {
     public static void main(String[] args) {

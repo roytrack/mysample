@@ -1,7 +1,7 @@
 package com.roytrack.dailytest;
 
 /**
- * Created by ruanchangming on 2014/12/30.
+ * Created by roytrack on 2014/12/30.
  */
 public enum String_String_Enum {
     UNKNOWN("未知", "-999"),

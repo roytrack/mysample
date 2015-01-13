@@ -9,7 +9,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 /**
- * Created by ruanchangming on 2015/1/11.
+ * Created by roytrack on 2015/1/11.
  */
 public class CommonLangDateParse {
     @Test

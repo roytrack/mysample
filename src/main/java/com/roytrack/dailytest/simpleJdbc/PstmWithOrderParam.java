@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 /**
  * 不返回值 对于mybatis 如果是要放个原样 用 ORDER BY ${columnName}  其他需要设置为参数的 用 #{lastName}
- * Created by ruanchangming on 2015/1/11.
+ * Created by roytrack on 2015/1/11.
  */
 public class PstmWithOrderParam {
 

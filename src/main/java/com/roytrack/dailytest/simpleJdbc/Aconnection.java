@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Created by ruanchangming on 2015/1/11.
+ * Created by roytrack on 2015/1/11.
  */
 public class Aconnection {
     private static volatile  Aconnection aconnection;

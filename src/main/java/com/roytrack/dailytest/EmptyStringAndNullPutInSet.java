@@ -5,7 +5,7 @@ import java.util.Set;
 
 /**
  * 测试set中放入null和空字串
- * Created by ruanchangming on 2014/12/31.
+ * Created by roytrack on 2014/12/31.
  */
 public class EmptyStringAndNullPutInSet {
     public static void main(String[] args) {

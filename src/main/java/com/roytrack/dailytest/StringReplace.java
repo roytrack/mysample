@@ -6,7 +6,7 @@ import java.io.File;
 
 /**
  * 替换路径尾部
- * Created by ruanchangming on 2015/1/5.
+ * Created by roytrack on 2015/1/5.
  */
 public class StringReplace {
     public static void main(String[] args) {

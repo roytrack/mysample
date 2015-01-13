@@ -12,7 +12,7 @@ import java.util.Random;
 
 /**
  * 读取 写入文件 采用common的fileutil
- * Created by ruanchangming on 2015/1/6.
+ * Created by roytrack on 2015/1/6.
  */
 public class Fileuploads {
     private static Logger logger = LoggerFactory.getLogger(Fileuploads.class);

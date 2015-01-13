@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Created by ruanchangming on 2015/1/11.
+ * Created by roytrack on 2015/1/11.
  */
 @ToString(callSuper = true, includeFieldNames = true)
 @Getter

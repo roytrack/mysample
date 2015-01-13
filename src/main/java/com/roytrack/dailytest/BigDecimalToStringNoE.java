@@ -3,7 +3,7 @@ package com.roytrack.dailytest;
 import java.math.BigDecimal;
 
 /**
- * Created by ruanchangming on 2014/12/30.
+ * Created by roytrack on 2014/12/30.
  */
 public class BigDecimalToStringNoE {
     public static void main(String[] args) {

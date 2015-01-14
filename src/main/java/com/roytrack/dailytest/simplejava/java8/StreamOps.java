@@ -23,4 +23,15 @@ public class StreamOps {
         }).limit(2).collect(toList());
         System.out.println(twoEvenSquares.toString());
     }
+
+    @Test
+    public void listOp2(){
+        List<Integer> numbers= Arrays.asList(1,2,3,4,5,6,7,8);
+      numbers.stream().filter(n -> {
+            return n % 2 == 0;
+        }).map(n -> {
+            return n * n;
+        }).forEach(System.out::println);
+
+    }
 }

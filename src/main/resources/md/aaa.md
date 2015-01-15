@@ -29,4 +29,4 @@ Linux version 3.10.0-123.8.1.el7.x86_64 (builder@kbuilder.dev.centos.org) (gcc v
 
 <h2 id="vpn">vpn部分</h2>
 <h3 id="vpn">vpn相关软件的安装</h3>
-vpn安装主要需要ppp 、pptpd和iptables
+vpn安装主要需要ppp 、pptpd和iptables 这些软件

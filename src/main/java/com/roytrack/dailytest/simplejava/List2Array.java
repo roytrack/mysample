@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by ruanchangming on 2015/1/19.
+ * Created by roytrack on 2015/1/19.
  */
 public class List2Array {
 

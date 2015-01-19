@@ -1,4 +1,4 @@
-package com.roytrack.dailytest.simplejava;
+package com.roytrack.dailytest.apache.commons.lang3;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import java.io.IOException;
 
 
 /**
- * Created by ruanchangming on 2015/1/14.
+ * Created by roytrack on 2015/1/14.
  */
 public class CloseStream {
 

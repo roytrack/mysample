@@ -17,8 +17,10 @@ import java.io.IOException;
  *
  *org.apache.poi.hssf.usermodel.HSSFWorkbook#HSSFWorkbook(org.apache.poi.poifs.filesystem.DirectoryNode, boolean)
  *  List<Record> records = RecordFactory.createRecords(stream);
- *  org.apache.poi.hssf.record.RecordFactory#createRecords(java.io.InputStream)
  * 在这些records里面就已经变成了NumberRecord了。。
+ * org.apache.poi.hssf.record.RecordFactory#createRecords(java.io.InputStream)
+ *  org.apache.poi.hssf.record.RecordFactoryInputStream#readNextRecord()
+ * 就是在这个方法里面确定了是什么record 依据是sid
  *  InternalSheet sheet = InternalSheet.createSheet(rs);
  * RecordOrderer.isRowBlockRecord(recSid)
  * Created by roytrack on 2015/1/19.

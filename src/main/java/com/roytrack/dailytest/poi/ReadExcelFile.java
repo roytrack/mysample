@@ -18,6 +18,7 @@ import java.math.BigDecimal;
  *  List<Record> records = RecordFactory.createRecords(stream);
  * 在这些records里面就已经变成了NumberRecord了。。
  * org.apache.poi.hssf.record.RecordFactory#createRecords(java.io.InputStream)
+ *
  *  org.apache.poi.hssf.record.RecordFactoryInputStream#readNextRecord()
  * 就是在这个方法里面确定了是什么record 依据是sid
  *  InternalSheet sheet = InternalSheet.createSheet(rs);
@@ -25,6 +26,20 @@ import java.math.BigDecimal;
  * Created by roytrack on 2015/1/19.
  */
 public class ReadExcelFile {
+
+
+    @Test
+    public void readExcel() throws IOException {
+        DefaultResourceLoader drl=new DefaultResourceLoader();
+        Resource r=drl.getResource("classpath:abc.xls");
+        File f=r.getFile();
+        FileInputStream fis=new FileInputStream(f);
+        HSSFWorkbook book=new HSSFWorkbook(fis);
+        HSSFSheet sheet=book.getSheetAt(0);
+        HSSFRow row=sheet.getRow(0);
+        System.out.println(row.getCell(0));
+        System.out.println(row.getCell(1));
+    }
 
     /**
      * 顺带着对poi取出浮点数的非科学计数法方式各派研究 一共有三派
@@ -41,22 +56,7 @@ public class ReadExcelFile {
      下面写三个方法来实践一下
      * @throws IOException
      */
-
-    @Test
-    public void readExcel() throws IOException {
-        DefaultResourceLoader drl=new DefaultResourceLoader();
-        Resource r=drl.getResource("classpath:abc.xls");
-        File f=r.getFile();
-        FileInputStream fis=new FileInputStream(f);
-        HSSFWorkbook book=new HSSFWorkbook(fis);
-        HSSFSheet sheet=book.getSheetAt(0);
-        HSSFRow row=sheet.getRow(0);
-        System.out.println(row.getCell(0));
-        System.out.println(row.getCell(1));
-    }
-
-
-    //方法1 将其变为string 然后直接取 可行
+    //方法1 将其变为string 然后直接取 可行  org.apache.poi.hssf.usermodel.HSSFCell#convertCellValueToString()
 
 @Test
 public void changeCellType()  throws IOException{

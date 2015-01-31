@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">   
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="abstractDao" abstract="true">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>   
+
+    <bean id="userDao" class="com.roytrack.spring.core.transaction.dao.jdbc.UserJdbcDaoImpl" parent="abstractDao"/>
+    <bean id="addressDao" class="com.roytrack.spring.core.transaction.dao.jdbc.AddressJdbcDaoImpl" parent="abstractDao"/>
+    
+</beans>
+
+

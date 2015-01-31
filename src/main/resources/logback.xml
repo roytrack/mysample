@@ -25,11 +25,11 @@
     </appender>
 
 
-    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework" level="TRACE"/>
     <logger name="org.apache" level="INFO"/>
 
 
-    <root level="INFO">
+    <root level="TRACE">
         <appender-ref ref="console"/>
     </root>
 

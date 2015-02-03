@@ -1,6 +1,7 @@
-package com.roytrack.dailytest;
+package com.roytrack.dailytest.ch.qos.logback;
 
 import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.core.util.StatusPrinter;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +12,15 @@ import org.slf4j.LoggerFactory;
 public class LogBack {
     Logger logger= LoggerFactory.getLogger(LogBack.class);
 
+
+
+
     @Test
     public void seeLogStatus(){
+        logger.info("logger start .....");
         LoggerContext lc=(LoggerContext) LoggerFactory.getILoggerFactory();
         System.out.println(lc);
+        StatusPrinter.print(lc);
+
     }
 }

@@ -23,6 +23,31 @@
             </pattern>
         </encoder>
     </appender>
+    <appender name="dbAppender" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+            <!--<dataSource class="com.zaxxer.hikari.HikariDataSource"  >-->
+                <!--<poolName>springHikariCP</poolName>-->
+                <!--<connectionTestQuery>SELECT 1</connectionTestQuery>-->
+                <!--<dataSourceClassName>com.mysql.jdbc.jdbc2.optional.MysqlDataSource</dataSourceClassName>-->
+                <!--<dataSourceProperties>-->
+                        <!--<url>jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=round&amp;useUnicode=true&amp;characterEncoding=UTF-8</url>-->
+                        <!--<user>root</user>-->
+                        <!--<password>12qwaszx</password>-->
+                        <!--<cachePrepStmts>true</cachePrepStmts>-->
+                        <!--<prepStmtCacheSize>250</prepStmtCacheSize>-->
+                        <!--<prepStmtCacheSqlLimit>2048</prepStmtCacheSqlLimit>-->
+                        <!--<useServerPrepStmts>true</useServerPrepStmts>-->
+                <!--</dataSourceProperties>-->
+            <!--</dataSource>-->
+            <dataSource class="com.zaxxer.hikari.HikariDataSource">
+                <dataSourceClassName>com.mysql.jdbc.jdbc2.optional.MysqlDataSource</dataSourceClassName>
+                <driverClass>com.mysql.jdbc.Driver</driverClass>
+                <jdbcUrl>jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=round&amp;useUnicode=true&amp;characterEncoding=UTF-8</jdbcUrl>
+                <username>root</username>
+                <password>12qwaszx</password>
+            </dataSource>
+        </connectionSource>
+    </appender>
 
 
     <logger name="org.springframework" level="TRACE"/>
@@ -31,6 +56,7 @@
 
     <root level="TRACE">
         <appender-ref ref="console"/>
+        <appender-ref ref="dbAppender"/>
     </root>
 
 </configuration>

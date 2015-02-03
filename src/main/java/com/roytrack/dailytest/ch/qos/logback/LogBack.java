@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by ruanchangming on 2015/1/31.
+ * Created by roytrack on 2015/1/31.
  */
 public class LogBack {
     Logger logger= LoggerFactory.getLogger(LogBack.class);

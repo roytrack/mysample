@@ -47,8 +47,43 @@
                 <password>12qwaszx</password>
             </dataSource>
         </connectionSource>
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator class="ch.qos.logback.classic.boolex.JaninoEventEvaluator">
+                <expression>
+                    <!-- & encoded as &amp; -->
+                    if(level > WARN &amp;&amp; null != throwable) {
+                    return true;
+                    }
+                    return false;
+                </expression>
+            </evaluator>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
     </appender>
-
+    <appender name="db2Appender" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+            <dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <driverClass>com.mysql.jdbc.Driver</driverClass>
+                <jdbcUrl>jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=round&amp;useUnicode=true&amp;characterEncoding=UTF-8</jdbcUrl>
+                <user>root</user>
+                <password>12qwaszx</password>
+            </dataSource>
+        </connectionSource>
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator class="ch.qos.logback.classic.boolex.JaninoEventEvaluator">
+                <expression>
+                    <!-- & encoded as &amp; -->
+                    if(level > WARN &amp;&amp; null != throwable) {
+                    return true;
+                    }
+                    return false;
+                </expression>
+            </evaluator>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
 
     <logger name="org.springframework" level="TRACE"/>
     <logger name="org.apache" level="INFO"/>

@@ -21,6 +21,8 @@ public class LogBack {
         LoggerContext lc=(LoggerContext) LoggerFactory.getILoggerFactory();
         System.out.println(lc);
         StatusPrinter.print(lc);
+        logger.error("logger end .....",new NullPointerException("asasdasd"));
+
 
     }
 }

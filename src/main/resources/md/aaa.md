@@ -131,7 +131,56 @@ modprobe是检测能否在内核中挂载对应模块的命令。后面与上ech
         /etc/init.d/pptpd start         启动命令
         chkconfig pptpd on             pptpd开机自启动
 到此vpn服务端就搭建好了。
-<h2 id="vpnconfig"> vpn 本地配置</h2>
+<h3 id="vpnconfig"> vpn 本地配置</h3>
 在win7中 打开控制面板-网络和共享中心-设置新的连接或网络-连接到工作区 一步步填上用户名 密码就ok了。
 
+附两个实用的小命令
 
+                ifconfig | grep ppp  返回在线人数
+                last | grep still | grep ppp   查看哪些vpn用户在线
+
+在完成本部分内容中参考了[大步][dabu]、[SCKA][wanghailin]的内容，对他们表示感谢，更多的资料可以在他们的博文中找到。
+
+[dabu]:http://www.dabu.info/centos6-4-structures-pptp-vpn.html
+[wanghailin]:http://www.wanghailin.cn/scka/centos-7-vpn
+
+<h2 id="shadowsock">shadowsock</h2>
+<h3 id="ssinstall">shadowsock的安装与自启动</h3>
+以前用的是goagent，随着名气越大，也越不稳定了，而且有了自己的主机还是直接用自己的资源比较舒服。省去了GAE的操作。
+
+shadowsock是由clowwindy[v2ex账号][cw_v2ex]、[github账号][cw_git]发起的一个sock5加密代理，有多种语言版本实现，我选的是python。现在作为一个开源项目在[github][shadowsock]上蓬勃发展。
+
+[cw_v2ex]:http://www.v2ex.com/member/clowwindy
+[cw_git]:https://github.com/clowwindy
+[shadowsock]:https://github.com/shadowsocks/shadowsocks
+
+安装shadowsock需要以下命令：
+
+                python --version  确定python版本在2.6或2.7
+                yum install python-setuptools && easy_install pip       如果没有python 安装一下下啦
+                pip install shadowsocks                                         通过pip来安装shadowsock
+简单三步命令就安装完毕了。
+
+在写这个教程的时候 这个json文本的格式已经变了。所以最好参考最新的shadowsock。截止行文时间最新版为.....俺也不知道啦 给一个标准的[安装教程][tutorial]。
+
+[tutorial]:https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E
+
+由于我用的是centos（教程中明确说了对新手不友好哦！）。所以在折腾自启动的道路上走了好久。在[这篇文章](https://github.com/shadowsocks/shadowsocks/wiki/%E7%94%A8-supervisor-%E8%BF%90%E8%A1%8C-shadowsocks])
+中获救了。
+
+<h3 id="ssconfig">客户端配置与选择</h3>
+客户端有很多种选择，在单位我用的是[nevermore](https://github.com/nihgwu/Nevermore)是nodejs做的一个客户端。在家里用的是他推荐的[shadowsocks-csharp](https://github.com/shadowsocks/shadowsocks-csharp)。
+两个都还可以。版本越新越好哦。
+配置好之后chrome的switchySharp最推荐使用的pac是：
+
+                https://raw.githubusercontent.com/clowwindy/gfwlist2pac/master/test/proxy.pac
+其实客户端，服务器配置都是使用的那个json文件。
+
+<h3 id="sstohttp">采用privoxy转成http代理</h3>
+由于shadowsock使用的是sock5代理，有些软件只支持http代理。这里就需要[privoxy](http://roytrack.qiniudn.com/blog_vpn_privoxy-3.0.22.zip)这个小软件来起作用了。
+是一个绿色软件，打开后options-Edit Main Configuration 更改配置
+
+                 forward-socks5t   /               127.0.0.1:1080 .   一定要记得搜forward-socks5t  别找 这配置文件太大了。
+
+
+写完了。12月开始打算写，2015年2月5日18:16:05写完了。

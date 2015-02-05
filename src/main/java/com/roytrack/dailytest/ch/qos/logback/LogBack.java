@@ -22,7 +22,5 @@ public class LogBack {
         System.out.println(lc);
         StatusPrinter.print(lc);
         logger.error("logger end .....",new NullPointerException("asasdasd"));
-
-
     }
 }

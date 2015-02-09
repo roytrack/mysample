@@ -91,7 +91,7 @@
 
     <root level="TRACE">
         <appender-ref ref="console"/>
-        <appender-ref ref="dbAppender"/>
+        <!--<appender-ref ref="dbAppender"/>-->
     </root>
 
 </configuration>

@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Created by ruanchangming on 2015/1/27.
+ * Created by roytrack on 2015/1/27.
  */
 public class MD5Instance {
 

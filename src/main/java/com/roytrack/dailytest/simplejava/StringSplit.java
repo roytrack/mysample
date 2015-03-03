@@ -3,7 +3,7 @@ package com.roytrack.dailytest.simplejava;
 import org.junit.Test;
 
 /**
- * Created by ruanchangming on 2015/1/21.
+ * Created by roytrack on 2015/1/21.
  */
 public class StringSplit {
 

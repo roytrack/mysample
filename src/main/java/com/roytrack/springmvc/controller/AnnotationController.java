@@ -1,5 +1,10 @@
 package com.roytrack.springmvc.controller;
 
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,6 +60,25 @@ public class AnnotationController {
         return new StringBuilder().append(sss).append("@")
                 .append(matrixMap.keySet())
                 .toString();
+    }
+
+    @RequestMapping(value = "/param/{name}/{address}",params = "rcm=rcm")
+    @ResponseBody
+    public String requireParam(@PathVariable String name,@PathVariable String address){
+        String returnStr=name+"@"+address;
+        System.out.println(returnStr);
+        return returnStr;
+    }
+
+    @RequestMapping("/requestEntity")
+    public ResponseEntity<String>   handle(HttpEntity<byte[]> requestEntity){
+        String requestHeader=requestEntity.getHeaders().getFirst("myHeaders");
+        byte[] requestBody=requestEntity.getBody();
+        System.out.println("the myHeaders is "+requestHeader);
+        HttpHeaders responseHeaders=new HttpHeaders();
+        responseHeaders.set("myResponseHeader","roytrack");
+        return new ResponseEntity<String>("hello world",responseHeaders, HttpStatus.CREATED);
+
     }
 
 }

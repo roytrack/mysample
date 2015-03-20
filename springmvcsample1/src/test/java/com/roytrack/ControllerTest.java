@@ -12,8 +12,15 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 import org.springframework.http.HttpHeaders;
+import org.springframework.web.servlet.FlashMap;
+import org.springframework.web.servlet.FlashMapManager;
+import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.net.URI;
 
 /**
  * Created by roytrack on 2015/3/9.
@@ -72,6 +79,19 @@ public class ControllerTest {
             System.out.println("error occur :" + e.getMessage());
         }
     }
+
+
+    @Test
+    public void buildURI(){
+        UriComponents uriComponents=
+                UriComponentsBuilder.fromUriString("http://roytrack.com/tag/{tag}/theme/{theme}").build();
+        URI uri=uriComponents.expand("html5","star").encode().toUri();
+        System.out.println(uri.toString());
+        uriComponents=UriComponentsBuilder.newInstance().scheme("https").host("blog.roytrack.com")
+                .path("/apple/第一条").build().encode();
+        System.out.println(uriComponents.toUri().toString());
+    }
+
 
 
 }

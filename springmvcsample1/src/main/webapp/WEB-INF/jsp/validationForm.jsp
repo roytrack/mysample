@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-<form action="/excel/validate/save" method="post">
+<form action="/learn/validate/save" method="post">
     <table width="60%" border="0" cellpadding="3" cellspacing="1">
       <tr>
         <td width="15%">角色名</td>

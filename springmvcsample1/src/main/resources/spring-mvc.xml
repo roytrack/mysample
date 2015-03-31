@@ -22,18 +22,24 @@
               <context:exclude-filter type="annotation"
                                       expression="org.springframework.stereotype.Service" />
        </context:component-scan>
-       <bean id="timeInterceptor" class="com.roytrack.springmvc.interceptor.TimeBasedAccessInterceptor">
-              <property name="openTime" value="9"/>
-              <property name="closeingTime" value="14"/>
-       </bean>
+       <mvc:interceptors>
+              <mvc:interceptor>
+                     <mvc:mapping path="/**"/>
+                     <bean id="timeInterceptor" class="com.roytrack.springmvc.interceptor.TimeBasedAccessInterceptor">
+                            <property name="openTime" value="9"/>
+                            <property name="closeingTime" value="14"/>
+                     </bean>
+              </mvc:interceptor>
+       </mvc:interceptors>
 
-       <bean  class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-              <property name="callableInterceptors">
-                     <list>
-                            <ref bean="timeInterceptor"/>
-                     </list>
-              </property>
-       </bean>
+
+       <!--<bean  class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
+              <!--<property name="callableInterceptors">-->
+                     <!--<list>-->
+                            <!--<ref bean="timeInterceptor"/>-->
+                     <!--</list>-->
+              <!--</property>-->
+       <!--</bean>-->
 
 
        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"

@@ -15,6 +15,7 @@ import org.springframework.web.method.support.UriComponentsContributor;
 import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.FlashMapManager;
 import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -97,6 +98,7 @@ public class AnnotationController {
     public void seeFlashMap(HttpServletRequest request){
         FlashMap map=new FlashMap();
         FlashMapManager manager= RequestContextUtils.getFlashMapManager(request);
+        DefaultRequestToViewNameTranslator t=new DefaultRequestToViewNameTranslator();
     }
 
 

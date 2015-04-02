@@ -3,6 +3,8 @@ package com.roytrack.springmvc.interceptor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.context.request.async.CallableProcessingInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +18,7 @@ import java.util.GregorianCalendar;
  */
 @Getter
 @Setter
-public class TimeBasedAccessInterceptor extends CallableProcessingInterceptorAdapter {
+public class TimeBasedAccessInterceptor implements HandlerInterceptor {
 
     private int openTime;
     private int closeingTime;
@@ -26,7 +28,7 @@ public class TimeBasedAccessInterceptor extends CallableProcessingInterceptorAda
         Calendar calendar= Calendar.getInstance();
         System.out.println("interceptor is work!!");
         int hour= calendar.get(calendar.HOUR_OF_DAY);
-        if(openTime<=hour&&hour>closeingTime){
+        if(openTime<=hour&&hour<closeingTime){
             return true;
         }else{
             response.getOutputStream().print("not open!");
@@ -36,6 +38,15 @@ public class TimeBasedAccessInterceptor extends CallableProcessingInterceptorAda
 
     }
 
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
+    }
 
 
 }

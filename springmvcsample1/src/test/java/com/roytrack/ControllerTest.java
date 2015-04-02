@@ -21,6 +21,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.net.URI;
+import java.security.SecureRandom;
+import java.util.Random;
 
 /**
  * Created by roytrack on 2015/3/9.
@@ -93,5 +95,17 @@ public class ControllerTest {
     }
 
 
+    @Test
+    public void sss(){
+        System.out.println(Integer.parseInt("02"));
+        int n = (int)(Math.random()*100);
+        System.out.println(n+"   "+Math.random());
+
+        SecureRandom random=new SecureRandom();
+        for(int i=0;i<100;i++){
+            Double aDouble=random.nextDouble()*100;
+            System.out.println(aDouble.intValue());
+        }
+    }
 
 }

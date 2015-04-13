@@ -11,7 +11,9 @@
         <module>corejava</module>
         <module>spring</module>
         <module>springmvcsample1</module>
+        <module>roypay</module>
         <module>tiles</module>
+        <module>other</module>
     </modules>
     <properties>
         <spring.version>4.1.4.RELEASE</spring.version>

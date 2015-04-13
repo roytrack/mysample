@@ -7,9 +7,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>corejava</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>Maven Quick Start Archetype</name>
     <url>http://maven.apache.org</url>
+    <modules>
+        <module>../other</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>org.mybatis</groupId>

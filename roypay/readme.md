@@ -1,0 +1,1 @@
+a ebay system use ping++ api. on the way.

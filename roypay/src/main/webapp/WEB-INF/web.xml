@@ -5,7 +5,7 @@
          version="2.5">
     <display-name>Archetype Created Web Application</display-name>
 
-    <!-- 字符集过滤器 -->
+
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

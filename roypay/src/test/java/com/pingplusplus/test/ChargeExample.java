@@ -12,7 +12,7 @@ public class ChargeExample {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Pingpp.apiKey = "YOUR-KEY";		
+		Pingpp.apiKey = "sk_test_5G8afHb94qb54yLGGOyvzTKS";
         ChargeExample ce = new ChargeExample();
         ce.charge();
 	}
@@ -28,7 +28,7 @@ public class ChargeExample {
         chargeMap.put("channel",  "alipay");
         chargeMap.put("client_ip",  "127.0.0.1");
         Map<String, String> app = new HashMap<String, String>();
-        app.put("id", "YOUR-APP-ID");
+        app.put("id", "app_vjXTaLiL8az5i1iL");
         chargeMap.put("app", app);
         try {
         	//发起交易请求

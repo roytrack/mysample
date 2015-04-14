@@ -10,10 +10,8 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
 
-<script type="text/javascript" src="${ctx}/jslib/easyui/jquery.easyui.min.js" charset="utf-8"></script>
 
 <link id="bs-css" href="${ctx}/static/css/bootstrap-cerulean.min.css" rel="stylesheet">
-
 <link href="${ctx}/static/css/charisma-app.css" rel="stylesheet">
 <link href='${ctx}/static/bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>
 <link href='${ctx}/static/bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print'>

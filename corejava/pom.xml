@@ -7,9 +7,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>corejava</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>core java test</name>
     <url>http://roytrack.com</url>
+    <modules>
+        <module>../maven_prop</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>commons-fileupload</groupId>

@@ -10,8 +10,8 @@ public class LombokGetterTest {
     @Test
     public  void  HowToDoWithAClassHaveGetter(){
         AbeanHaveGetter bean=new AbeanHaveGetter();
-        bean.setFoo("sss");
-        bean.setName("ooo");
+//        bean.setFoo("sss");
+//        bean.setName("ooo");
         System.out.println(bean.toString());
     }
 }

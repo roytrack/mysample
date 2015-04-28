@@ -14,6 +14,7 @@
         <module>roypay</module>
         <module>tiles</module>
         <module>other</module>
+        <module>mavenInAction</module>
     </modules>
     <properties>
         <spring.version>4.1.4.RELEASE</spring.version>

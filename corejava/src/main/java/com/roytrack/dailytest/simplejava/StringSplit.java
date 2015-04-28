@@ -16,5 +16,8 @@ public class StringSplit {
             System.out.println(s);
         }
         System.out.println(ss.substring(0,ss.length()-1));
+
+        String aa="201102";
+        System.out.println(aa.substring(0,4)+"@@"+aa.substring(4));
     }
 }

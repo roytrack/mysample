@@ -3,7 +3,7 @@ package com.roytrack.dailytest.simplejava.string;
 import java.util.regex.Pattern;
 
 /**
- * Created by ruanchangming on 2015/4/24.
+ * Created by roytrack on 2015/4/24.
  */
 public class CharUtil {
 

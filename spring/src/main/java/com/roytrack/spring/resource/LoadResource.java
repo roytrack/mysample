@@ -10,7 +10,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import java.io.IOException;
 
 /**
- * Created by ruanchangming on 2015/4/28.
+ * Created by roytrack on 2015/4/28.
  */
 public class LoadResource {
 

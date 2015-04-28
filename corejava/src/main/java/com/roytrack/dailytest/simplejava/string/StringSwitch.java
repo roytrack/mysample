@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by ruanchangming on 2015/4/23.
+ * Created by roytrack on 2015/4/23.
  */
 public class StringSwitch {
     private static Logger logger = LoggerFactory.getLogger(StringSwitch.class);

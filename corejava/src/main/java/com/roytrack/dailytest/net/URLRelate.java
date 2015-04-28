@@ -8,7 +8,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 /**
- * Created by ruanchangming on 2015/4/21.
+ * Created by roytrack on 2015/4/21.
  */
 public class URLRelate {
 

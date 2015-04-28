@@ -5,6 +5,13 @@
     <artifactId>learn</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+    </dependencies>
     <name>learn Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <modules>

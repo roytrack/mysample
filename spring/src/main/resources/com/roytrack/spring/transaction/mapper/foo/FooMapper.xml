@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.roytrack.spring.transaction.mapper.foo.FooMapper" >
+  <resultMap id="BaseResultMap" type="com.roytrack.spring.transaction.model.foo.Foo" >
+
+    <result column="proName" jdbcType="VARCHAR" property="proName" />
+    <result column="proSum" jdbcType="INTEGER" property="proSum" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+ proName,proSum
+  </sql>
+  <update id="updateStatus" parameterType="com.roytrack.spring.transaction.model.foo.Foo">
+    update foo set proSum=56565
+    where proName=#{proName}
+  </update>
+</mapper>

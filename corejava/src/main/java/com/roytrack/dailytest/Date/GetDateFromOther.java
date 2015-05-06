@@ -4,6 +4,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cglib.core.Local;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjuster;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -54,9 +56,11 @@ public class GetDateFromOther {
          * 如果直接LocalDate.now()那么格式化的话只有年月日
          * 需要写成 LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 00:00:00"
          * */
-        String beginStr="2013-02-01 00:00:00";
+        String beginStr="2013-02-05 00:00:00";
         String endStr="2015-05-03 00:00:00";
         DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter fullDate=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter yearMonth=DateTimeFormatter.ofPattern("yyyyMM");
         LocalDate begin=LocalDate.parse(beginStr, dtf);
         LocalDate now=LocalDate.parse(endStr,dtf);
         Period betweenDate=Period.between(begin,now);
@@ -65,18 +69,22 @@ public class GetDateFromOther {
 //            System.out.println(begin.toString());
 //            begin=begin.plusMonths(1);
 //        }
-        //获取两个日期之间的所有月 两边都是闭区间
-        for(int i=0;begin.isBefore(now);i++){
-            if(i>0){
-                begin=begin.plusMonths(1);
-                if(begin.isAfter(now)){
-                    break;
-                }
-            }
-            System.out.println(begin.format(DateTimeFormatter.ofPattern("yyyyMM")));
-            System.out.println(begin.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        }
 
+        System.out.println("aa".compareTo("ab"));
+        //获取两个日期之间的所有月 两边都是闭区间
+        for(int i=0;begin.format(yearMonth).compareTo(now.format(yearMonth)) <=0;i++){
+            System.out.println(begin.format(yearMonth));
+            System.out.println(begin.format(fullDate));
+            begin=begin.plusMonths(1);
+        }
+        System.out.println("################################");
+        LocalDate theBegin=LocalDate.of(2013,4,29);
+        LocalDate theEnd=LocalDate.of(2015,5,5);
+        //比月份你就按照月份比 别按照日期比 肯定出事哦
+        while(theBegin.format(yearMonth).compareTo(theEnd.format(yearMonth))<=0){
+            System.out.println(theBegin);
+            theBegin=theBegin.plusMonths(1);
+        }
 
 
 
@@ -85,3 +93,4 @@ public class GetDateFromOther {
     }
 
 }
+

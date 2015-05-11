@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<account-persist>
+    <accounts>
+        <account>
+            <id>roy</id>
+            <name>track</name>
+            <email>me@roytrack.com</email>
+            <password>123456</password>
+            <activated>false</activated>
+        </account>
+    </accounts>
+
+</account-persist>
+

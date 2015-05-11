@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-<property name="location" value="classpath:account-email.properties"/>
+<property name="location" value="classpath:service.properties"/>
 </bean>
     <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="protocol" value="${email.protocol}"/>
@@ -18,7 +18,7 @@
             </props>
         </property>
     </bean>
-    <bean id="accountEmailService" class="com.roytrack.maven.account.email.AccountEmailServiceImpl">
+    <bean id="accountEmailService" class="com.roytrack.maven.email.AccountEmailServiceImpl">
         <property name="javaMailSender" ref="javaMailSender"/>
         <property name="systemEmail" value="${email.systemEmail}"/>
     </bean>

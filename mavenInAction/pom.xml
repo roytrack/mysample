@@ -8,7 +8,12 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
     <name>demo for maven in action</name>
+    <modules>
+        <module>mail</module>
+        <module>persist</module>
+    </modules>
     <artifactId>mavenInAction</artifactId>
 
     <dependencies>

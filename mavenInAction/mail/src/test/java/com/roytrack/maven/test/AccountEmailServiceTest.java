@@ -1,8 +1,9 @@
-package com.roytrack.maven.account.email;
+package com.roytrack.maven.test;
 
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.GreenMailUtil;
 import com.icegreen.greenmail.util.ServerSetup;
+import com.roytrack.maven.email.AccountEmailService;
 import com.roytrack.maven.exception.AccountEmailException;
 import org.junit.After;
 import org.junit.Assert;

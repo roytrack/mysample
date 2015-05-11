@@ -1,13 +1,12 @@
-package com.roytrack.maven.account.email;
+package com.roytrack.maven.email;
+
 
 import com.roytrack.maven.exception.AccountEmailException;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-
-
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 
 
 /**

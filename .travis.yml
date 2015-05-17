@@ -5,5 +5,5 @@ jdk:
 install: /bin/true
 
 script:
-  - mvn install -Dskip.unit.tests=true -Dmaven.javadoc.skip=true -V -B
-  - mvn clean test coveralls:report -V  -P coverage
+  - mvn install -Dmaven.test.skip=false
+  - mvn clean

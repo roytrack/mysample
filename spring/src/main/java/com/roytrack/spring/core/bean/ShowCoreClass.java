@@ -9,6 +9,7 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultSingletonBeanRegistry;
 import org.springframework.beans.factory.support.FactoryBeanRegistrySupport;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.AliasRegistry;
 import org.springframework.core.SimpleAliasRegistry;
 
@@ -20,6 +21,7 @@ public class ShowCoreClass {
     public static void main(String[] args) {
         DefaultListableBeanFactory factory=new DefaultListableBeanFactory();
         XmlBeanDefinitionReader reader=new XmlBeanDefinitionReader(factory );
+        FileSystemXmlApplicationContext context=new FileSystemXmlApplicationContext();
         AliasRegistry a=new AliasRegistry() {
             @Override
             public void registerAlias(String name, String alias) {

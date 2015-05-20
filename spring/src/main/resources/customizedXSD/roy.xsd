@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <xs:schema  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.roytrack.com/schema/roy"
+        xmlns="http://www.roytrack.com/schema/roy"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified"
+        >
+        <xs:element name="person">
+            <xs:complexType>
+                <xs:complexContent>
+                    <xs:extension base="xs:anyType"></xs:extension>
+                        <xs:element name="thename" type="xs:string"/>
+                        <xs:element name="age" type="xs:int"/>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:element>
+
+
+        </xs:schema>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns:bean="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.roytrack.com/schema/roy"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.roytrack.com/schema/roy http://www.roytrack.com/schema/roy.xsd">
+
+<roy id="roy" thename="roytrack" age="22" address="yaojiayuan road 105, chaoyang district,beijing"/>
+</bean:beans>

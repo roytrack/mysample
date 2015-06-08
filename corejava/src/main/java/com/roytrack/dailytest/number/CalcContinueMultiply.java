@@ -2,9 +2,9 @@ package com.roytrack.dailytest.number;
 
 /**
  * to see overflow
- * Created by ruanchangming on 2015/6/4.
+ * Created by roytrack on 2015/6/4.
  */
-public class CalcContinueAdd {
+public class CalcContinueMultiply {
     public static void main(String[] args) {
         int init=1;
         for(int i=10;i<99;i++){

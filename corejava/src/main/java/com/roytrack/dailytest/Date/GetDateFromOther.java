@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cglib.core.Local;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -85,11 +86,16 @@ public class GetDateFromOther {
             System.out.println(theBegin);
             theBegin=theBegin.plusMonths(1);
         }
+    }
 
-
-
-
-
+    @Test
+    public void getTimeByjdkLow() throws ParseException {
+        Date d=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss");
+        System.out.println(sdf.format(d));
+        String demoDate="2015-02-23 15:5:40";
+        Date demod=sdf.parse(demoDate);
+        System.out.println(sdf.format(demod));
     }
 
 }

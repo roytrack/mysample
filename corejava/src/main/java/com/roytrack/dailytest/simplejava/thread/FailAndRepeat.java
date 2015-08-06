@@ -1,7 +1,7 @@
 package com.roytrack.dailytest.simplejava.thread;
 
 /**
- * Created by ruanchangming on 2015/5/11.
+ * Created by roytrack on 2015/5/11.
  */
 public class FailAndRepeat {
     public static void main(String[] args) {

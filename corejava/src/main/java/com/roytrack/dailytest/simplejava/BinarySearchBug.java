@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedTransferQueue;
 
 /**
- * Created by ruanchangming on 2015/7/28.
+ * Created by roytrack on 2015/7/28.
  * 发现实际二分算法是从0开始的，所以后面结尾进行了长度-1
  */
 public class BinarySearchBug {

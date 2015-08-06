@@ -13,8 +13,5 @@ public class ByteClass {
         return m+1;
     }
 
-    public static void main(String[] args) throws UnsupportedEncodingException {
-        String aaa=URLEncoder.encode("http://abc.com/a=5%&b=4%","UTF-8");
-        System.out.println(aaa);
-    }
+
 }

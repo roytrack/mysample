@@ -14,13 +14,14 @@ print(time14)
 '''
 
 timeNow=datetime.datetime.now()
-time14=datetime.datetime.strptime("2015-7-24 13:58:00","%Y-%m-%d %H:%M:%S")
+time14=datetime.datetime.strptime("2015-8-7 9:58:00","%Y-%m-%d %H:%M:%S")
 time18=datetime.datetime.strptime("2015-7-24 17:57:00","%Y-%m-%d %H:%M:%S")
-#time18=datetime.datetime.strptime("2015-7-24 17:58:00","%Y-%m-%d %H:%M:%S")
+#time18=datetime.datetime.strptime("2015-7-24 17:58:00","%Y-%m-%d %H:%M:%S")；
+
 while (time14-timeNow).total_seconds() >0 :
     print("14 remain seconds" ,(time14-timeNow).total_seconds())
     if (time14-timeNow).total_seconds() <10 :
-        easygui.msgbox('准备开始抢支付宝红包！ 澳洲茶树',title="提醒",ok_button="知道啦")
+        easygui.msgbox('准备开始抢魅蓝note2',title="提醒",ok_button="知道啦")
     time.sleep(10)
     timeNow=datetime.datetime.now()
 

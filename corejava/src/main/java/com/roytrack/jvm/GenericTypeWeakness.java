@@ -26,7 +26,7 @@ public class GenericTypeWeakness {
     /**这两个可以一起编译
      * 是因为虽然签名一样，但是在jvm里面 返回类型也是作为签名的一部分，所以可以用
      * 但不知道为什么intellij还是不编译他们
-     *
+     *应该是因为我用的是1.8的javac 1.6的也许就可以了。。
      *
      *
      public static  int saySomething2(List<Integer> list){

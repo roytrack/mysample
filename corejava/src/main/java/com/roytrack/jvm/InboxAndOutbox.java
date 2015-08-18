@@ -24,5 +24,9 @@ public class InboxAndOutbox {
         System.out.println(c.equals(a+b));
         System.out.println(g==(a+b));
         System.out.println(g.equals(a+b));
+        Integer _a=new Integer(4);
+        Integer _b=new Integer(4);
+        System.out.println(_a==_b);
+        System.out.println(_a.equals(_b));
     }
 }

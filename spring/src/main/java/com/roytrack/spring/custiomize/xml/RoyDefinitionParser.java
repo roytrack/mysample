@@ -3,6 +3,7 @@ package com.roytrack.spring.custiomize.xml;
 
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;
+import org.springframework.context.annotation.AnnotationConfigBeanDefinitionParser;
 import org.w3c.dom.Element;
 
 
@@ -20,6 +21,7 @@ public class RoyDefinitionParser extends AbstractSingleBeanDefinitionParser {
         bean.addPropertyValue("thename",element.getAttribute("thename"));
         bean.addPropertyValue("age",element.getAttribute("age"));
         bean.addPropertyValue("address",element.getAttribute("address"));
+
     }
 
 }

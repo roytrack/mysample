@@ -35,6 +35,7 @@ class MyThread2 implements Runnable{
         } catch (BrokenBarrierException e) {
             e.printStackTrace();
         }
+        System.out.println(Thread.currentThread().getName() +" time is "+System.currentTimeMillis());
 
     }
 

@@ -14,64 +14,64 @@ print(time14)
 '''
 
 timeNow=datetime.datetime.now()
-time10=datetime.datetime.strptime("2015-8-20 10:28:00","%Y-%m-%d %H:%M:%S")
-#time12=datetime.datetime.strptime("2015-8-20 11:58:00","%Y-%m-%d %H:%M:%S")
-time14=datetime.datetime.strptime("2015-8-20 13:58:00","%Y-%m-%d %H:%M:%S")
-time15=datetime.datetime.strptime("2015-8-20 14:58:00","%Y-%m-%d %H:%M:%S")
-time16=datetime.datetime.strptime("2015-8-20 15:58:00","%Y-%m-%d %H:%M:%S")
-time18=datetime.datetime.strptime("2015-8-20 17:56:00","%Y-%m-%d %H:%M:%S")
-time20=datetime.datetime.strptime("2015-8-20 19:56:00","%Y-%m-%d %H:%M:%S")
+time9=datetime.datetime.strptime("2015-9-19 8:58:00","%Y-%m-%d %H:%M:%S")
+#time11=datetime.datetime.strptime("2015-9-19 10:58:00","%Y-%m-%d %H:%M:%S")
+time13=datetime.datetime.strptime("2015-9-19 12:58:00","%Y-%m-%d %H:%M:%S")
+time15=datetime.datetime.strptime("2015-9-19 14:58:00","%Y-%m-%d %H:%M:%S")
+time17=datetime.datetime.strptime("2015-9-19 16:58:00","%Y-%m-%d %H:%M:%S")
+time19=datetime.datetime.strptime("2015-9-19 18:56:00","%Y-%m-%d %H:%M:%S")
+time21=datetime.datetime.strptime("2015-9-19 20:56:00","%Y-%m-%d %H:%M:%S")
 #time18=datetime.datetime.strptime("2015-7-24 17:58:00","%Y-%m-%d %H:%M:%S")；
 
-while (time10-timeNow).total_seconds() >0 :
-    print("10:30 remain seconds" ,(time10-timeNow).total_seconds())
-    if (time10-timeNow).total_seconds() <10 :
-        easygui.msgbox('10:30口令：33412378',title="提醒",ok_button="知道啦")
+while (time9-timeNow).total_seconds() >0 :
+    print("9 remain seconds" ,(time9-timeNow).total_seconds())
+    if (time9-timeNow).total_seconds() <10 :
+        easygui.msgbox('9点抢购',title="提醒",ok_button="知道啦")
     time.sleep(10)
     timeNow=datetime.datetime.now()
 
 
 
-# while (time12-timeNow).total_seconds() >0 :
-#     print("12 remain seconds" ,(time12-timeNow).total_seconds())
-#     if (time12-timeNow).total_seconds() <10 :
-#         easygui.msgbox('中文支付宝红包口令：赤果果的示爱',title="提醒",ok_button="知道啦")
-#     time.sleep(10)
-#     timeNow=datetime.datetime.now()
+     while (time11-timeNow).total_seconds() >0 :
+     print("11 remain seconds" ,(time11-timeNow).total_seconds())
+     if (time11-timeNow).total_seconds() <10 :
+         easygui.msgbox('9点抢购',title="提醒",ok_button="知道啦")
+     time.sleep(10)
+     timeNow=datetime.datetime.now()
 
 
-while (time14-timeNow).total_seconds() >0 :
-    print("14 remain seconds" ,(time14-timeNow).total_seconds())
-    if (time14-timeNow).total_seconds() <10 :
-        easygui.msgbox('14:00中文口令：圣芝红酒',title="提醒",ok_button="知道啦")
+while (time13-timeNow).total_seconds() >0 :
+    print("13 remain seconds" ,(time13-timeNow).total_seconds())
+    if (time13-timeNow).total_seconds() <10 :
+        easygui.msgbox('13点抢购',title="提醒",ok_button="知道啦")
     time.sleep(10)
     timeNow=datetime.datetime.now()
 
 while (time15-timeNow).total_seconds() >0 :
     print("15 remain seconds" ,(time15-timeNow).total_seconds())
     if (time15-timeNow).total_seconds() <10 :
-        easygui.msgbox('中文支付宝红包口令：放心飞',title="提醒",ok_button="知道啦")
+        easygui.msgbox('15点抢购',title="提醒",ok_button="知道啦")
     time.sleep(10)
     timeNow=datetime.datetime.now()
 
-while (time16-timeNow).total_seconds() >0 :
-    print("16 remain seconds" ,(time16-timeNow).total_seconds())
-    if (time16-timeNow).total_seconds() <10 :
-        easygui.msgbox('中文支付宝红包口令：佳期如梦',title="提醒",ok_button="知道啦")
+while (time17-timeNow).total_seconds() >0 :
+    print("17 remain seconds" ,(time17-timeNow).total_seconds())
+    if (time17-timeNow).total_seconds() <10 :
+        easygui.msgbox('17点抢购',title="提醒",ok_button="知道啦")
     time.sleep(10)
     timeNow=datetime.datetime.now()
 
-while (time18-timeNow).total_seconds() >0 :
-    print("18 remain seconds" ,(time18-timeNow).total_seconds())
-    if (time18-timeNow).total_seconds() <10 :
-        easygui.msgbox('中文支付宝红包口令：恒大兴安',title="提醒",ok_button="知道啦")
+while (time19-timeNow).total_seconds() >0 :
+    print("19 remain seconds" ,(time19-timeNow).total_seconds())
+    if (time19-timeNow).total_seconds() <10 :
+        easygui.msgbox('19点抢购',title="提醒",ok_button="知道啦")
     time.sleep(10)
     timeNow=datetime.datetime.now()
 
 
-while (time20-timeNow).total_seconds() >0 :
-    print("20 remain seconds" ,(time20-timeNow).total_seconds())
-    if (time20-timeNow).total_seconds() <10 :
-        easygui.msgbox('20:00中文口令：喂爱买买买',title="提醒",ok_button="知道啦")
+while (time21-timeNow).total_seconds() >0 :
+    print("21 remain seconds" ,(time21-timeNow).total_seconds())
+    if (time21-timeNow).total_seconds() <10 :
+        easygui.msgbox('21点抢购',title="提醒",ok_button="知道啦")
     time.sleep(10)
     timeNow=datetime.datetime.now()

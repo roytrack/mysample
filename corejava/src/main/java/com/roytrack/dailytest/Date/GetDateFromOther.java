@@ -4,19 +4,13 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cglib.core.Local;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAdjuster;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -96,6 +90,15 @@ public class GetDateFromOther {
         String demoDate="2015-02-23 15:5:40";
         Date demod=sdf.parse(demoDate);
         System.out.println(sdf.format(demod));
+    }
+
+    @Test
+    public void addDayCrossMonth(){
+        Date d=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println(sdf.format(d));
+        System.out.println(sdf.format(DateUtils.addDays(d,29)));
+        System.out.println(sdf.format(DateUtils.addDays(d,-29)));
     }
 
 }

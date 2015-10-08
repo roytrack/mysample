@@ -36,6 +36,8 @@
         <module>tiles</module>
         <module>other</module>
         <module>mavenInAction</module>
+        <module>zookeeper</module>
+        <module>mysql</module>
     </modules>
     <properties>
         <spring.version>4.1.4.RELEASE</spring.version>

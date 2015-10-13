@@ -9,9 +9,9 @@ import java.sql.SQLException;
  */
 public class Aconnection {
     private static volatile  Aconnection aconnection;
-    private static String url="jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=round&useUnicode=true&characterEncoding=UTF-8";
-    private static String username="root";
-    private static String password="12qwaszx";
+    private static String url="jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=round&useUnicode=true&characterEncoding=UTF-8&autocommit=0";
+    private static String username="roy";
+    private static String password="roy123";
     private Connection conn;
     static {
         try {

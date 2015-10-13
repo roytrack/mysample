@@ -30,11 +30,13 @@
 
     <modules>
         <module>corejava</module>
-        <module>spring</module>
-        <module>springmvcsample1</module>
-        <module>roypay</module>
-        <module>other</module>
         <module>mavenInAction</module>
+        <module>netty</module>
+        <module>other</module>
+        <module>spring</module>
+        <module>pythoncode</module>
+        <module>roypay</module>
+        <module>springmvcsample1</module>
     </modules>
     <properties>
         <spring.version>4.1.4.RELEASE</spring.version>

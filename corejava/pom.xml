@@ -42,9 +42,7 @@
         <old.jackson>1.9.13</old.jackson>
         <checkstyle.config.location>config/maven_checks.xml</checkstyle.config.location>
     </properties>
-    <modules>
-        <module>../pythoncode</module>
-    </modules>
+
 
     <dependencies>
         <dependency>

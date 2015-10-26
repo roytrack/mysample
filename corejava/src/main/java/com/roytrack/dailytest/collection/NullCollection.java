@@ -9,7 +9,7 @@ import java.util.List;
 public class NullCollection {
 
     public static void main(String[] args) {
-        List<String> aa=new ArrayList<>();
+        List<String> aa=new ArrayList<String>();
         aa.add(null);
         System.out.println(aa.size());
         List<Integer> list=null;

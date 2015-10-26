@@ -14,8 +14,8 @@ print(time14)
 '''
 
 timeNow=datetime.datetime.now()
-time9=datetime.datetime.strptime("2015-9-19 8:58:00","%Y-%m-%d %H:%M:%S")
-#time11=datetime.datetime.strptime("2015-9-19 10:58:00","%Y-%m-%d %H:%M:%S")
+time9=datetime.datetime.strptime("2015-10-13 9:58:00","%Y-%m-%d %H:%M:%S")
+time11=datetime.datetime.strptime("2015-9-19 10:58:00","%Y-%m-%d %H:%M:%S")
 time13=datetime.datetime.strptime("2015-9-19 12:58:00","%Y-%m-%d %H:%M:%S")
 time15=datetime.datetime.strptime("2015-9-19 14:58:00","%Y-%m-%d %H:%M:%S")
 time17=datetime.datetime.strptime("2015-9-19 16:58:00","%Y-%m-%d %H:%M:%S")
@@ -26,13 +26,13 @@ time21=datetime.datetime.strptime("2015-9-19 20:56:00","%Y-%m-%d %H:%M:%S")
 while (time9-timeNow).total_seconds() >0 :
     print("9 remain seconds" ,(time9-timeNow).total_seconds())
     if (time9-timeNow).total_seconds() <10 :
-        easygui.msgbox('9点抢购',title="提醒",ok_button="知道啦")
+        easygui.msgbox('聚划算',title="提醒",ok_button="知道啦")
     time.sleep(10)
     timeNow=datetime.datetime.now()
 
 
 
-     while (time11-timeNow).total_seconds() >0 :
+while (time11-timeNow).total_seconds() >0 :
      print("11 remain seconds" ,(time11-timeNow).total_seconds())
      if (time11-timeNow).total_seconds() <10 :
          easygui.msgbox('9点抢购',title="提醒",ok_button="知道啦")

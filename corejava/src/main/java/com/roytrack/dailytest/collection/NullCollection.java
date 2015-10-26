@@ -1,5 +1,6 @@
 package com.roytrack.dailytest.collection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,6 +9,9 @@ import java.util.List;
 public class NullCollection {
 
     public static void main(String[] args) {
+        List<String> aa=new ArrayList<>();
+        aa.add(null);
+        System.out.println(aa.size());
         List<Integer> list=null;
         for(Integer i:list){
             System.out.println(i);

@@ -12,7 +12,7 @@
     <artifactId>kryo</artifactId>
 <dependencies>
     <dependency>
-        <groupId>com.esotericsoftware</groupId>
+        <groupId>com.esotericsoftware.kryo</groupId>
         <artifactId>kryo</artifactId>
         <version>2.24.0</version>
     </dependency>

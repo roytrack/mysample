@@ -62,10 +62,5 @@ public class PerformanceDemo {
         System.out.println("对比结束   " + sdf.format(new Date()) + "  耗时毫秒   " + (System.currentTimeMillis() - now));
         System.out.println("相等个数 "+equal+"   不相等个数  "+unequal);
 
-
-
-
-
-
     }
 }

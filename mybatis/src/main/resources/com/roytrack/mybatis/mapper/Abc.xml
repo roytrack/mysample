@@ -12,4 +12,10 @@ myname,myage
 <insert id="insert" parameterType="com.roytrack.mybatis.model.Abc" >
   insert into thename values (#{myname},#{myage})
 </insert>
+  <select id="selectIn" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from thename where myname in (${_parameter})
+
+  </select>
 </mapper>

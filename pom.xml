@@ -38,6 +38,7 @@
         <module>roypay</module>
         <module>springmvcsample1</module>
         <module>kryo</module>
+        <module>mybatis</module>
     </modules>
     <properties>
         <spring.version>4.1.4.RELEASE</spring.version>

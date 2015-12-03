@@ -23,7 +23,7 @@ import java.util.List;
  *
  * Created by ruanchangming on 2015/10/26.
  */
-public class PerformanceDemo {
+public class PerformanceKryoDemo {
     public static void main(String[] args) {
         KryoFactory factory=  KryoFactory.getDefaultFactory();
         Kryo k=factory.getKryo();

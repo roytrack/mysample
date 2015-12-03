@@ -14,7 +14,7 @@ public class List2Array {
 
     @Test
     public void list2Array(){
-        List<String> list=new ArrayList<>();
+        List<String> list=new ArrayList<String>();
         list.add("aa");
         list.add("bb");
         list.add("cc");

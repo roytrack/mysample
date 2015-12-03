@@ -12,7 +12,7 @@
     <artifactId>kryo</artifactId>
 <dependencies>
     <dependency>
-        <groupId>com.esotericsoftware</groupId>
+        <groupId>com.esotericsoftware.kryo</groupId>
         <artifactId>kryo</artifactId>
         <version>2.24.0</version>
     </dependency>
@@ -63,6 +63,11 @@
         <artifactId>logback-core</artifactId>
         <version>${logback.version}</version>
         <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-redis</artifactId>
+        <version>1.6.0.RELEASE</version>
     </dependency>
 </dependencies>
 

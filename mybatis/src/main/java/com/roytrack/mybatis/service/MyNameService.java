@@ -39,4 +39,8 @@ public class MyNameService {
         String ids="'df2df','dfdf'";
         return abcMapper.selectIn(ids);
     }
+
+    public List<String> selectId(){
+        return abcMapper.selectID();
+    }
 }

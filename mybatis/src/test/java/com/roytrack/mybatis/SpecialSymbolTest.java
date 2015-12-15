@@ -1,9 +1,11 @@
 package com.roytrack.mybatis;
 
+import com.roytrack.mybatis.mapper.AbcMapper;
 import com.roytrack.mybatis.model.Abc;
 import com.roytrack.mybatis.service.MyNameService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -19,6 +21,15 @@ public class SpecialSymbolTest {
     @Resource
     MyNameService myService;
 
+    @Autowired
+    AbcMapper abcMapper;
+
+    @Test
+    public void abc(){
+        List<String> as=abcMapper.selectID();
+        System.out.println(as.size());
+    }
+
     @Test
     public void specialSymbol(){
         myService.insert();
@@ -29,6 +40,16 @@ public class SpecialSymbolTest {
         List<Abc> list= myService.selectIn();
         System.out.println(list.size());
         for(Abc c:list){
+            System.out.println(c);
+        }
+
+    }
+
+    @Test
+    public  void selectID(){
+        List<String> list= myService.selectId();
+        System.out.println(list.size());
+        for(String c:list){
             System.out.println(c);
         }
 

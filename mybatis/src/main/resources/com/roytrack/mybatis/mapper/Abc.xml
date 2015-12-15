@@ -18,4 +18,10 @@ myname,myage
     from thename where myname in (${_parameter})
 
   </select>
+
+  <select id="selectID" resultType="string">
+    SELECT
+   myname
+    from thename
+  </select>
 </mapper>

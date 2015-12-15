@@ -11,5 +11,7 @@ public interface AbcMapper {
     int insert(Abc abc);
     List<Abc> selectIn(String ids);
 
+    List<String> selectID();
+
 
 }

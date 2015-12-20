@@ -40,6 +40,7 @@
         <module>kryo</module>
         <module>mybatis</module>
         <module>httpclient</module>
+        <module>redis</module>
     </modules>
     <properties>
         <spring.version>4.1.4.RELEASE</spring.version>

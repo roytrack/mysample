@@ -1,8 +1,13 @@
 package com.roytrack.httpclient;
 
 import org.apache.http.*;
+import org.apache.http.client.HttpRequestRetryHandler;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.protocol.RequestExpectContinue;
 import org.apache.http.entity.*;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.nio.reactor.BaseIOReactor;
 import org.apache.http.impl.nio.reactor.IOReactorConfig;
 import org.apache.http.message.BasicHeaderElementIterator;
@@ -12,7 +17,9 @@ import org.apache.http.nio.reactor.IOReactor;
 import org.apache.http.protocol.*;
 import org.apache.http.util.EntityUtils;
 
+import javax.net.ssl.SSLHandshakeException;
 import java.io.*;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -28,7 +35,9 @@ public class SimpleHttpRequestDemo {
 //        responseDemo4();
         try {
 //            httpEntity();
-            httpProcessor();
+//            httpProcessor();
+//            httpProducer();
+            httpHost();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -159,7 +168,58 @@ public class SimpleHttpRequestDemo {
         IOReactorConfig config=IOReactorConfig.DEFAULT;
     }
 
+    static void httpProducer() throws IOException {
+        ContentProducer myContentProducer=new ContentProducer() {
+            @Override
+            public void writeTo(OutputStream outstream) throws IOException {
+                outstream.write("ContentProducer rocks !".getBytes());
+                outstream.write(("Time requested :"+new Date()).getBytes());
+            }
+        };
+        HttpEntity entity=new EntityTemplate(myContentProducer);
+        entity.writeTo(System.out);
+    }
 
+    static void httpHost() throws IOException {
+        HttpClientBuilder builder=HttpClientBuilder.create();
+        CloseableHttpClient httpClient=builder.build();
+        HttpContext localContext=new BasicHttpContext();
+        HttpGet httpGet=new HttpGet("http://www.baidu.com");
+        HttpResponse response=httpClient.execute(httpGet,localContext);
+        //ExecutionContext.HTTP_TARGET_HOST
+        HttpHost target=(HttpHost)localContext.getAttribute(HttpCoreContext.HTTP_TARGET_HOST);
+        System.out.println("Final target :"+target);
+        HttpEntity  entity=response.getEntity();
+        if(entity!=null){
+            EntityUtils.consume(entity);
+        }
+    }
+
+    static void RetryHandler(){
+        HttpRequestRetryHandler  myRetryHandler=new HttpRequestRetryHandler() {
+            @Override
+            public boolean retryRequest(IOException exception, int executionCount, HttpContext context) {
+                if(executionCount>5){
+                    return false;
+                }
+                if(exception instanceof NoHttpResponseException){
+                    return true;
+                }
+                if(exception instanceof SSLHandshakeException){
+                    return  false;
+                }
+                HttpRequest request=(HttpRequest)context.getAttribute(HttpCoreContext.HTTP_REQUEST);
+                boolean idempotent=!(request instanceof HttpEntityEnclosingRequest);
+                if(idempotent){
+                    return  true;
+                }
+
+
+                return false;
+            }
+        };
+        CloseableHttpClient httpClient= HttpClients.custom().setRetryHandler(myRetryHandler).build();
+    }
 }
 
 

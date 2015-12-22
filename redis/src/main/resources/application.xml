@@ -19,11 +19,10 @@
 	</bean>
 
 	<bean id="sentinelConfig" class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
-		<constructor-arg name="master" value="mymaster "/>
+		<constructor-arg name="master" value="mymaster"/>
 		<constructor-arg name="sentinelHostAndPorts">
 			<set>
-				<value>${redis.sentinel1}</value>
-				<value>${redis.sentinel2}</value>
+				<value>10.58.69.142:26379</value>
 			</set>
 		</constructor-arg>
 	</bean>
@@ -32,8 +31,7 @@
 		<constructor-arg ref="sentinelConfig"/>
 		<property name="timeout" value="2000"/>
 		<property name="usePool" value="true"/>
-		<property name="password" value="${redis.pwd}"/>
-		<property name="database" value="${redis.slot}"/>
+		<property name="database" value="3"/>
 		<property name="poolConfig" ref="poolConfig"/>
 	</bean>
 
@@ -49,8 +47,6 @@
 		</property>
 	</bean>
 
-	<import resource="classpath:application-db-settlement.xml"/>
-	<!--<import resource="classpath:application-dubbo.xml"/>-->
 
 
 

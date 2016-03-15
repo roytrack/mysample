@@ -1,6 +1,7 @@
 package com.roytrack.mybatis.mapper;
 
 import com.roytrack.mybatis.model.Abc;
+import com.roytrack.mybatis.model.QueryModel;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ import java.util.List;
 public interface AbcMapper {
     int insert(Abc abc);
     List<Abc> selectIn(String ids);
+
+    List<Abc> selectIn2(QueryModel ids);
 
     List<String> selectID();
 

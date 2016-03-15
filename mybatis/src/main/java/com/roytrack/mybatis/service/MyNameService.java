@@ -2,9 +2,11 @@ package com.roytrack.mybatis.service;
 
 import com.roytrack.mybatis.mapper.AbcMapper;
 import com.roytrack.mybatis.model.Abc;
+import com.roytrack.mybatis.model.QueryModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +42,15 @@ public class MyNameService {
         return abcMapper.selectIn(ids);
     }
 
+    public List<Abc> selectIn2(){
+
+        ArrayList<String> ids=new ArrayList<>();
+        ids.add("df2df");
+        ids.add("'ddd'");
+        QueryModel q=new QueryModel();
+        q.setIds(ids);
+        return abcMapper.selectIn2(q);
+    }
     public List<String> selectId(){
         return abcMapper.selectID();
     }

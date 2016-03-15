@@ -38,11 +38,14 @@ public class SpecialSymbolTest {
     @Test
     public  void selectIn(){
         List<Abc> list= myService.selectIn();
-        System.out.println(list.size());
+//        System.out.println(list.size());
+//        for(Abc c:list){
+//            System.out.println(c);
+//        }
+        list=myService.selectIn2();
         for(Abc c:list){
             System.out.println(c);
         }
-
     }
 
     @Test

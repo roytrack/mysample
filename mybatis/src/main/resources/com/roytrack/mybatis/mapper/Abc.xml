@@ -19,6 +19,17 @@ myname,myage
 
   </select>
 
+
+  <select id="selectIn2" resultMap="BaseResultMap" parameterType="com.roytrack.mybatis.model.QueryModel">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from thename where myname in
+    <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+
+  </select>
+
   <select id="selectID" resultType="string">
     SELECT
    myname

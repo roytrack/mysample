@@ -41,8 +41,8 @@ public class GetDateFromOther {
         LocalDate now=LocalDate.now();
         Period betweenDate=Period.between(begin,now);
 
-        logger.info("距离发现此bug已过去{}月{}天，共{}天",betweenDate.getMonths(),betweenDate.getDays(),
-                LocalDate.now().toEpochDay()-begin.toEpochDay());
+        logger.info("距离发现此bug已过去{}月{}天，共{}天", betweenDate.getMonths(), betweenDate.getDays(),
+                LocalDate.now().toEpochDay() - begin.toEpochDay());
     }
 
     @Test
@@ -99,6 +99,11 @@ public class GetDateFromOther {
         System.out.println(sdf.format(d));
         System.out.println(sdf.format(DateUtils.addDays(d,29)));
         System.out.println(sdf.format(DateUtils.addDays(d,-29)));
+    }
+
+    @Test
+    public void timeMills(){
+        System.out.println(System.currentTimeMillis());
     }
 
 }

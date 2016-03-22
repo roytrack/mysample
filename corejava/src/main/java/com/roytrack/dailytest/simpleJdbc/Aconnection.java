@@ -23,6 +23,7 @@ public class Aconnection {
 
     private Aconnection(){}
 
+
     public Connection getConn(){
         try {
             conn = DriverManager.getConnection(url, username, password);

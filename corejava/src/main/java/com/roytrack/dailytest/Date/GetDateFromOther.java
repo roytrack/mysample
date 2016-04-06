@@ -1,5 +1,6 @@
 package com.roytrack.dailytest.Date;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by roytrack on 2015/3/18.
@@ -104,6 +106,30 @@ public class GetDateFromOther {
     @Test
     public void timeMills(){
         System.out.println(System.currentTimeMillis());
+    }
+
+
+    @Test
+    public void getDateString(){
+
+        Calendar c=new GregorianCalendar(2015,1,28);
+        Date date=c.getTime();
+        String beginTime = DateFormatUtils.format(DateUtils.addDays(date, -30), "yyyy-MM-dd 00:00:00");
+        String endTime = DateFormatUtils.format(DateUtils.addDays(date, -29), "yyyy-MM-dd 00:00:00");
+        System.out.println(beginTime);
+        System.out.println(endTime);
+        date=DateUtils.addDays(date,1);
+        System.out.println(DateFormatUtils.format(date, "yyyy-MM-dd 00:00:00"));
+         beginTime = DateFormatUtils.format(DateUtils.addDays(date, -30), "yyyy-MM-dd 00:00:00");
+         endTime = DateFormatUtils.format(DateUtils.addDays(date, -29), "yyyy-MM-dd 00:00:00");
+        System.out.println(beginTime);
+        System.out.println(endTime);
+        date=DateUtils.addDays(date,1);
+        System.out.println(DateFormatUtils.format(date, "yyyy-MM-dd 00:00:00"));
+        beginTime = DateFormatUtils.format(DateUtils.addDays(date, -30), "yyyy-MM-dd 00:00:00");
+        endTime = DateFormatUtils.format(DateUtils.addDays(date, -29), "yyyy-MM-dd 00:00:00");
+        System.out.println(beginTime);
+        System.out.println(endTime);
     }
 
 }

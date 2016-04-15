@@ -17,7 +17,7 @@ public class RoundTest {
         BigDecimal a=new BigDecimal(45.275);
         System.out.println(a);
         System.out.println(a.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
-        System.out.println(a.setScale(2,BigDecimal.ROUND_HALF_DOWN).doubleValue());
+        System.out.println(a.setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue());
 
         BigDecimal c=new BigDecimal("24.5");
         BigDecimal d=new BigDecimal("67.475");
@@ -28,5 +28,13 @@ public class RoundTest {
         int intC=3;
         int intD=2;
         System.out.println((intA/intB)+"  "+(intA/intC)+"  "+(intA/intD)+"");
+
+
+
+        double doublea =1.51;
+        BigDecimal e=new BigDecimal(doublea);
+        System.out.println(e.setScale(0,BigDecimal.ROUND_CEILING));
+        System.out.println(e.setScale(0,BigDecimal.ROUND_HALF_UP));
+
     }
 }

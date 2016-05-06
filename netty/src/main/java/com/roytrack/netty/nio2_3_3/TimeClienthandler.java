@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by ruanchangming on 2016-3-24.
  */
-public class TimeClienthandle implements Runnable {
+public class TimeClienthandler implements Runnable {
     private String host;
     private int port;
     private Selector selector;
@@ -22,7 +22,7 @@ public class TimeClienthandle implements Runnable {
     private volatile  boolean stop;
 
 
-    public TimeClienthandle(String ip, int port) {
+    public TimeClienthandler(String ip, int port) {
         this.host=ip==null?"127.0.0.1":ip;
         this.port=port;
         try{

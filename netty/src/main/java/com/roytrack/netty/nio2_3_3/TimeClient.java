@@ -12,7 +12,7 @@ public class TimeClient {
      if(null!=args&&args.length>0){
          port=Integer.valueOf(args[0]);
      }
-        new Thread(new TimeClienthandle("127.0.0.1",port),"TimeClient-001").start();
+        new Thread(new TimeClienthandler("127.0.0.1",port),"TimeClient-001").start();
 
 
     }

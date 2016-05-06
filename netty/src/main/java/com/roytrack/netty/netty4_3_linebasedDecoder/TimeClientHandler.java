@@ -1,4 +1,4 @@
-package com.roytrack.netty.netty3_2;
+package com.roytrack.netty.netty4_3_linebasedDecoder;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -13,13 +13,16 @@ import java.util.logging.Logger;
 public class TimeClientHandler extends ChannelHandlerAdapter{
     private static final Logger logger=Logger.getLogger(TimeClientHandler.class.getName());
 
-    private final ByteBuf firstMessage;
+    private int counter;
+
+
+
+    private byte[] seq;
 
     public TimeClientHandler() {
-        byte[] seq="time".getBytes();
-        firstMessage= Unpooled.buffer(seq.length);
-        firstMessage.writeBytes(seq);
+        seq=("time"+System.getProperty("line.separator")).getBytes();
     }
+
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
@@ -29,7 +32,13 @@ public class TimeClientHandler extends ChannelHandlerAdapter{
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ctx.writeAndFlush(firstMessage);
+        ByteBuf message=null;
+        for(int i=0;i<100;i++){
+            message=Unpooled.buffer(seq.length);
+            message.writeBytes(seq);
+            ctx.writeAndFlush(message);
+        }
+
     }
 
     @Override
@@ -38,7 +47,7 @@ public class TimeClientHandler extends ChannelHandlerAdapter{
         byte[] req=new byte[buf.readableBytes()];
         buf.readBytes(req);
         String body=new String(req,"UTF-8");
-        System.out.println("Now is : "+body);
+        System.out.println("Now is : " + body+" ; the counter is :"+ ++counter);
 
     }
 

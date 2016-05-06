@@ -1,4 +1,4 @@
-package com.roytrack.netty.netty3_2;
+package com.roytrack.netty.netty4_3_linebasedDecoder;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -43,6 +43,7 @@ public class TimeClient {
 
             }
         }
+        System.out.println("$$$'"+System.getProperty("line.separator")+"'$$$$");
         new TimeClient().connect(port,"127.0.0.1");
     }
 

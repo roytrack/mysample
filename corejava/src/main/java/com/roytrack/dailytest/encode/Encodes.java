@@ -1,12 +1,5 @@
 package com.roytrack.dailytest.encode;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
-
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
@@ -15,6 +8,13 @@ import org.apache.commons.lang3.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 
 
 /**
@@ -271,6 +271,18 @@ public class Encodes {
         System.out.println(decodeStr);
 
     }
+
+    @Test
+    public void base64Encode(){
+        String origin="";
+        String encodes=new String (Encodes.encodeBase64(origin.getBytes()));
+        System.out.println(encodes);
+        System.out.println("--------------------------");
+        String result=new String(Encodes.decodeBase64(encodes));
+        System.out.println(result);
+        System.out.println("--------------------------");
+    }
+
 
     @Test
     public void changeJDK(){

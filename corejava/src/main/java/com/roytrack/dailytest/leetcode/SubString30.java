@@ -11,16 +11,18 @@ import java.util.List;
  */
 public class SubString30 {
     public  static  int count=0;
-    HashSet<String> hitResult=new HashSet<>();
+    public static int subLength=0;
     public static void main(String[] args) {
         String s="barfoothefoobarman";
         s="wordgoodgoodgoodbestword";
+        s="aaaaaaaa";
         String [] words
 //                ={"foo", "bar","man"};
 //        words
-                ={"word","good","best","good"};
+                //={"word","good","best","good"};
+        ={"aa","aa","aa"};
         SubString30 s3=new SubString30();
-        List<Integer> result=new ArrayList<>();
+        HashSet<Integer> result=new HashSet<>();
         s3.allRange(words, 0, s,result);
 
         for(Integer i:result){
@@ -33,16 +35,26 @@ public class SubString30 {
         words[a]=words[b];
         words[b]=c;
     }
-    public    void allRange(String[] words,int start,String target,List<Integer>result){
 
-        System.out.println("====="+String.join("",words)+"======="+(count++));
-        if(start==words.length-1){
-
-            if(target.indexOf(String.join("",words))>=0&&!hitResult.contains(String.join("",words))){
-                result.add(target.indexOf(String.join("",words)));
-                hitResult.add(String.join("",words));
-                System.out.println(target.indexOf(String.join("",words)));
+    public  void indexOf(String target,String [] words,HashSet<Integer> result){
+        String jonStr=String.join("",words);
+        Integer index=target.indexOf(jonStr);
+        if(index>=0){
+            result.add(subLength+index);
+//            System.out.println(index);
+            if(jonStr.length()<=target.length()){
+                String c=target.substring(1);
+                subLength++;
+                indexOf(c,words,result);
             }
+        }
+    }
+    public    void allRange(String[] words,int start,String target,HashSet<Integer>result){
+
+//        System.out.println("====="+String.join("",words)+"======="+(count++));
+        if(start==words.length-1){
+            subLength=0;
+            indexOf(target,words,result);
         }else{
             for(int i=start;i<words.length;  i++){
 
@@ -54,9 +66,10 @@ public class SubString30 {
         }
     }
     public  List<Integer> findSubString(String s,String[] words){
-        List<Integer> result=new ArrayList<>();
+        HashSet<Integer> result=new HashSet<>();
         allRange(words,0,s,result);
-        return result;
+        ArrayList<Integer> r=new ArrayList<>(result);
+        return r;
 
     }
 }

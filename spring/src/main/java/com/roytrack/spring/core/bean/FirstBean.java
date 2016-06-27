@@ -2,8 +2,6 @@ package com.roytrack.spring.core.bean;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import java.util.HashMap;
-
 /**
  * Created by roytrack on 2015/5/6.
  */

@@ -41,6 +41,7 @@
         <module>mybatis</module>
         <module>httpclient</module>
         <module>redis</module>
+        <module>elasticsearch</module>
     </modules>
     <properties>
         <spring.version>4.1.4.RELEASE</spring.version>

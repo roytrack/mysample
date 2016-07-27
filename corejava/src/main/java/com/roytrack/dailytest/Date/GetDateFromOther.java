@@ -132,5 +132,14 @@ public class GetDateFromOther {
         System.out.println(endTime);
     }
 
+
+    @Test
+    public void getDate30Before(){
+        Date date=new Date();
+        String beginTime = DateFormatUtils.format(DateUtils.addDays(date, -30), "yyyy-MM-dd 00:00:00");
+        String endTime = DateFormatUtils.format(DateUtils.addDays(date, -29), "yyyy-MM-dd 00:00:00");
+        System.out.println(beginTime+"    "+endTime);
+    }
+
 }
 

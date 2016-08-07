@@ -13,7 +13,6 @@ public class ReverseIntValue {
     }
 
     public static int reverse(int i){
-
         System.out.println(i);
         System.out.println(i%10+"   "+(i%10)*100000000 +"  "+(i/10)+"  "+(i%10)*Double.valueOf(Math.pow(10,String.valueOf(i).length()-1)).intValue()+
         "  "+(double)(i%10)+"   "+(double)String.valueOf(i).length());

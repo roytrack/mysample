@@ -42,6 +42,7 @@
         <module>httpclient</module>
         <module>redis</module>
         <module>elasticsearch</module>
+        <module>disruptor</module>
     </modules>
     <properties>
         <spring.version>4.1.4.RELEASE</spring.version>
@@ -54,6 +55,12 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>3.3.5</version>
+            </dependency>
+
             <!--common and util start -->
             <dependency>
                 <groupId>commons-fileupload</groupId>

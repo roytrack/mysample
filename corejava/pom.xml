@@ -33,7 +33,6 @@
         <log4j_version>1.2.16</log4j_version>
         <!-- Test -->
         <testng.version>6.1.1</testng.version>
-        <junit.version>4.11</junit.version>
         <assertj.version>1.6.1</assertj.version>
         <zookeeper_version>3.3.3</zookeeper_version>
         <zkclient_version>0.1</zkclient_version>

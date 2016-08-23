@@ -2,6 +2,7 @@ package com.roytrack.disruptor;
 
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
+import com.lmax.disruptor.util.DaemonThreadFactory;
 
 import java.nio.ByteBuffer;
 import java.util.concurrent.Executor;
@@ -23,9 +24,9 @@ public class LongEventMainWithJava8 {
 
         int bufferSize=1024;
 
-        //Disruptor<LongEvent> disruptor=new Disruptor<>(LongEvent::new,bufferSize, DaemonThreadFactory.INSTANCE);
+        Disruptor<LongEvent> disruptor=new Disruptor<>(LongEvent::new,bufferSize, DaemonThreadFactory.INSTANCE);
 
-        Disruptor<LongEvent> disruptor=new Disruptor<>(LongEvent::new,bufferSize, executor);
+        //Disruptor<LongEvent> disruptor=new Disruptor<>(LongEvent::new,bufferSize, executor);
 
         disruptor.handleEventsWith((event, sequence, endOfBatch) -> System.out.println("event "+event));
 

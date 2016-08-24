@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mybatis</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>mybatis Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
@@ -93,10 +93,12 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
+            <version>3.2.8</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
+            <version>1.1.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

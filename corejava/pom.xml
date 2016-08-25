@@ -131,6 +131,16 @@
             <version>1.4.1</version>
         </dependency>
         <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4.7</version>

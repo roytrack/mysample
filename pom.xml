@@ -334,6 +334,18 @@
                 <version>1.14.8</version>
                 <scope>provided</scope>
             </dependency>
+            <!-- Bean类型编译，copy等 -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>1.9.2</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>

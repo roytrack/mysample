@@ -61,6 +61,8 @@ public class UseTemplate {
            for(int i=0;i<10000;i++){
                factory.getConnection().set("roy".getBytes(),"track".getBytes());
                factory.getConnection().get("roy".getBytes());
+
+
            }
            return  "";
        }

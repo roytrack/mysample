@@ -22,7 +22,7 @@
 		<constructor-arg name="master" value="mymaster"/>
 		<constructor-arg name="sentinelHostAndPorts">
 			<set>
-				<value>10.58.69.142:26379</value>
+				<value>10.58.132.142:26379</value>
 			</set>
 		</constructor-arg>
 	</bean>
@@ -31,7 +31,7 @@
 		<constructor-arg ref="sentinelConfig"/>
 		<property name="timeout" value="2000"/>
 		<property name="usePool" value="true"/>
-		<property name="database" value="3"/>
+		<property name="database" value="2"/>
 		<property name="poolConfig" ref="poolConfig"/>
 	</bean>
 

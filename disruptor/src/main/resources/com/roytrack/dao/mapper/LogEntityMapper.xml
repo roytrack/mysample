@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.roytrack.dao.mapper.LogEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.roytrack.dao.model.LogEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sheet_no" property="sheetNo" jdbcType="VARCHAR" />
+    <result column="customer_no" property="customerNo" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sheet_no, customer_no, amount
+  </sql>
+
+
+  <insert id="insert" parameterType="com.roytrack.dao.model.LogEntity" >
+    insert into log_entity (id, sheet_no, customer_no, 
+      amount)
+    values (#{id,jdbcType=BIGINT}, #{sheetNo,jdbcType=VARCHAR}, #{customerNo,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.roytrack.dao.model.LogEntity" >
+    insert into log_entity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sheetNo != null" >
+        sheet_no,
+      </if>
+      <if test="customerNo != null" >
+        customer_no,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sheetNo != null" >
+        #{sheetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerNo != null" >
+        #{customerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.roytrack.dao.model.LogEntity" >
+    update log_entity
+    <set >
+      <if test="sheetNo != null" >
+        sheet_no = #{sheetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerNo != null" >
+        customer_no = #{customerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.roytrack.dao.model.LogEntity" >
+    update log_entity
+    set sheet_no = #{sheetNo,jdbcType=VARCHAR},
+      customer_no = #{customerNo,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

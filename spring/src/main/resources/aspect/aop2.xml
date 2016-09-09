@@ -10,8 +10,14 @@
 	   http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/aop
 	   http://www.springframework.org/schema/aop/spring-aop.xsd">
-       <context:annotation-config></context:annotation-config>
-       <context:component-scan base-package="com.roytrack.spring.aspect"/>
-       <aop:aspectj-autoproxy proxy-target-class="true"/>
+       <bean id="targetService" class="com.roytrack.spring.aspect.TargetService"/>
+       <bean id="plainAspect" class="com.roytrack.spring.aspect.PlainAdvice"/>
+       <aop:config>
+              <aop:pointcut id="cut" expression="execution(* com.roytrack.spring.aspect.TargetService.noParam())"/>
+              <aop:aspect id="oo" ref="plainAspect">
+                     <aop:before method="beforeAdvice" pointcut-ref="cut"/>
+                     <aop:after method="afterAdvice" pointcut-ref="cut"/>
+              </aop:aspect>
+       </aop:config>
 
 </beans>

@@ -4,25 +4,27 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by roytrack on 2016-09-08.
  */
 @Aspect
+@Component
 public class SimpleAspect {
 
-    @Pointcut(value ="execution(* com.roytrack.spring.aspect.TargetService.saySomething(*))&&args(cc)", argNames = "cc")
-    public void pointCut1(String cc){
+    @Pointcut(value ="execution(* com.roytrack.spring.aspect.TargetService.saySomething(*))")
+    public void pointCut1(){
 
     }
 
 
-    @Around(value = "pointCut1(cc)" )
-    public void around(ProceedingJoinPoint point,String cc){
+    @Around(value = "pointCut1()" )
+    public void around(ProceedingJoinPoint point){
         System.out.println("before target method run");
         try{
-            Object[] os=new Object[1];
-            os[0]=cc;
+            Object[] os= point.getArgs();
+            os[0]="gg";
             point.proceed(os);
             System.out.println("after target method run");
         }catch (Exception e){

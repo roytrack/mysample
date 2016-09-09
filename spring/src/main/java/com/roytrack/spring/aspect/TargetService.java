@@ -11,4 +11,8 @@ public class TargetService {
     public void saySomething(String cc){
         System.out.println("this is a good day  "+cc);
     }
+
+    public  void noParam(){
+        System.out.println( " no param test");
+    }
 }

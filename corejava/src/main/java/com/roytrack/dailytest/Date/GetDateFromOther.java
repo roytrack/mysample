@@ -9,8 +9,10 @@ import org.slf4j.LoggerFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -53,15 +55,18 @@ public class GetDateFromOther {
          * 如果直接LocalDate.now()那么格式化的话只有年月日
          * 需要写成 LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 00:00:00"
          * */
-        String beginStr="2013-02-05 00:00:00";
-        String endStr="2015-05-03 00:00:00";
+//        String beginStr="2013-02-05 00:00:00";
+//        String endStr="2015-05-03 00:00:00";
+
+        String beginStr="2016-09-11 00:00:00";
+        String endStr="2016-12-31 00:00:00";
         DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         DateTimeFormatter fullDate=DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter yearMonth=DateTimeFormatter.ofPattern("yyyyMM");
         LocalDate begin=LocalDate.parse(beginStr, dtf);
         LocalDate now=LocalDate.parse(endStr,dtf);
         Period betweenDate=Period.between(begin,now);
-        System.out.println(betweenDate.toTotalMonths() +"    "+begin.toString()+"   "+now.toString());
+        System.out.println(+ betweenDate.toTotalMonths() +"    "+begin.toString()+"   "+now.toString());
 //        for(int i=0;i<betweenDate.toTotalMonths();i++){
 //            System.out.println(begin.toString());
 //            begin=begin.plusMonths(1);
@@ -141,5 +146,21 @@ public class GetDateFromOther {
         System.out.println(beginTime+"    "+endTime);
     }
 
+    @Test
+    public void getRealDays(){
+//        String begin="2016-09-11";
+//        String end="2016-12-31";
+        LocalDate theBegin=LocalDate.of(2016,9,11);
+        LocalDate theEnd=LocalDate.of(2016,12,31);
+        LocalDateTime theBeginTime=LocalDateTime.of(2016, 9, 11, 0, 0, 0);
+        LocalDateTime theEndTime=LocalDateTime.of(2016, 12, 31, 0, 0, 0);
+
+        System.out.println(theBegin.until(theEndTime, ChronoUnit.DAYS));
+
+
+
+    }
+
 }
+
 

@@ -4,18 +4,17 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
 /**
  * Created by roytrack on 2016-09-17.
  */
 @Getter
 @Setter
 @ToString(callSuper = true)
-public class Blog {
+public class Author {
     private int id;
-    private String title;
-    private Author author;
-    private List<Post> posts;
-
+    private String username;
+    private String password;
+    private String email;
+    private String bio;
+    private String favouriteSection;
 }

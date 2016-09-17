@@ -12,10 +12,10 @@ import java.util.List;
 @Getter
 @Setter
 @ToString(callSuper = true)
-public class Blog {
+public class Post {
     private int id;
-    private String title;
+    private String subject;
     private Author author;
-    private List<Post> posts;
-
+    private List<Comment> comments;
+    private List<Tag> tags;
 }

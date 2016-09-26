@@ -11,5 +11,6 @@ import lombok.ToString;
 @Setter
 @ToString(callSuper = true)
 public class Tag {
-    private int id;
+    private int tagId;
+    private String tagName;
 }

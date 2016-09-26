@@ -14,7 +14,7 @@ import java.util.List;
 @ToString(callSuper = true)
 public class Blog {
     private int id;
-    private String title;
+    private String blogTitle;
     private Author author;
     private List<Post> posts;
 

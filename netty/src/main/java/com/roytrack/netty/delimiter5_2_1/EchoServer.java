@@ -1,4 +1,4 @@
-package com.roytrack.netty.delimiter5_1_1;
+package com.roytrack.netty.delimiter5_2_1;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
@@ -10,11 +10,10 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.DelimiterBasedFrameDecoder;
+import io.netty.handler.codec.FixedLengthFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
-
 
 
 /**
@@ -34,7 +33,7 @@ public class EchoServer {
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             ByteBuf delimiter= Unpooled.copiedBuffer("$_".getBytes());
                             //注释掉下面这一行就可以看到没有分隔符解码器的情况下发生的粘包现象
-                            socketChannel.pipeline().addLast(new DelimiterBasedFrameDecoder(1024,delimiter));
+                            socketChannel.pipeline().addLast(new FixedLengthFrameDecoder(20));
                             socketChannel.pipeline().addLast(new StringDecoder());
                             socketChannel.pipeline().addLast(new EchoServerHandler());
                         }

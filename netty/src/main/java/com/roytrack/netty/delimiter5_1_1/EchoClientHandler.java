@@ -1,5 +1,6 @@
 package com.roytrack.netty.delimiter5_1_1;
 
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
@@ -13,7 +14,7 @@ public class EchoClientHandler extends ChannelHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         for (int i = 0; i <10 ; i++) {
-            ctx.writeAndFlush(ECHO_REQ.getBytes());
+            ctx.writeAndFlush(Unpooled.copiedBuffer(ECHO_REQ.getBytes()));
             System.out.println("client write to server "+i);
         }
     }

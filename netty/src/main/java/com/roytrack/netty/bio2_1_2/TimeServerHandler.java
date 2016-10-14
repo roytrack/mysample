@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.util.Date;
 
 /**
- * Created by ruanchangming on 2016/03/18.
+ * Created by roytrack on 2016/03/18.
  */
 public class TimeServerHandler implements Runnable {
 

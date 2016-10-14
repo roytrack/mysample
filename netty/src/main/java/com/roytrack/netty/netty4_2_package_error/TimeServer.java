@@ -10,7 +10,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 /**
- * Created by ruanchangming on 2016-3-25.
+ * Created by roytrack on 2016-3-25.
  */
 public class TimeServer {
     public  void bind(int port){

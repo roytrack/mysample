@@ -21,7 +21,7 @@ import java.util.List;
  对比结束   2015-10-26 16:26:54 054  耗时毫秒   4
  相等个数 1000   不相等个数  0
  *
- * Created by ruanchangming on 2015/10/26.
+ * Created by roytrack on 2015/10/26.
  */
 public class PerformanceKryoDemo {
     public static void main(String[] args) {

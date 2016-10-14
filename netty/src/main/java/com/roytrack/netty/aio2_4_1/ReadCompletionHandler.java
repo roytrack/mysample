@@ -8,7 +8,7 @@ import java.nio.channels.CompletionHandler;
 import java.util.Date;
 
 /**
- * Created by ruanchangming on 2016-3-25.
+ * Created by roytrack on 2016-3-25.
  */
 public class ReadCompletionHandler implements CompletionHandler<Integer,  ByteBuffer> {
 

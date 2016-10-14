@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by ruanchangming on 2016-05-19.
+ * Created by roytrack on 2016-05-19.
  */
 public class IntersectionOfTwoArrays349 {
 

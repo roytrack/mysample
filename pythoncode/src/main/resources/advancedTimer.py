@@ -1,4 +1,4 @@
-__author__ = 'ruanchangming'
+__author__ = 'roytrack'
 '''
 采用循环和list来更好的支持多红包
 '''

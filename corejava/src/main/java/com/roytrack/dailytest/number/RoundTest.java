@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 /**
  * 直接将double转成bigdecimal也会造成意义的不准确 但是转成string再转bigdecimal就可以规避
- * Created by ruanchangming on 2015/11/14.
+ * Created by roytrack on 2015/11/14.
  */
 public class RoundTest {
     public static void main(String[] args) {

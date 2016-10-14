@@ -12,7 +12,7 @@ import io.netty.handler.codec.string.StringDecoder;
 
 
 /**
- * Created by ruanchangming on 2016-4-21.
+ * Created by roytrack on 2016-4-21.
  */
 public class TimeClient {
 

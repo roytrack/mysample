@@ -3,7 +3,7 @@ package com.roytrack.jvm;
 import java.util.Vector;
 
 /**
- * Created by ruanchangming on 2015/8/17.
+ * Created by roytrack on 2015/8/17.
  */
 public class AbsoluteSafe {
 

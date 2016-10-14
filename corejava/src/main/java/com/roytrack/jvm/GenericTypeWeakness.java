@@ -1,10 +1,7 @@
 package com.roytrack.jvm;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Created by ruanchangming on 2015/8/14.
+ * Created by roytrack on 2015/8/14.
  */
 public class GenericTypeWeakness {
 

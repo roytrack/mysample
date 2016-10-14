@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Created by ruanchangming on 2016/03/21.
+ * Created by roytrack on 2016/03/21.
  */
 public class TimeServer {
     public static void main(String[] args) {

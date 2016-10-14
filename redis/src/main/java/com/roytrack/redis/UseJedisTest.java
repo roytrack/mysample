@@ -12,7 +12,7 @@ import java.util.List;
  * 直接写jedis 进行三个操作 3493ms 执行1000次
  * 在使用pipeline之后同样操作执行10w次只需要740ms
  * 单次执行1.19ms
- * Created by ruanchangming on 2015/12/21.
+ * Created by roytrack on 2015/12/21.
  */
 public class UseJedisTest {
     static String host="10.58.69.142";

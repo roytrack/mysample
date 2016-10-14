@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Created by ruanchangming on 2016/03/18.
+ * Created by roytrack on 2016/03/18.
  */
 public class TimeServer {
     private static int port=8080;

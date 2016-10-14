@@ -1,7 +1,7 @@
 package com.roytrack.jvm;
 
 /**
- * Created by ruanchangming on 2015/8/13.
+ * Created by roytrack on 2015/8/13.
  */
 public class DynamicDispatch {
 

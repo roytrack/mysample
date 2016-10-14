@@ -3,7 +3,7 @@ package com.roytrack.dailytest.simplejava.string;
 import java.util.regex.Pattern;
 
 /**
- * Created by ruanchangming on 2016-05-14.
+ * Created by roytrack on 2016-05-14.
  */
 public class StringReplace {
 

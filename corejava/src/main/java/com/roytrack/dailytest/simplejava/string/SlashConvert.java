@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Created by ruanchangming on 2015/12/3.
+ * Created by roytrack on 2015/12/3.
  */
 public class SlashConvert {
     public static void main(String[] args) {

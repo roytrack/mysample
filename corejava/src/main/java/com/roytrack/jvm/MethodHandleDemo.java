@@ -4,7 +4,7 @@ import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodType;
 
 /**
- * Created by ruanchangming on 2015/8/13.
+ * Created by roytrack on 2015/8/13.
  */
 public class MethodHandleDemo {
     static class ClassA{

@@ -6,7 +6,7 @@ import java.nio.channels.AsynchronousServerSocketChannel;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Created by ruanchangming on 2016-3-25.
+ * Created by roytrack on 2016-3-25.
  */
 public class AsyncTimeServerHandler implements Runnable {
     private int port;

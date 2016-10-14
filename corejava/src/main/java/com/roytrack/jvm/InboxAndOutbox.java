@@ -1,7 +1,7 @@
 package com.roytrack.jvm;
 
 /**
- * Created by ruanchangming on 2015/8/14.
+ * Created by roytrack on 2015/8/14.
  * Integer 默认将-128到127缓存到整数缓存
  * Cache to support the object identity semantics of autoboxing for values between
  * -128 and 127 (inclusive) as required by JLS.

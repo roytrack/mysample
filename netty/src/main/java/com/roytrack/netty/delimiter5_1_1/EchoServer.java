@@ -39,6 +39,7 @@ public class EchoServer {
                         }
                     });
             ChannelFuture f=b.bind(port).sync();
+            System.out.println("server start");
             f.channel().closeFuture().sync();
         }finally {
                 bossGroup.shutdownGracefully();

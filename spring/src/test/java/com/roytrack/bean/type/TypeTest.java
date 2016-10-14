@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.regex.Pattern;
 
 /**
- * Created by ruanchangming on 2015/8/24.
+ * Created by roytrack on 2015/8/24.
  */@RunWith(SpringJUnit4ClassRunner.class)
    @ContextConfiguration(locations = {"classpath:bean/typeBean.xml"})
 public class TypeTest {

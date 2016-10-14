@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
- * Created by ruanchangming on 2015/12/21.
+ * Created by roytrack on 2015/12/21.
  */
 public class UseTemplate {
     static JedisConnectionFactory factory;

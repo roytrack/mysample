@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 
 /**
- * Created by ruanchangming on 2016-3-25.
+ * Created by roytrack on 2016-3-25.
  */
 public class AcceptCompletionHandler implements java.nio.channels.CompletionHandler<java.nio.channels.AsynchronousSocketChannel,  AsyncTimeServerHandler> {
 

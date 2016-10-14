@@ -14,6 +14,7 @@ public class EchoClientHandler extends ChannelHandlerAdapter {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         for (int i = 0; i <10 ; i++) {
             ctx.writeAndFlush(ECHO_REQ.getBytes());
+            System.out.println("client write to server "+i);
         }
     }
 

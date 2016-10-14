@@ -6,7 +6,7 @@ import com.roytrack.mybatis.model.QueryModel;
 import java.util.List;
 
 /**
- * Created by ruanchangming on 2015/12/3.
+ * Created by roytrack on 2015/12/3.
  */
 public interface AbcMapper {
     int insert(Abc abc);

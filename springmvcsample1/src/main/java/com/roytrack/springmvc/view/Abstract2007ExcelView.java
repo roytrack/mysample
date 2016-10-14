@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * 生成2007版excel的抽象类
- * Created by ruanchangming on 2015/9/2.
+ * Created by roytrack on 2015/9/2.
  */
 public abstract class Abstract2007ExcelView extends AbstractView {
     /** The content type for an Excel response */

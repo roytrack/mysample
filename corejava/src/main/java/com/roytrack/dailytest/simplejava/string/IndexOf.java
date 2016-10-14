@@ -1,7 +1,7 @@
 package com.roytrack.dailytest.simplejava.string;
 
 /**
- * Created by ruanchangming on 2015/11/13.
+ * Created by roytrack on 2015/11/13.
  */
 public class IndexOf {
     public static void main(String[] args) {

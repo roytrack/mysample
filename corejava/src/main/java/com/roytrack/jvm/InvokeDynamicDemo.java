@@ -3,7 +3,7 @@ import java.lang.invoke.*;
 
 import static java.lang.invoke.MethodHandles.lookup;
 /**
- * Created by ruanchangming on 2015/8/13.
+ * Created by roytrack on 2015/8/13.
  */
 public class InvokeDynamicDemo {
     public static void testMethod(String s){

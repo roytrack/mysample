@@ -9,7 +9,7 @@ import java.nio.channels.CompletionHandler;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Created by ruanchangming on 2016-3-25.
+ * Created by roytrack on 2016-3-25.
  */
 public class AsyncTimeClientHandler implements Runnable,CompletionHandler<Void,AsyncTimeClientHandler> {
     private AsynchronousSocketChannel asynchronousSocketChannel;

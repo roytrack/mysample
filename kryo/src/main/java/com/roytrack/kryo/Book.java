@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by ruanchangming on 2015/10/26.
+ * Created by roytrack on 2015/10/26.
  */
 public class Book implements Serializable {
     private String bookName;

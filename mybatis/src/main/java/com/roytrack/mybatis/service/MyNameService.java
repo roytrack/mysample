@@ -19,7 +19,7 @@ import java.util.List;
  PRIMARY KEY (myname)
  );
  *
- * Created by ruanchangming on 2015/12/3.
+ * Created by roytrack on 2015/12/3.
  */
 @Service("myNameService")
 public class MyNameService {

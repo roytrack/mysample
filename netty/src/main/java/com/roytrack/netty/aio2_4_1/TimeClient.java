@@ -1,7 +1,7 @@
 package com.roytrack.netty.aio2_4_1;
 
 /**
- * Created by ruanchangming on 2016-3-25.
+ * Created by roytrack on 2016-3-25.
  */
 public class TimeClient {
     public static void main(String[] args) {

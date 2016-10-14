@@ -1,7 +1,7 @@
 package com.roytrack.jvm;
 
 /**
- * Created by ruanchangming on 2015/8/12.
+ * Created by roytrack on 2015/8/12.
  */
 public class DeadLoopClass{
     static{

@@ -3,7 +3,7 @@ package com.roytrack.mybatis.model;
 import lombok.ToString;
 
 /**
- * Created by ruanchangming on 2015/12/3.
+ * Created by roytrack on 2015/12/3.
  */
 @ToString
 public class Abc {

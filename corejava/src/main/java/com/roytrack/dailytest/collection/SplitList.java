@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by ruanchangming on 2015/8/24.
+ * Created by roytrack on 2015/8/24.
  */
 public class SplitList {
 

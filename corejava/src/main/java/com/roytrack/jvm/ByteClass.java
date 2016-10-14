@@ -1,10 +1,7 @@
 package com.roytrack.jvm;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 /**
- * Created by ruanchangming on 2015/8/5.
+ * Created by roytrack on 2015/8/5.
  */
 public class ByteClass {
 

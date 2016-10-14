@@ -3,7 +3,7 @@ package com.roytrack.jvm;
 /**
  * 关于java的多态中的静态分派 Method Overload Resolution
  *
- * Created by ruanchangming on 2015/8/12.
+ * Created by roytrack on 2015/8/12.
  */
 public class StaticDispatch {
 

@@ -1,0 +1,10 @@
+syntax="proto3";
+package netty;
+option java_package="com.roytrack.netty.protobuf";
+option java_outer_classname="SubscribeRespC";
+
+message SubscribeResp{
+     int32 subReqid = 1;
+     int32 respCode = 2;
+     string desc = 3;
+}

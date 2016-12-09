@@ -262,6 +262,12 @@ public class Encodes {
         }
     }
 
+    @Test
+    public void geturl(){
+        String aa="http://10.155.140.31:7001/letv_ws/restful/getQinvItemCoaPdV.xml?site=xtp&time=1479280089945&sign=C3D641356DC6CECCEF5823DD39C0CA48&currentPage=1&startDate=2016-08-31+00%3A04%3A08&endDate=2016-08-31+15%3A04%3A08&ouName=1110_OU_%E4%B9%90%E8%A7%86%E7%BD%91%28%E5%8C%97%E4%BA%AC%29";
+        System.out.println(urlDecode(aa));
+    }
+
 
     @Test
     public void base64Op(){

@@ -3,6 +3,10 @@ package com.roytrack.dailytest;
 import org.junit.Test;
 import org.springframework.security.authentication.encoding.BasePasswordEncoder;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.crypto.codec.Hex;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * 测试md5加密效率
@@ -45,4 +49,13 @@ public class MD5Encrypt {
         System.out.println("加密1次:"+(System.currentTimeMillis()-start)+"毫秒");
 
     }
+
+    @Test
+    public void showMd5() throws NoSuchAlgorithmException{
+        String ps="6666";
+        java.security.MessageDigest alg = MessageDigest.getInstance("MD5");
+        alg.update(ps.getBytes());
+        System.out.println(Hex.encode(alg.digest()));
+    }
+
 }

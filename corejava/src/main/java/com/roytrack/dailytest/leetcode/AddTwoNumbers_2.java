@@ -24,7 +24,7 @@ public class AddTwoNumbers_2 {
         l22.next=l23;
         AddTwoNumbers_2 s=new AddTwoNumbers_2();
         ListNode result=s.addTwoNumbers(l11,l21);
-        while (result.next!=null){
+        while (null!=result){
             System.out.println(result.val+"--->");
             result=result.next;
         }
@@ -34,10 +34,12 @@ public class AddTwoNumbers_2 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode resultNode=null,tmpNode=null;
         int sum,addFlag=0;
-        while(l1.next!=null||l2.next!=null){
+        while(null!=l1||null!=l2||addFlag!=0){
             sum=(l1.next==null?0:l1.val)+(l2.next==null?0:l2. val)+addFlag;
             if(sum/10==1){
                 addFlag=1;
+            }else{
+                addFlag=0;
             }
             if(resultNode==null){
                 resultNode=new ListNode(sum%10);

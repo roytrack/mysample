@@ -35,7 +35,19 @@ public class AddTwoNumbers_2 {
         ListNode resultNode=null,tmpNode=null;
         int sum,addFlag=0;
         while(null!=l1||null!=l2||addFlag!=0){
-            sum=(l1.next==null?0:l1.val)+(l2.next==null?0:l2. val)+addFlag;
+            if(l1==null&&l2==null){
+                sum=addFlag;
+            }else{
+                if(l1==null){
+                    sum=l2.val+addFlag;
+                }else if(l2==null){
+                    sum=l1.val+addFlag;
+                }else {
+                    sum=l1.val+l2.val+addFlag;
+                }
+
+            }
+
             if(sum/10==1){
                 addFlag=1;
             }else{

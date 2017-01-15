@@ -1,6 +1,8 @@
 package com.roytrack.dailytest.leetcode;
 
 /**
+ * 该处使用自己对比字符是否在字串里的方法 提高了效率 用StringBuilder.contains会导致超过leetcode的时间
+ * 运行时间167ms
  * Created by roytrack on 2017-01-15.
  */
 public class LongestSubStringWithoutRepeating_3 {

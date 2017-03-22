@@ -15,8 +15,8 @@
     <dependencies>
         <dependency>
             <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.1</version>
+            <artifactId>netty-parent</artifactId>
+            <version>4.1.9.Final</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

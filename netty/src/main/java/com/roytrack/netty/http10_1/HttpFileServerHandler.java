@@ -4,14 +4,16 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
-import io.netty.handler.stream.ChunkedFile;
 import io.netty.util.CharsetUtil;
 
+import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -19,6 +21,9 @@ import java.util.regex.Pattern;
  */
 public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 
+    public static final String HTTP_DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss zzz";
+    public static final String HTTP_DATE_GMT_TIMEZONE = "GMT+8";
+    public static final int HTTP_CACHE_SECONDS = 60;
     private final String url;
 
     public HttpFileServerHandler(String url){
@@ -65,21 +70,26 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
             randomAccessFile=new RandomAccessFile(file,"r");
             long fileLength=randomAccessFile.length();
             HttpResponse response=new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,HttpResponseStatus.OK);
-            setContentLength(response, fileLength);
+            HttpHeaderUtil.setContentLength(response, fileLength);
             setContentTypeHeader(response, file);
-            if(isKeepAlive(msg)){
+            setDateAndCacheHeaders(response,file);
+            if(HttpHeaderUtil.isKeepAlive(msg)){
                 response.headers().set(HttpHeaderNames.CONNECTION,HttpHeaderValues.KEEP_ALIVE);
             }
             ctx.write(response);
+
             ChannelFuture sendFileFuture;
-            sendFileFuture=ctx.write(new ChunkedFile(randomAccessFile,0,fileLength,8192),ctx.newProgressivePromise());
+            ChannelFuture lastContentFuture;
+            sendFileFuture=ctx.write(new DefaultFileRegion(randomAccessFile.getChannel(),0,fileLength),ctx.newProgressivePromise());
+//            sendFileFuture=ctx.write(new HttpChunkedInput(new ChunkedFile(randomAccessFile,0,fileLength,8192)),ctx.newProgressivePromise());
             sendFileFuture.addListener(new ChannelProgressiveFutureListener() {
                 @Override
                 public void operationProgressed(ChannelProgressiveFuture future, long progress, long total) throws Exception {
                     if(total<0){
                         System.err.println("Transfer progress :"+progress);
                     }else{
-                        System.err.println("Transfer progress :"+progress/total);
+                        System.err.println("Transfer progress :"+progress+"/"+total);
+
                     }
                 }
 
@@ -88,13 +98,17 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
                     System.out.println("Transfer complete");
                 }
             });
-            ChannelFuture lastContentFuture=ctx.writeAndFlush(LastHttpContent.EMPTY_LAST_CONTENT);
-            if(!isKeepAlive(msg)){
+             lastContentFuture=ctx.writeAndFlush(LastHttpContent.EMPTY_LAST_CONTENT);
+            //lastContentFuture=sendFileFuture;
+            if(!HttpHeaderUtil.isKeepAlive(msg)){
                 lastContentFuture.addListener(ChannelFutureListener.CLOSE);
             }
+            sendFileFuture.sync();
+            lastContentFuture.sync();
 
         }catch (FileNotFoundException e){
             sendError(ctx,HttpResponseStatus.NOT_FOUND);
+            return;
         }
     }
 
@@ -106,9 +120,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
         }
     }
 
-    private void sendError(ChannelHandlerContext ctx, HttpResponseStatus badRequest) {
 
-    }
 
     private static final Pattern INSECURE_URI=Pattern.compile(".*[<>&\"].*");
 
@@ -138,7 +150,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
             return null;
         }
 
-        return System.getProperty("user.dir")+File.separator+uri;
+        return System.getProperty("user.dir")+"\\netty\\src\\main\\java"+File.separator+uri;
     }
 
     private static final Pattern ALLOWED_FILE_NAME=Pattern.compile("[A-Za-z0-9][-_A-Za-z0-9\\.]*");
@@ -157,7 +169,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
         buf.append(dirPath).append("目录");
         buf.append("</h3>\r\n");
         buf.append("<ul>");
-        buf.append("<li>链接:<a herf=\"../\">..</a></li>\r\n");
+        buf.append("<li>链接:<a href=\"../\">..</a></li>\r\n");
         for(File f:dir.listFiles()){
             if(f.isHidden()||!f.canRead()){
                 continue;
@@ -166,7 +178,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
             if(!ALLOWED_FILE_NAME.matcher(name).matches()){
                 continue;
             }
-            buf.append("<li>链接<a herf=\"");
+            buf.append("<li>链接<a href=\"");
             buf.append(name);
             buf.append("\">");
             buf.append(name);
@@ -177,6 +189,48 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
         response.content().writeBytes(buffer);
         buffer.release();
         ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+    }
+
+    private static void sendRedirect(ChannelHandlerContext ctx,String newUri){
+
+        FullHttpResponse response=new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,HttpResponseStatus.FOUND);
+        response.headers().set(HttpHeaderNames.LOCATION,newUri);
+        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+    }
+
+    private void sendError(ChannelHandlerContext ctx, HttpResponseStatus badRequest) {
+        FullHttpResponse response=new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,badRequest,Unpooled.copiedBuffer("Failure" + badRequest.toString() + "\r\n", CharsetUtil.UTF_8));
+        response.headers().set(HttpHeaderNames.CONTENT_TYPE,"text/plain; charset=UTF-8");
+        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+    }
+
+    private static void setContentTypeHeader(HttpResponse response,File file){
+        MimetypesFileTypeMap mimetypesFileTypeMap=new MimetypesFileTypeMap();
+        response.headers().set(HttpHeaderNames.CONTENT_TYPE, mimetypesFileTypeMap.getContentType(file.getPath()));
+    }
+
+    /**
+     * Sets the Date and Cache headers for the HTTP Response
+     *
+     * @param response
+     *            HTTP response
+     * @param fileToCache
+     *            file to extract content type
+     */
+    private static void setDateAndCacheHeaders(HttpResponse response, File fileToCache) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(HTTP_DATE_FORMAT, Locale.US);
+        dateFormatter.setTimeZone(TimeZone.getTimeZone(HTTP_DATE_GMT_TIMEZONE));
+
+        // Date header
+        Calendar time = new GregorianCalendar();
+        response.headers().set(HttpHeaderNames.DATE, dateFormatter.format(time.getTime()));
+
+        // Add cache headers
+        time.add(Calendar.SECOND, HTTP_CACHE_SECONDS);
+        response.headers().set(HttpHeaderNames.EXPIRES, dateFormatter.format(time.getTime()));
+        response.headers().set(HttpHeaderNames.CACHE_CONTROL, "private, max-age=" + HTTP_CACHE_SECONDS);
+        response.headers().set(
+                HttpHeaderNames.LAST_MODIFIED, dateFormatter.format(new Date(fileToCache.lastModified())));
     }
 
 }

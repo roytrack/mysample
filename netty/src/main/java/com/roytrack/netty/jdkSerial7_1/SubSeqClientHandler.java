@@ -1,12 +1,12 @@
 package com.roytrack.netty.jdkSerial7_1;
 
-import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
  * Created by roytrack on 2016-10-20.
  */
-public class SubSeqClientHandler extends ChannelHandlerAdapter{
+public class SubSeqClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx){

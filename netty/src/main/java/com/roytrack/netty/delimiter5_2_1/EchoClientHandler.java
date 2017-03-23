@@ -1,13 +1,13 @@
 package com.roytrack.netty.delimiter5_2_1;
 
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
  * Created by roytrack on 2016/5/24.
  */
-public class EchoClientHandler extends ChannelHandlerAdapter {
+public class EchoClientHandler extends ChannelInboundHandlerAdapter {
 
     private int count;
     static  final String ECHO_REQ="Hi,welcome to Netty.$_";

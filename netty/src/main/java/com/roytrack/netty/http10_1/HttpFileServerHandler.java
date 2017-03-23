@@ -31,86 +31,9 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
     }
 
 
-    @Override
-    protected void messageReceived(ChannelHandlerContext ctx, FullHttpRequest msg) throws Exception {
-        if(!msg.decoderResult().isSuccess()){
-            sendError(ctx, HttpResponseStatus.BAD_REQUEST);
-            return;
-        }
-        if(!msg.method().equals(HttpMethod.GET) ){
-            sendError(ctx,HttpResponseStatus.METHOD_NOT_ALLOWED);
-        }
 
-        final String uri=msg.uri();
-        final String path=sanitizeUri(uri);
 
-        if(path==null){
-            sendError(ctx,HttpResponseStatus.FORBIDDEN);
-            return;
-        }
-        File file=new File(path);
-        if(file.isHidden()||!file.exists()){
-            sendError(ctx,HttpResponseStatus.NOT_FOUND);
-            return;
-        }
-        if(file.isDirectory()){
-            if(uri.endsWith("/")){
-                sendListing(ctx,file);
-            }else{
-                sendRedirect(ctx,uri+'/');
-            }
-            return;
-        }
-        if(!file.isFile()){
-            sendError(ctx,HttpResponseStatus.FORBIDDEN);
-            return;
-        }
-        RandomAccessFile randomAccessFile=null;
-        try {
-            randomAccessFile=new RandomAccessFile(file,"r");
-            long fileLength=randomAccessFile.length();
-            HttpResponse response=new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,HttpResponseStatus.OK);
-            HttpHeaderUtil.setContentLength(response, fileLength);
-            setContentTypeHeader(response, file);
-            setDateAndCacheHeaders(response,file);
-            if(HttpHeaderUtil.isKeepAlive(msg)){
-                response.headers().set(HttpHeaderNames.CONNECTION,HttpHeaderValues.KEEP_ALIVE);
-            }
-            ctx.write(response);
 
-            ChannelFuture sendFileFuture;
-            ChannelFuture lastContentFuture;
-            sendFileFuture=ctx.write(new DefaultFileRegion(randomAccessFile.getChannel(),0,fileLength),ctx.newProgressivePromise());
-//            sendFileFuture=ctx.write(new HttpChunkedInput(new ChunkedFile(randomAccessFile,0,fileLength,8192)),ctx.newProgressivePromise());
-            sendFileFuture.addListener(new ChannelProgressiveFutureListener() {
-                @Override
-                public void operationProgressed(ChannelProgressiveFuture future, long progress, long total) throws Exception {
-                    if(total<0){
-                        System.err.println("Transfer progress :"+progress);
-                    }else{
-                        System.err.println("Transfer progress :"+progress+"/"+total);
-
-                    }
-                }
-
-                @Override
-                public void operationComplete(ChannelProgressiveFuture future) throws Exception {
-                    System.out.println("Transfer complete");
-                }
-            });
-             lastContentFuture=ctx.writeAndFlush(LastHttpContent.EMPTY_LAST_CONTENT);
-            //lastContentFuture=sendFileFuture;
-            if(!HttpHeaderUtil.isKeepAlive(msg)){
-                lastContentFuture.addListener(ChannelFutureListener.CLOSE);
-            }
-            sendFileFuture.sync();
-            lastContentFuture.sync();
-
-        }catch (FileNotFoundException e){
-            sendError(ctx,HttpResponseStatus.NOT_FOUND);
-            return;
-        }
-    }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx,Throwable cause){
@@ -233,4 +156,84 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
                 HttpHeaderNames.LAST_MODIFIED, dateFormatter.format(new Date(fileToCache.lastModified())));
     }
 
+    @Override
+    protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest msg) throws Exception {
+        if(!msg.decoderResult().isSuccess()){
+            sendError(ctx, HttpResponseStatus.BAD_REQUEST);
+            return;
+        }
+        if(!msg.method().equals(HttpMethod.GET) ){
+            sendError(ctx,HttpResponseStatus.METHOD_NOT_ALLOWED);
+        }
+
+        final String uri=msg.uri();
+        final String path=sanitizeUri(uri);
+
+        if(path==null){
+            sendError(ctx,HttpResponseStatus.FORBIDDEN);
+            return;
+        }
+        File file=new File(path);
+        if(file.isHidden()||!file.exists()){
+            sendError(ctx,HttpResponseStatus.NOT_FOUND);
+            return;
+        }
+        if(file.isDirectory()){
+            if(uri.endsWith("/")){
+                sendListing(ctx,file);
+            }else{
+                sendRedirect(ctx,uri+'/');
+            }
+            return;
+        }
+        if(!file.isFile()){
+            sendError(ctx,HttpResponseStatus.FORBIDDEN);
+            return;
+        }
+        RandomAccessFile randomAccessFile=null;
+        try {
+            randomAccessFile=new RandomAccessFile(file,"r");
+            long fileLength=randomAccessFile.length();
+            HttpResponse response=new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,HttpResponseStatus.OK);
+            HttpUtil.setContentLength(response, fileLength);
+            setContentTypeHeader(response, file);
+            setDateAndCacheHeaders(response,file);
+            if(HttpUtil.isKeepAlive(msg)){
+                response.headers().set(HttpHeaderNames.CONNECTION,HttpHeaderValues.KEEP_ALIVE);
+            }
+            ctx.write(response);
+
+            ChannelFuture sendFileFuture;
+            ChannelFuture lastContentFuture;
+            sendFileFuture=ctx.write(new DefaultFileRegion(randomAccessFile.getChannel(),0,fileLength),ctx.newProgressivePromise());
+//            sendFileFuture=ctx.write(new HttpChunkedInput(new ChunkedFile(randomAccessFile,0,fileLength,8192)),ctx.newProgressivePromise());
+            sendFileFuture.addListener(new ChannelProgressiveFutureListener() {
+                @Override
+                public void operationProgressed(ChannelProgressiveFuture future, long progress, long total) throws Exception {
+                    if(total<0){
+                        System.err.println("Transfer progress :"+progress);
+                    }else{
+                        System.err.println("Transfer progress :"+progress+"/"+total);
+
+                    }
+                }
+
+                @Override
+                public void operationComplete(ChannelProgressiveFuture future) throws Exception {
+                    System.out.println("Transfer complete");
+                }
+            });
+            lastContentFuture=ctx.writeAndFlush(LastHttpContent.EMPTY_LAST_CONTENT);
+            //lastContentFuture=sendFileFuture;
+            if(!HttpUtil.isKeepAlive(msg)){
+                lastContentFuture.addListener(ChannelFutureListener.CLOSE);
+            }
+            sendFileFuture.sync();
+            lastContentFuture.sync();
+
+        }catch (FileNotFoundException e){
+            sendError(ctx,HttpResponseStatus.NOT_FOUND);
+            return;
+        }
+    }
 }

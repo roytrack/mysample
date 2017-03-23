@@ -2,13 +2,13 @@ package com.roytrack.netty.protobuf8_1;
 
 import com.roytrack.netty.protobuf.SubscribeReqC;
 import com.roytrack.netty.protobuf.SubscribeRespC;
-import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
  * Created by roytrack on 2016-10-24.
  */
-public class SubReqServerHandler2 extends ChannelHandlerAdapter {
+public class SubReqServerHandler2 extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx,Object msg){

@@ -8,8 +8,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
-import io.netty.handler.codec.http.HttpRequestDecoder;
-import io.netty.handler.codec.http.HttpResponseEncoder;
+import io.netty.handler.codec.http.HttpServerCodec;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
 
 /**
@@ -27,12 +28,12 @@ public class HttpFileServer {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
+                    .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast("http-decoder", new HttpRequestDecoder())
+                            ch.pipeline().addLast("http-decoder", new HttpServerCodec())
                                     .addLast("http-aggregator", new HttpObjectAggregator(65536))
-                                    .addLast("http-encoder", new HttpResponseEncoder())
                                     .addLast("http-chunked", new ChunkedWriteHandler())
                                     .addLast("fileServerHandler", new HttpFileServerHandler(url));
                         }

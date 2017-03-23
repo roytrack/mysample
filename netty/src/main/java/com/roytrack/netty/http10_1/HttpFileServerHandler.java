@@ -16,6 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import static io.netty.handler.codec.http.HttpResponseStatus.NOT_MODIFIED;
+import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
+
 /**
  * Created by roytrack on 2017-03-21.
  */
@@ -156,6 +159,28 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
                 HttpHeaderNames.LAST_MODIFIED, dateFormatter.format(new Date(fileToCache.lastModified())));
     }
 
+
+    /**
+     * When file timestamp is the same as what the browser is sending up, send a "304 Not Modified"
+     *
+     * @param ctx
+     *            Context
+     */
+    private static void sendNotModified(ChannelHandlerContext ctx) {
+        FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, NOT_MODIFIED);
+        setDateHeader(response);
+
+        // Close the connection as soon as the error message is sent.
+        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+    }
+    private static void setDateHeader(FullHttpResponse response) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(HTTP_DATE_FORMAT, Locale.US);
+        dateFormatter.setTimeZone(TimeZone.getTimeZone(HTTP_DATE_GMT_TIMEZONE));
+
+        Calendar time = new GregorianCalendar();
+        response.headers().set(HttpHeaderNames.DATE, dateFormatter.format(time.getTime()));
+    }
+
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest msg) throws Exception {
         if(!msg.decoderResult().isSuccess()){
@@ -190,7 +215,24 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
             sendError(ctx,HttpResponseStatus.FORBIDDEN);
             return;
         }
-        RandomAccessFile randomAccessFile=null;
+
+        // Cache Validation
+        String ifModifiedSince = msg.headers().get(HttpHeaderNames.IF_MODIFIED_SINCE);
+        if (ifModifiedSince != null && !ifModifiedSince.isEmpty()) {
+            SimpleDateFormat dateFormatter = new SimpleDateFormat(HTTP_DATE_FORMAT, Locale.US);
+            Date ifModifiedSinceDate = dateFormatter.parse(ifModifiedSince);
+
+            // Only compare up to the second because the datetime format we send to the client
+            // does not have milliseconds
+            long ifModifiedSinceDateSeconds = ifModifiedSinceDate.getTime() / 1000;
+            long fileLastModifiedSeconds = file.lastModified() / 1000;
+            if (ifModifiedSinceDateSeconds == fileLastModifiedSeconds) {
+                sendNotModified(ctx);
+                return;
+            }
+        }
+
+        RandomAccessFile randomAccessFile;
         try {
             randomAccessFile=new RandomAccessFile(file,"r");
             long fileLength=randomAccessFile.length();
@@ -206,6 +248,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
             ChannelFuture sendFileFuture;
             ChannelFuture lastContentFuture;
             sendFileFuture=ctx.write(new DefaultFileRegion(randomAccessFile.getChannel(),0,fileLength),ctx.newProgressivePromise());
+            lastContentFuture=ctx.writeAndFlush(LastHttpContent.EMPTY_LAST_CONTENT);
 //            sendFileFuture=ctx.write(new HttpChunkedInput(new ChunkedFile(randomAccessFile,0,fileLength,8192)),ctx.newProgressivePromise());
             sendFileFuture.addListener(new ChannelProgressiveFutureListener() {
                 @Override
@@ -223,7 +266,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
                     System.out.println("Transfer complete");
                 }
             });
-            lastContentFuture=ctx.writeAndFlush(LastHttpContent.EMPTY_LAST_CONTENT);
+
             //lastContentFuture=sendFileFuture;
             if(!HttpUtil.isKeepAlive(msg)){
                 lastContentFuture.addListener(ChannelFutureListener.CLOSE);

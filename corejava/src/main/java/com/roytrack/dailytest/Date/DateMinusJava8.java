@@ -3,6 +3,8 @@ package com.roytrack.dailytest.Date;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -18,5 +20,7 @@ public class DateMinusJava8 {
         String endTime = DateFormatUtils.format(DateUtils.addDays(date, -29), "yyyy-MM-dd 00:00:00");
         System.out.println(beginTime);
         System.out.println(endTime);
+        LocalDate d=LocalDate.now();
+        System.out.println(d.format(DateTimeFormatter.ofPattern("MMdd")));
     }
 }

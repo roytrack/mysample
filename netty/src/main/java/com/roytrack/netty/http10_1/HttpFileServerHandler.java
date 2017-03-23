@@ -236,7 +236,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
         try {
             randomAccessFile=new RandomAccessFile(file,"r");
             long fileLength=randomAccessFile.length();
-            HttpResponse response=new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,HttpResponseStatus.OK);
+            HttpResponse response=new DefaultHttpResponse(HttpVersion.HTTP_1_1,HttpResponseStatus.OK);
             HttpUtil.setContentLength(response, fileLength);
             setContentTypeHeader(response, file);
             setDateAndCacheHeaders(response,file);
@@ -248,15 +248,14 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
             ChannelFuture sendFileFuture;
             ChannelFuture lastContentFuture;
             sendFileFuture=ctx.write(new DefaultFileRegion(randomAccessFile.getChannel(),0,fileLength),ctx.newProgressivePromise());
-            lastContentFuture=ctx.writeAndFlush(LastHttpContent.EMPTY_LAST_CONTENT);
-//            sendFileFuture=ctx.write(new HttpChunkedInput(new ChunkedFile(randomAccessFile,0,fileLength,8192)),ctx.newProgressivePromise());
+            lastContentFuture = ctx.writeAndFlush(LastHttpContent.EMPTY_LAST_CONTENT);
             sendFileFuture.addListener(new ChannelProgressiveFutureListener() {
                 @Override
                 public void operationProgressed(ChannelProgressiveFuture future, long progress, long total) throws Exception {
                     if(total<0){
-                        System.err.println("Transfer progress :"+progress);
+                        System.err.println(future.channel()+"Transfer progress :"+progress);
                     }else{
-                        System.err.println("Transfer progress :"+progress+"/"+total);
+                        System.err.println(future.channel()+"Transfer progress :"+progress+"/"+total);
 
                     }
                 }
@@ -271,12 +270,14 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
             if(!HttpUtil.isKeepAlive(msg)){
                 lastContentFuture.addListener(ChannelFutureListener.CLOSE);
             }
-            sendFileFuture.sync();
-            lastContentFuture.sync();
+//            sendFileFuture.sync();
+//            lastContentFuture.sync();
 
         }catch (FileNotFoundException e){
             sendError(ctx,HttpResponseStatus.NOT_FOUND);
             return;
         }
     }
+
+
 }

@@ -3,6 +3,7 @@ package com.roytrack.rabbitmq;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by roytrack on 2017-03-29.
@@ -41,6 +42,7 @@ public class WorkQueueDemo {
         factory.setPassword("roytrack");
         Connection connection=factory.newConnection();
         Channel channel=connection.createChannel();
+        ConcurrentHashMap<String,String> concurrentHashMap=new ConcurrentHashMap<>();
         return  channel;
     }
 

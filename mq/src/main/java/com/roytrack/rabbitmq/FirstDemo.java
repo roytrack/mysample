@@ -22,7 +22,7 @@ public class FirstDemo {
         d.recv();
     }
 
-    public void send(String message) throws IOException {
+    public Channel getChannel() throws IOException {
         ConnectionFactory factory=new ConnectionFactory();
         factory.setHost(mqUrl);
         factory.setPort(mqPort);
@@ -30,21 +30,19 @@ public class FirstDemo {
         factory.setPassword("roytrack");
         Connection connection=factory.newConnection();
         Channel channel=connection.createChannel();
-        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
+        return  channel;
+    }
+
+    public void send(String message) throws IOException {
+        Channel channel=getChannel();
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
         System.out.println("[x] Sent '" + message + "'");
         channel.close();
-        connection.close();
     }
 
     public void recv() throws IOException {
-        ConnectionFactory factory=new ConnectionFactory();
-        factory.setHost(mqUrl);
-        factory.setPort(mqPort);
-        factory.setUsername("roytrack");
-        factory.setPassword("roytrack");
-        Connection connection=factory.newConnection();
-        Channel channel=connection.createChannel();
+        Channel channel=getChannel();
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
         Consumer consumer=new DefaultConsumer(channel){
             @Override

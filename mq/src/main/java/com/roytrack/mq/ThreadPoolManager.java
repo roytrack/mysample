@@ -21,17 +21,6 @@ public class ThreadPoolManager {
 
     Queue<String> msgQueue=new LinkedList<>();
 
-    final Runnable accessBufferThread=new Runnable() {
-        @Override
-        public void run() {
-            if(hasMoreAcquire()){
-                String msg=(String) msgQueue.poll();
-                Runnable task=new AccessDbThread(msg);
-                threadPool.execute(task);
-            }
-        }
-    };
-
     final RejectedExecutionHandler handler=new RejectedExecutionHandler() {
         @Override
         public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
@@ -43,10 +32,21 @@ public class ThreadPoolManager {
     final ThreadPoolExecutor threadPool=new ThreadPoolExecutor(CORE_POOL_SIZE,MAX_POOL_SIZE,KEEP_ALIVE_TIME, TimeUnit.SECONDS,
             new ArrayBlockingQueue<Runnable>(WORK_QUEUE_SIZE),this.handler);
 
+    final Runnable accessBufferThread=new Runnable() {
+        @Override
+        public void run() {
+            if(hasMoreAcquire()){
+                String msg=(String) msgQueue.poll();
+                Runnable task=new AccessDbThread(msg);
+                threadPool.execute(task);
+            }
+        }
+    };
+
 
     final ScheduledExecutorService scheduler=Executors.newScheduledThreadPool(100);
 
-    final ScheduledFuture taskHandler=scheduler.scheduleAtFixedRate(accessBufferThread,0,1,TimeUnit.SECONDS);
+    final ScheduledFuture taskHandler=scheduler.scheduleAtFixedRate(accessBufferThread,0,1,TimeUnit.MILLISECONDS);
 
     public static ThreadPoolManager newInstance(){
         return  tpm;

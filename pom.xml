@@ -59,6 +59,7 @@
         <module>redis</module>
         <module>elasticsearch</module>
         <module>disruptor</module>
+        <module>mq</module>
     </modules>
     <properties>
         <spring.version>4.1.4.RELEASE</spring.version>

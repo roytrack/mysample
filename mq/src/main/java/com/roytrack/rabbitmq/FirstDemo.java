@@ -36,7 +36,11 @@ public class FirstDemo {
     public void send(String message) throws IOException {
         Channel channel=getChannel();
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.txSelect();
+        //channel.confirmSelect();
         channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+        //channel.waitForConfirms();
+        channel.txCommit();
         System.out.println("[x] Sent '" + message + "'");
         channel.close();
     }

@@ -1,9 +1,11 @@
 package com.roytrack.netty.udp12_1;
 
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.socket.DatagramPacket;
+import io.netty.util.CharsetUtil;
 
-import java.net.DatagramPacket;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -22,6 +24,12 @@ public class ChineseProverbServerHandler extends SimpleChannelInboundHandler<Dat
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket msg) throws Exception {
+            String req=msg.content().toString(CharsetUtil.UTF_8);
+        System.out.println("传入参数为  "+req);
+            if(req.equals("谚语")){
+                DatagramPacket newMsg=new DatagramPacket(Unpooled.copiedBuffer("谚语查询结果 "+nextQuote(), CharsetUtil.UTF_8),msg.sender());
+                ctx.writeAndFlush(newMsg);
+            }
 
 
     }

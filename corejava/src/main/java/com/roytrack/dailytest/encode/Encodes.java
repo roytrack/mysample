@@ -1,5 +1,12 @@
 package com.roytrack.dailytest.encode;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
@@ -8,13 +15,6 @@ import org.apache.commons.lang3.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
 
 
 /**
@@ -264,15 +264,15 @@ public class Encodes {
 
     @Test
     public void geturl(){
-        String aa="http://10.155.140.31:7001/letv_ws/restful/getQinvItemCoaPdV.xml?site=xtp&time=1479280089945&sign=C3D641356DC6CECCEF5823DD39C0CA48&currentPage=1&startDate=2016-08-31+00%3A04%3A08&endDate=2016-08-31+15%3A04%3A08&ouName=1110_OU_%E4%B9%90%E8%A7%86%E7%BD%91%28%E5%8C%97%E4%BA%AC%29";
+        String aa="http://baidu.com?search=哇咔咔";
         System.out.println(urlDecode(aa));
     }
 
 
     @Test
     public void base64Op(){
-        String encodeStr="eyJ1c2VySWQiOjkwMzUxLCJ1c2VyTmFtZSI6InJ1YW5jaGFuZ21pbmdAbGV0di5jb20iLCJjbk5hbWUiOiLpmK7luLjpk60ifQ==";
-        encodeStr=           "eyJ1c2VySWQiOjkwMzUxLCJ1c2VyTmFtZSI6InJ1YW5jaGFuZ21pbmdAbGV0di5jb20iLCJjbk5hbWUiOiLpmK7luLjpk60ifQ==";
+        String encodeStr="cm95dHJhY2sganVzdCBhIGhhcmQgd29yayBib3k=";
+        encodeStr=           "cm95dHJhY2sganVzdCBhIGhhcmQgd29yayBib3k=";
         String decodeStr=new String (Encodes.decodeBase64(encodeStr));
         System.out.println(decodeStr);
 
@@ -280,7 +280,7 @@ public class Encodes {
 
     @Test
     public void base64Encode(){
-        String origin="roytrackniub";
+        String origin="roytrack just a hard work boy";
         String encodes=new String (Encodes.encodeBase64(origin.getBytes()));
         System.out.println(encodes);
         encodes="v6i6xaO6vMW+stPXsrXU9C0tLS1xd2VyMjAxNi0tLS1saWh1aWFubnk1MjBAMTYzLmNvbS0tLS0xOTg2MDMwOQm/qLrFo7qy1MHCy767qMjvLS0tLXF3ZXIyMDE2LS0tLWxpbGVpaHVhaUAxNjMuY29tLS0tLTM3MDg5NTQ0NAm/qLrFo7q9wLexv8nG0NS9LS0tLXF3ZXIyMDE2LS0tLWxpanExMEAxNjMuY29tLS0tLUxpNzYxMDE2Cb+ousWjusqlMTQ1MTAwMTI0M7awLS0tLXF3ZXIyMDE2LS0tLWptdGFueWpAMTYzLmNvbS0tLS0xOTk4MTAwMgm/qLrFo7rKpTE0NTEwMDA2OTLNtS0tLS1xd2VyMjAxNi0tLS1qb3JkYW5kdW5nMTk4QDE2My5jb20tLS0tMTIzNDU2Cb+ousWjurjLz/PF8rza1fAtLS0tcXdlcjIwMTYtLS0tanJzeTEyMEAxNjMuY29tLS0tLTEzNTUyOTg0NjYwcQm/qLrFo7q4ycT9sKbC88u8u7MtLS0tcXdlcjIwMTYtLS0tanNsMzQxMkAxNjMuY29tLS0tLTMxMjQxMjIwNgm/qLrFo7qzo7LpyagtLS0tcXdlcjIwMTYtLS0tanRqd3d3d3d3d3d3QDE2My5jb20tLS0temhvdTEyMzQ1Ngm/qLrFo7rF7bbQyde1xsXtLS0tLXF3ZXIyMDE2LS0tLWp4eGZnZmxAMTYzLmNvbS0tLS1nZmwxOTg4MDQwMgm/qLrFo7rUxrP0ut0tLS0tcXdlcjIwMTYtLS0tankwMjEzMjUzMEAxNjMuY29tLS0tLXN0b25lYWdl";

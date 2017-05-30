@@ -8,9 +8,9 @@ import java.util.regex.Pattern;
  */
 public class RegexTest {
     public static void main(String[] args) {
-        String regex="[\\w]+\\.letv\\.cn";
+        String regex="[\\w]+\\.roy\\.cn";
         Pattern r=Pattern.compile(regex);
-        Matcher m=r.matcher("maven.letv.cn");
+        Matcher m=r.matcher("maven.roy.cn");
         if(m.find()){
             System.out.println(m.group());
         }

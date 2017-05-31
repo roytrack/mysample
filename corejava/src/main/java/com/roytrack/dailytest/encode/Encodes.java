@@ -272,7 +272,6 @@ public class Encodes {
     @Test
     public void base64Op(){
         String encodeStr="cm95dHJhY2sganVzdCBhIGhhcmQgd29yayBib3k=";
-        encodeStr=           "cm95dHJhY2sganVzdCBhIGhhcmQgd29yayBib3k=";
         String decodeStr=new String (Encodes.decodeBase64(encodeStr));
         System.out.println(decodeStr);
 

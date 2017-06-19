@@ -27,7 +27,7 @@
                      <mvc:mapping path="/**"/>
                      <bean id="timeInterceptor" class="com.roytrack.springmvc.interceptor.TimeBasedAccessInterceptor">
                             <property name="openTime" value="9"/>
-                            <property name="closeingTime" value="14"/>
+                            <property name="closeingTime" value="24"/>
                      </bean>
               </mvc:interceptor>
        </mvc:interceptors>

@@ -8,11 +8,11 @@ import java.io.IOException;
  */
 public class MakeFile {
     public static void main(String[] args) throws IOException {
-        String path="/letv/deployment/cj_file/export.txt";
+        String path="/roy/deployment/cj_file/export.txt";
 
         File f=new File(path);
         f.mkdirs();
-        f=new File("/letv/deployment/cj_file/exporsst.txt");
+        f=new File("/roy/deployment/cj_file/exporsst.txt");
         System.out.println(f.createNewFile());
         System.out.println(f.getAbsolutePath());
     }

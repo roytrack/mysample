@@ -134,7 +134,7 @@ public class IDEA14 {
     public static void main(String[] args)
     {
         args=new String[1];
-        args[0]="guan";
+        args[0]="roy";
         if (args.length == 0)
         {
             //53830-COUQP-QITBM-N1XVU-USQLG-3QC94

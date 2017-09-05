@@ -14,5 +14,10 @@ public class ListAddTest {
             a.add(i);
         }
         System.out.println(System.nanoTime()-start);
+
+        a=new ArrayList<>();
+        for(Integer i:a){
+            System.out.println(i);
+        }
     }
 }

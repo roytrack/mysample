@@ -13,12 +13,18 @@ enum Days {
         this.dayOrder=-1;
     }
 
+
+    public boolean equal(Days d){
+        return equals(d);
+    }
+
     public static void main(String[] args) {
         System.out.println(Days.values());
         System.out.println(Days.Monday);
         System.out.println(Days.Friday.dayOrder);
         System.out.println(Days.valueOf("Monday"));
         // java.lang.IllegalArgumentException: No enum constant com.roytrack.dailytest.enumTest.Days.ppp
-        System.out.println(Days.valueOf("ppp"));
+        //System.out.println(Days.valueOf("ppp"));
+        System.out.println(Monday.equal(Monday));
     }
 }

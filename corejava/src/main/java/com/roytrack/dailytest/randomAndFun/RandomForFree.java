@@ -1,4 +1,4 @@
-package com.roytrack.dailytest.random;
+package com.roytrack.dailytest.randomAndFun;
 
 import java.util.ArrayList;
 import java.util.Random;

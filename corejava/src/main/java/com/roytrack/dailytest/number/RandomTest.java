@@ -19,7 +19,7 @@ public class RandomTest {
         }
     }
 
-    // get random number between 300-900
+    // get randomAndFun number between 300-900
     @Test
     public  void getRangeRandom(){
         SecureRandom random=new SecureRandom();

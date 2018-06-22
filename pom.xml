@@ -61,6 +61,7 @@
         <module>disruptor</module>
         <module>mq</module>
         <module>qrcode</module>
+        <module>vertx</module>
     </modules>
     <properties>
         <spring.version>4.1.4.RELEASE</spring.version>

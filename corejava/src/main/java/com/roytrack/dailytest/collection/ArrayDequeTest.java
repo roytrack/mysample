@@ -14,8 +14,9 @@ public class ArrayDequeTest {
     deque.push(2L);
     deque.push(3L);
     deque.push(4L);
-    System.out.println(deque);
+
     deque.push(5L);
+      System.out.println(deque);
     while (deque.size()>2){
       deque.pollLast();
       System.out.println(deque);

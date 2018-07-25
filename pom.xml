@@ -62,6 +62,7 @@
         <module>mq</module>
         <module>qrcode</module>
         <module>vertx</module>
+        <module>hazelcast</module>
     </modules>
     <properties>
         <spring.version>4.1.4.RELEASE</spring.version>

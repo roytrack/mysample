@@ -6,6 +6,12 @@ import com.hazelcast.core.IMap;
 
 import java.util.concurrent.ConcurrentMap;
 
+/**
+ * 添加map还有序列化问题
+ *
+ * @author roytrack
+ * @time 2018/7/26 上午11:30
+ */
 public class BasicMapOperations {
     private HazelcastInstance instance = Hazelcast.newHazelcastInstance();
 

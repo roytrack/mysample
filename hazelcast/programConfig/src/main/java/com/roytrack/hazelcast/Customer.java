@@ -1,6 +1,8 @@
 package com.roytrack.hazelcast;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
     private String id;
     private String name;
     private Integer age;

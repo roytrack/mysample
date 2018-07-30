@@ -23,8 +23,7 @@ public class SampleForListener implements DistributedObjectListener {
 
     @Override
     public void distributedObjectCreated(DistributedObjectEvent event) {
-        DistributedObject instance = event.getDistributedObject();
-        System.out.println("create " + instance.getName());
+        System.out.println("create " + event.toString());
     }
 
     @Override

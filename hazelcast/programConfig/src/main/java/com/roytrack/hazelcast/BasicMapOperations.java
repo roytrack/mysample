@@ -33,6 +33,8 @@ public class BasicMapOperations {
         basicMapOperations.updateCustomer(c);
         ConcurrentMap<String, Customer> customerConcurrentMap = basicMapOperations.instance.getMap("customers");
         System.out.println(customerConcurrentMap.size());
+        ((IMap<String, Customer>) customerConcurrentMap).destroy();
+        System.out.println(customerConcurrentMap.size());
 
     }
 

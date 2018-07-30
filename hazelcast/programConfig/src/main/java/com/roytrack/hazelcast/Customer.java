@@ -2,6 +2,7 @@ package com.roytrack.hazelcast;
 
 import java.io.Serializable;
 
+
 public class Customer implements Serializable {
     private String id;
     private String name;
@@ -40,6 +41,10 @@ public class Customer implements Serializable {
         newOne.setAge(c.getAge());
         newOne.setName(c.getName());
         return newOne;
+    }
+    @Override
+    public String toString(){
+       return "id is "+id+" ,age is "+age+" ,name is "+name;
     }
 
 }

@@ -7,7 +7,8 @@ import com.hazelcast.core.IMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * 添加map还有序列化问题
+ * 注意添加到hazelcast中的内容需要增加序列化
+ * 所以添加一个对象不需要克隆就可以加很多了
  *
  * @author roytrack
  * @time 2018/7/26 上午11:30
@@ -22,20 +23,29 @@ public class BasicMapOperations {
         c.setName("roy");
         c.setAge(23);
         basicMapOperations.addCustomer(c);
-        c = c.clone(c);
+
         c.setId("23");
         basicMapOperations.addCustomer(c);
-        c = c.clone(c);
+
         c.setId("22");
         basicMapOperations.removeCustomer(c);
-        c = c.clone(c);
+        //不需要克隆了
+        //c = c.clone(c);
         c.setId("24");
         basicMapOperations.updateCustomer(c);
         ConcurrentMap<String, Customer> customerConcurrentMap = basicMapOperations.instance.getMap("customers");
         System.out.println(customerConcurrentMap.size());
         ((IMap<String, Customer>) customerConcurrentMap).destroy();
         System.out.println(customerConcurrentMap.size());
-
+        basicMapOperations.addCustomer(c);
+        c.setId("2");
+        basicMapOperations.addCustomer(c);
+        c.setId("3");
+        basicMapOperations.addCustomer(c);
+        c.setId("4");
+        basicMapOperations.addCustomer(c);
+        System.out.println(customerConcurrentMap.size());
+        System.out.println(basicMapOperations.getCustomer("2"));
     }
 
     public Customer getCustomer(String id) {

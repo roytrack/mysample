@@ -1,12 +1,11 @@
 package com.roytrack.vertx.ws.pingpong;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.MultiMap;
 import io.vertx.core.buffer.Buffer;
-import io.vertx.core.buffer.impl.BufferImpl;
 import io.vertx.core.http.HttpClient;
 import io.vertx.core.http.HttpClientOptions;
-import io.vertx.core.http.impl.headers.VertxHttpHeaders;
+import io.vertx.core.http.impl.FrameType;
+import io.vertx.core.http.impl.ws.WebSocketFrameImpl;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -30,25 +29,26 @@ public class WsClientVerticle extends AbstractVerticle {
   @Override
   public void start() {
 
-    try{
+    try {
       HttpClient httpClient = vertx.createHttpClient(
               new HttpClientOptions().setSsl(false)
-              .setTryUseCompression(true).setLogActivity(true));
+//                      .setTryUseCompression(true)
+                      .setLogActivity(true));
       httpClient.websocket(port, host, "/test", websocket -> {
-        websocket.textMessageHandler(h->{
-          log.info("receive data is {}",h);
+        websocket.textMessageHandler(h -> {
+          log.info("receive data is {}", h);
         });
-//        websocket.writePing(Buffer.buffer("666".getBytes()));
-        websocket.exceptionHandler(e->{
-          log.error("websocket client exception is :",e);
+        websocket.writePing(Buffer.buffer("666".getBytes()));
+        websocket.exceptionHandler(e -> {
+          log.error("websocket client exception is :", e);
         });
 
-        websocket.writeTextMessage("43434");
-      },fail->{
-        log.error("httpclient failed :",fail);
+//        websocket.writeTextMessage("43434");
+      }, fail -> {
+        log.error("httpclient failed :", fail);
       });
-    }catch (Throwable e){
-      log.error("client error:",e);
+    } catch (Throwable e) {
+      log.error("client error:", e);
     }
 
   }

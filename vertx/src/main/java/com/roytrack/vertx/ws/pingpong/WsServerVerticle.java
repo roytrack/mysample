@@ -30,8 +30,9 @@ public class WsServerVerticle extends AbstractVerticle {
   @Override
   public void start() {
     try {
-      HttpServerOptions opts = new HttpServerOptions().setTcpFastOpen(true)
-              //.setTcpKeepAlive(true)
+      HttpServerOptions opts = new HttpServerOptions()
+              .setTcpFastOpen(true)
+              .setTcpKeepAlive(true)
               .setLogActivity(true)
               .setHost(host)
               .setPort(port)
@@ -41,7 +42,6 @@ public class WsServerVerticle extends AbstractVerticle {
 
       vertx.createHttpServer(opts)
               .websocketHandler(conn -> {
-                //conn.setWriteQueueMaxSize(1 * 1024);
                 conn.textMessageHandler(h -> {
                   log.info("receive text message :{}", h);
                 });

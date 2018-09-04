@@ -27,8 +27,8 @@
 
 
     <logger name="org.springframework" level="TRACE"/>
-    <logger name="org.apache" level="INFO"/>
-    <logger name="io.netty.handler.codec.http" level="ERROR"/>
+    <logger name="org.apache" level="DEBUG"/>
+    <logger name="io.netty.handler.codec.http" level="DEBUG"/>
 
     <root level="TRACE">
         <appender-ref ref="console"/>

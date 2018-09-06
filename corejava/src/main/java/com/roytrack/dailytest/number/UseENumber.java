@@ -50,6 +50,8 @@ public class UseENumber {
         String strWithE = "1.23456e10";
         Double d = Double.parseDouble(strWithE);
         System.out.println(d);
+        Double dd = Double.valueOf(strWithE);
+        System.out.println(dd);
     }
 
 }

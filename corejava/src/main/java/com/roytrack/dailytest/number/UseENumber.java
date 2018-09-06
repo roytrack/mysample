@@ -43,4 +43,13 @@ public class UseENumber {
         String str=padDoubleLeft(d,50,2);
         System.out.println(str);
     }
+
+
+    @Test
+    public void testStringToDouble(){
+        String strWithE = "1.23456e10";
+        Double d = Double.parseDouble(strWithE);
+        System.out.println(d);
+    }
+
 }

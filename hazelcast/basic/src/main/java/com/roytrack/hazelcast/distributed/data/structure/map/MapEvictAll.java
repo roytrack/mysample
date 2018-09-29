@@ -1,4 +1,4 @@
-package com.roytrack.hazelcast;
+package com.roytrack.hazelcast.distributed.data.structure.map;
 
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;

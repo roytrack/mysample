@@ -1,4 +1,4 @@
-package com.roytrack.hazelcast.store;
+package com.roytrack.hazelcast.distributed.data.structure.map.store;
 
 import java.io.Serializable;
 

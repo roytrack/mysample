@@ -7,11 +7,11 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ConcurrentHashMapUse {
 
-    public static void main(String[] args) {
-        String sku="600400003099";
-        String sku2="600400003099";
-        ConcurrentHashMap<String,String> map=new ConcurrentHashMap<>();
-        map.put(sku2,"600400003099");
-        System.out.println(map.get(sku));
-    }
+  public static void main(String[] args) {
+    String sku = "600400003099";
+    String sku2 = "600400003099";
+    ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
+    map.put(sku2, "600400003099");
+    System.out.println(map.get(sku));
+  }
 }

@@ -7,12 +7,12 @@ import java.time.Instant;
  */
 public class CompareToPrimeType {
 
-    public static void main(String[] args) {
-        Long start=System.nanoTime();
-        for (long l = 0L; l < 100000L; l++) {
-        }
-        System.out.println(System.nanoTime()-start);
-        System.out.println(Instant.now().toEpochMilli());
+  public static void main(String[] args) {
+    Long start = System.nanoTime();
+    for (long l = 0L; l < 100000L; l++) {
     }
+    System.out.println(System.nanoTime() - start);
+    System.out.println(Instant.now().toEpochMilli());
+  }
 
 }

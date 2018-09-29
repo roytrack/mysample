@@ -11,23 +11,23 @@ import io.netty.channel.socket.nio.NioDatagramChannel;
  */
 public class ChineseProverbServer {
 
-    public void run(int port) throws InterruptedException {
-        EventLoopGroup workerGroup=new NioEventLoopGroup();
-        try{
-            Bootstrap b=new Bootstrap();
-            b.group(workerGroup)
-                    .channel(NioDatagramChannel.class)
-                    .option(ChannelOption.SO_BROADCAST,true)
-                    .handler(new ChineseProverbServerHandler());
-                    b.bind(8080).sync()
-                            .channel().closeFuture().await();
-        }finally {
-            workerGroup.shutdownGracefully();
-        }
-    }
+  public static void main(String[] args) throws InterruptedException {
+    ChineseProverbServer s = new ChineseProverbServer();
+    s.run(8080);
+  }
 
-    public static void main(String[] args) throws InterruptedException {
-        ChineseProverbServer s=new ChineseProverbServer();
-        s.run(8080);
+  public void run(int port) throws InterruptedException {
+    EventLoopGroup workerGroup = new NioEventLoopGroup();
+    try {
+      Bootstrap b = new Bootstrap();
+      b.group(workerGroup)
+              .channel(NioDatagramChannel.class)
+              .option(ChannelOption.SO_BROADCAST, true)
+              .handler(new ChineseProverbServerHandler());
+      b.bind(8080).sync()
+              .channel().closeFuture().await();
+    } finally {
+      workerGroup.shutdownGracefully();
     }
+  }
 }

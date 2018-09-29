@@ -17,21 +17,21 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = "classpath:bean/scopeTest.xml")
 public class ScopeTest {
 
-    @Autowired
-    ApplicationContext context;
+  @Autowired
+  ApplicationContext context;
 
-    @Test
-    public void showSingleTon(){
-        PrototypeBean pb=context.getBean("prototypeBean", PrototypeBean.class);
-        System.out.println(pb + "  name " + pb.getName() + "  age " + pb.getAge());
-        SingleTonBean b=context.getBean("singleTonBean",SingleTonBean.class);
-        b.showBean();
-        b=context.getBean("singleTonBean",SingleTonBean.class);
-        b.setBean(pb);
-        b.showBean();
-        OtherSingleTonBean ot=context.getBean("otherSingleTonBean",OtherSingleTonBean.class);
-        ot.showBean();
+  @Test
+  public void showSingleTon() {
+    PrototypeBean pb = context.getBean("prototypeBean", PrototypeBean.class);
+    System.out.println(pb + "  name " + pb.getName() + "  age " + pb.getAge());
+    SingleTonBean b = context.getBean("singleTonBean", SingleTonBean.class);
+    b.showBean();
+    b = context.getBean("singleTonBean", SingleTonBean.class);
+    b.setBean(pb);
+    b.showBean();
+    OtherSingleTonBean ot = context.getBean("otherSingleTonBean", OtherSingleTonBean.class);
+    ot.showBean();
 
-    }
+  }
 
 }

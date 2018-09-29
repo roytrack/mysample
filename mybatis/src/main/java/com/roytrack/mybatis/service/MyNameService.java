@@ -11,47 +11,48 @@ import java.util.List;
 
 /**
  * 实验证明 反斜杠可以被插入进去 但是单引号的是会报错的
- *
+ * <p>
  * CREATE TABLE thename
- (
- myname VARCHAR (50) NOT NULL,
- myage  INT,
- PRIMARY KEY (myname)
- );
- *
+ * (
+ * myname VARCHAR (50) NOT NULL,
+ * myage  INT,
+ * PRIMARY KEY (myname)
+ * );
+ * <p>
  * Created by roytrack on 2015/12/3.
  */
 @Service("myNameService")
 public class MyNameService {
-    @Autowired
-    AbcMapper abcMapper;
+  @Autowired
+  AbcMapper abcMapper;
 
-    public void insert(){
-        Abc a=new Abc();
-        a.setMyname("slash\\");
-        a.setMyage(2);
-        abcMapper.insert(a);
-        Abc b=new Abc();
-        a.setMyname("quote'");
-        a.setMyage(4);
-        abcMapper.insert(b);
-    }
+  public void insert() {
+    Abc a = new Abc();
+    a.setMyname("slash\\");
+    a.setMyage(2);
+    abcMapper.insert(a);
+    Abc b = new Abc();
+    a.setMyname("quote'");
+    a.setMyage(4);
+    abcMapper.insert(b);
+  }
 
-    public List<Abc> selectIn(){
-        String ids="'df2df','dfdf'";
-        return abcMapper.selectIn(ids);
-    }
+  public List<Abc> selectIn() {
+    String ids = "'df2df','dfdf'";
+    return abcMapper.selectIn(ids);
+  }
 
-    public List<Abc> selectIn2(){
+  public List<Abc> selectIn2() {
 
-        ArrayList<String> ids=new ArrayList<>();
-        ids.add("df2df");
-        ids.add("'ddd'");
-        QueryModel q=new QueryModel();
-        q.setIds(ids);
-        return abcMapper.selectIn2(q);
-    }
-    public List<String> selectId(){
-        return abcMapper.selectID();
-    }
+    ArrayList<String> ids = new ArrayList<>();
+    ids.add("df2df");
+    ids.add("'ddd'");
+    QueryModel q = new QueryModel();
+    q.setIds(ids);
+    return abcMapper.selectIn2(q);
+  }
+
+  public List<String> selectId() {
+    return abcMapper.selectID();
+  }
 }

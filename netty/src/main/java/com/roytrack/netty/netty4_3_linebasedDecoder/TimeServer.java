@@ -15,44 +15,42 @@ import io.netty.handler.codec.string.StringDecoder;
  * Created by roytrack on 2016-3-25.
  */
 public class TimeServer {
-    public  void bind(int port){
-        System.out.println("server work at "+port+"....");
-        EventLoopGroup bossGroup=new NioEventLoopGroup();
-        EventLoopGroup workerGroup =new NioEventLoopGroup();
-        try {
-        ServerBootstrap b=new ServerBootstrap();
-        b.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class)
-                .option(ChannelOption.SO_BACKLOG,1024)
-                .childHandler(new ChildChannelhandler());
+  public static void main(String[] args) {
+    int port = 9009;
+    if (null != args & args.length > 1) {
+      port = Integer.valueOf(args[0]);
+    }
+    new TimeServer().bind(port);
+  }
 
-            ChannelFuture f=b.bind(port).sync();
-            f.channel().closeFuture().sync();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }finally {
-            bossGroup.shutdownGracefully();
-            workerGroup.shutdownGracefully();
-        }
+  public void bind(int port) {
+    System.out.println("server work at " + port + "....");
+    EventLoopGroup bossGroup = new NioEventLoopGroup();
+    EventLoopGroup workerGroup = new NioEventLoopGroup();
+    try {
+      ServerBootstrap b = new ServerBootstrap();
+      b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
+              .option(ChannelOption.SO_BACKLOG, 1024)
+              .childHandler(new ChildChannelhandler());
 
+      ChannelFuture f = b.bind(port).sync();
+      f.channel().closeFuture().sync();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    } finally {
+      bossGroup.shutdownGracefully();
+      workerGroup.shutdownGracefully();
     }
 
-    private  class ChildChannelhandler extends ChannelInitializer<SocketChannel>{
+  }
 
-        @Override
-        protected void initChannel(SocketChannel socketChannel) throws Exception {
-            socketChannel.pipeline().addLast(new LineBasedFrameDecoder(1024));
-            socketChannel.pipeline().addLast(new StringDecoder());
-            socketChannel.pipeline().addLast(new TimeServerHandler());
-        }
+  private class ChildChannelhandler extends ChannelInitializer<SocketChannel> {
+
+    @Override
+    protected void initChannel(SocketChannel socketChannel) {
+      socketChannel.pipeline().addLast(new LineBasedFrameDecoder(1024));
+      socketChannel.pipeline().addLast(new StringDecoder());
+      socketChannel.pipeline().addLast(new TimeServerHandler());
     }
-
-
-
-    public static void main(String[] args) {
-        int port=9009;
-        if(null!=args&args.length>1){
-            port=Integer.valueOf(args[0]);
-        }
-        new TimeServer().bind(port);
-    }
+  }
 }

@@ -8,36 +8,36 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  * Created by roytrack on 2016-10-24.
  */
 public class SubReqClientHandler2 extends ChannelInboundHandlerAdapter {
-    @Override
-    public void channelActive(ChannelHandlerContext ctx){
-        for(int i=0;i<10;i++){
-            ctx.write(subReq(i));
-        }
-        ctx.flush();
+  @Override
+  public void channelActive(ChannelHandlerContext ctx) {
+    for (int i = 0; i < 10; i++) {
+      ctx.write(subReq(i));
     }
+    ctx.flush();
+  }
 
-    private SubscribeReqC.SubscribeReq subReq(int i) {
-        SubscribeReqC.SubscribeReq req= SubscribeReqC.SubscribeReq.getDefaultInstance();
-        req= req.toBuilder().setAddress("中国北京")
-                .setUserName("roytrack")
-                .setProductName("netty 权威指南")
-                .setSubReqid(i).build();
-        return req;
-    }
+  private SubscribeReqC.SubscribeReq subReq(int i) {
+    SubscribeReqC.SubscribeReq req = SubscribeReqC.SubscribeReq.getDefaultInstance();
+    req = req.toBuilder().setAddress("中国北京")
+            .setUserName("roytrack")
+            .setProductName("netty 权威指南")
+            .setSubReqid(i).build();
+    return req;
+  }
 
-    @Override
-    public  void channelRead(ChannelHandlerContext ctx,Object msg){
-        System.out.println("Receive server response : [" + msg + "]");
-    }
+  @Override
+  public void channelRead(ChannelHandlerContext ctx, Object msg) {
+    System.out.println("Receive server response : [" + msg + "]");
+  }
 
-    @Override
-    public void channelReadComplete(ChannelHandlerContext ctx){
-        ctx.flush();
-    }
+  @Override
+  public void channelReadComplete(ChannelHandlerContext ctx) {
+    ctx.flush();
+  }
 
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx,Throwable cause){
-        cause.printStackTrace();
-        ctx.close();
-    }
+  @Override
+  public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    cause.printStackTrace();
+    ctx.close();
+  }
 }

@@ -15,12 +15,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("classpath:aspect/aop.xml")
 public class AspectTest {
 
-    @Autowired
-    ApplicationContext context;
+  @Autowired
+  ApplicationContext context;
 
-    @Test
-    public void showAspect(){
-        TargetService t=context.getBean("targetService", TargetService.class);
-        t.saySomething("go go go ");
-    }
+  @Test
+  public void showAspect() {
+    TargetService t = context.getBean("targetService", TargetService.class);
+    t.saySomething("go go go ");
+  }
 }

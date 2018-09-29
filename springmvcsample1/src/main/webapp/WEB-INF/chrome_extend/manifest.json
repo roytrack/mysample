@@ -2,8 +2,23 @@
   "manifest_version": 3,
   "name": "urlchange",
   "version": "0.0.1",
-  "background": { "scripts": ["jquery-2.0.0.min.js", "background.js"] },
-  "permissions": [ "tabs", "http://*/*", "https://*/*", "contextMenus", "webRequest", "webRequestBlocking", "webNavigation", "unlimitedStorage", "notifications" ],
+  "background": {
+    "scripts": [
+      "jquery-2.0.0.min.js",
+      "background.js"
+    ]
+  },
+  "permissions": [
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "contextMenus",
+    "webRequest",
+    "webRequestBlocking",
+    "webNavigation",
+    "unlimitedStorage",
+    "notifications"
+  ],
   "page_action": {
     "default_icon": {
       "19": "cnblogs_19.png",

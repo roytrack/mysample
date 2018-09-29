@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AnimalBean<T> {
 
-    public void saySomething(T t){
-        System.out.println("nothing");
-    }
+  public void saySomething(T t) {
+    System.out.println("nothing");
+  }
 }

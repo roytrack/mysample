@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 @Setter
 @ToString
 public class Abean {
-    private String subject;
-    private BigDecimal amount;
-    private BBean bBean;
+  private String subject;
+  private BigDecimal amount;
+  private BBean bBean;
 
 }

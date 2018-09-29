@@ -10,17 +10,15 @@ import org.slf4j.LoggerFactory;
  * Created by roytrack on 2015/1/31.
  */
 public class LogBack {
-    Logger logger= LoggerFactory.getLogger(LogBack.class);
+  Logger logger = LoggerFactory.getLogger(LogBack.class);
 
 
-
-
-    @Test
-    public void seeLogStatus(){
-        logger.info("logger start .....");
-        LoggerContext lc=(LoggerContext) LoggerFactory.getILoggerFactory();
-        System.out.println(lc);
-        StatusPrinter.print(lc);
-        logger.error("logger end .....",new NullPointerException("asasdasd"));
-    }
+  @Test
+  public void seeLogStatus() {
+    logger.info("logger start .....");
+    LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+    System.out.println(lc);
+    StatusPrinter.print(lc);
+    logger.error("logger end .....", new NullPointerException("asasdasd"));
+  }
 }

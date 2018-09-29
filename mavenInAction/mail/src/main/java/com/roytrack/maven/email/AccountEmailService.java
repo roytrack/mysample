@@ -8,5 +8,5 @@ import com.roytrack.maven.exception.AccountEmailException;
  */
 public interface AccountEmailService {
 
-    void sendEmail(String to, String subject, String htmlText)throws AccountEmailException;
+  void sendEmail(String to, String subject, String htmlText) throws AccountEmailException;
 }

@@ -63,14 +63,14 @@
     function eifelerRegelAppliesToWeekday(weekday) {
         weekday = parseInt(weekday, 10);
         switch (weekday) {
-        case 0: // Sonndeg
-        case 1: // Méindeg
-        case 3: // Mëttwoch
-        case 5: // Freideg
-        case 6: // Samschdeg
-            return true;
-        default: // 2 Dënschdeg, 4 Donneschdeg
-            return false;
+            case 0: // Sonndeg
+            case 1: // Méindeg
+            case 3: // Mëttwoch
+            case 5: // Freideg
+            case 6: // Samschdeg
+                return true;
+            default: // 2 Dënschdeg, 4 Donneschdeg
+                return false;
         }
     }
 

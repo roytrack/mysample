@@ -9,12 +9,13 @@ import java.util.List;
  * Created by roytrack on 2015/12/3.
  */
 public interface AbcMapper {
-    int insert(Abc abc);
-    List<Abc> selectIn(String ids);
+  int insert(Abc abc);
 
-    List<Abc> selectIn2(QueryModel ids);
+  List<Abc> selectIn(String ids);
 
-    List<String> selectID();
+  List<Abc> selectIn2(QueryModel ids);
+
+  List<String> selectID();
 
 
 }

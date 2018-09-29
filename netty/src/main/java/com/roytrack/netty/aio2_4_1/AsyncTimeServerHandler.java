@@ -9,33 +9,34 @@ import java.util.concurrent.CountDownLatch;
  * Created by roytrack on 2016-3-25.
  */
 public class AsyncTimeServerHandler implements Runnable {
-    private int port;
-    CountDownLatch latch;
-    AsynchronousServerSocketChannel asynchronousServerSocketChannel;
-    public AsyncTimeServerHandler(int port) {
-        this.port=port;
-        try {
-            asynchronousServerSocketChannel=AsynchronousServerSocketChannel.open();
-            asynchronousServerSocketChannel.bind(new InetSocketAddress(port));
-            System.out.println("The time server is start at port :"+port);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+  CountDownLatch latch;
+  AsynchronousServerSocketChannel asynchronousServerSocketChannel;
+  private int port;
+
+  public AsyncTimeServerHandler(int port) {
+    this.port = port;
+    try {
+      asynchronousServerSocketChannel = AsynchronousServerSocketChannel.open();
+      asynchronousServerSocketChannel.bind(new InetSocketAddress(port));
+      System.out.println("The time server is start at port :" + port);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void run() {
+    latch = new CountDownLatch(1);
+    doAccept();
+    try {
+      latch.await();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
 
-    @Override
-    public void run() {
-        latch=new CountDownLatch(1);
-        doAccept();
-        try {
-            latch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+  }
 
-    }
-
-    private void doAccept() {
-            asynchronousServerSocketChannel.accept(this,new AcceptCompletionHandler());
-    }
+  private void doAccept() {
+    asynchronousServerSocketChannel.accept(this, new AcceptCompletionHandler());
+  }
 }

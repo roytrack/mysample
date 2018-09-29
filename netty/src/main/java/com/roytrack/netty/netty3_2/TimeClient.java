@@ -14,36 +14,36 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  */
 public class TimeClient {
 
-    public void connect(int port, String host) throws InterruptedException {
-        EventLoopGroup group = new NioEventLoopGroup();
-        try {
-            Bootstrap b = new Bootstrap();
-            b.group(group).channel(NioSocketChannel.class)
-                    .option(ChannelOption.TCP_NODELAY, true)
-                    .handler(new ChannelInitializer<io.netty.channel.socket.SocketChannel>() {
-                        @Override
-                        protected void initChannel(io.netty.channel.socket.SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new TimeClientHandler());
-                        }
-                    });
-            ChannelFuture f = b.connect(host, port).sync();
-            f.channel().closeFuture().sync();
-        } finally {
-            group.shutdownGracefully();
-        }
+  public static void main(String[] args) throws InterruptedException {
+    int port = 9009;
+    if (args != null && args.length > 0) {
+      try {
+        port = Integer.parseInt(args[0]);
+      } catch (NumberFormatException e) {
 
+      }
+    }
+    new TimeClient().connect(port, "127.0.0.1");
+  }
+
+  public void connect(int port, String host) throws InterruptedException {
+    EventLoopGroup group = new NioEventLoopGroup();
+    try {
+      Bootstrap b = new Bootstrap();
+      b.group(group).channel(NioSocketChannel.class)
+              .option(ChannelOption.TCP_NODELAY, true)
+              .handler(new ChannelInitializer<io.netty.channel.socket.SocketChannel>() {
+                @Override
+                protected void initChannel(io.netty.channel.socket.SocketChannel ch) {
+                  ch.pipeline().addLast(new TimeClientHandler());
+                }
+              });
+      ChannelFuture f = b.connect(host, port).sync();
+      f.channel().closeFuture().sync();
+    } finally {
+      group.shutdownGracefully();
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        int port=9009;
-        if(args!=null&&args.length>0){
-            try{
-                port=Integer.parseInt(args[0]);
-            }catch (NumberFormatException e){
-
-            }
-        }
-        new TimeClient().connect(port,"127.0.0.1");
-    }
+  }
 
 }

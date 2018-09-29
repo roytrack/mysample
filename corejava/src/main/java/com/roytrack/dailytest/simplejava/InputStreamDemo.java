@@ -10,16 +10,17 @@ import java.io.InputStreamReader;
 
 public class InputStreamDemo {
 
-    public static void main(String[] args) {
-        try {
-            seeStreamAndReader();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+  public static void main(String[] args) {
+    try {
+      seeStreamAndReader();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
-    public static void seeStreamAndReader() throws IOException {
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        String aa=br.readLine();
-        System.out.println(aa);
-    }
+  }
+
+  public static void seeStreamAndReader() throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String aa = br.readLine();
+    System.out.println(aa);
+  }
 }

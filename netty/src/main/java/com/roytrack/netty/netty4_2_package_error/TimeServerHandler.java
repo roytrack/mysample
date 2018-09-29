@@ -13,28 +13,28 @@ import java.util.Date;
  */
 public class TimeServerHandler extends ChannelInboundHandlerAdapter {
 
-    private int counter;
+  private int counter;
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf buf=(ByteBuf)msg;
-        byte[] req=new byte[buf.readableBytes()];
-        buf.readBytes(req);
-        String body =new String(req,"UTF-8").substring(0,req.length-System.getProperty("line.separator").length());
-        System.out.println("received command : "+body+"; the counter is :"+ ++counter);
-        String currentTime="time".equalsIgnoreCase(body)?new Date(System.currentTimeMillis()).toString():"BAD COMMAND";
-        currentTime=currentTime+System.getProperty("line.separator");
-        ByteBuf resp= Unpooled.copiedBuffer(currentTime.getBytes());
-        ctx.write(resp);
-    }
+  @Override
+  public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+    ByteBuf buf = (ByteBuf) msg;
+    byte[] req = new byte[buf.readableBytes()];
+    buf.readBytes(req);
+    String body = new String(req, "UTF-8").substring(0, req.length - System.getProperty("line.separator").length());
+    System.out.println("received command : " + body + "; the counter is :" + ++counter);
+    String currentTime = "time".equalsIgnoreCase(body) ? new Date(System.currentTimeMillis()).toString() : "BAD COMMAND";
+    currentTime = currentTime + System.getProperty("line.separator");
+    ByteBuf resp = Unpooled.copiedBuffer(currentTime.getBytes());
+    ctx.write(resp);
+  }
 
-    @Override
-    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        ctx.flush();
-    }
+  @Override
+  public void channelReadComplete(ChannelHandlerContext ctx) {
+    ctx.flush();
+  }
 
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        ctx.close();
-    }
+  @Override
+  public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    ctx.close();
+  }
 }

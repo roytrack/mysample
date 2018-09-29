@@ -11,9 +11,10 @@ import lombok.ToString;
 @Getter
 @Setter
 public class AbeanHaveGetter {
-    private String name;
-    private String foo;
-    public String  getFoo(){
-        return foo+"aa";
-    }
+  private String name;
+  private String foo;
+
+  public String getFoo() {
+    return foo + "aa";
+  }
 }

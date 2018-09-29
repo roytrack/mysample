@@ -17,27 +17,27 @@ import java.net.InetSocketAddress;
  */
 public class ChineseProverbClient {
 
-    public void run(int port) throws InterruptedException {
-        EventLoopGroup client=new NioEventLoopGroup();
-        try{
-            Bootstrap b=new Bootstrap();
-            b.group(client)
-                    .channel(NioDatagramChannel.class)
-                    .option(ChannelOption.SO_BROADCAST, true)
-                    .handler(new ChineseProverbClientHandler());
-            Channel channel=b.bind(0).sync().channel();
-            channel.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer("谚语", CharsetUtil.UTF_8)
-                    ,new InetSocketAddress("255.255.255.255",8080))).sync();
-            if(!channel.closeFuture().await(15000)){
-                System.out.println("消息查询超时！");
-            }
-        }finally {
-            client.shutdownGracefully();
-        }
-    }
+  public static void main(String[] args) throws InterruptedException {
+    ChineseProverbClient c = new ChineseProverbClient();
+    c.run(8080);
+  }
 
-    public static void main(String[] args) throws InterruptedException {
-        ChineseProverbClient c=new ChineseProverbClient();
-        c.run(8080);
+  public void run(int port) throws InterruptedException {
+    EventLoopGroup client = new NioEventLoopGroup();
+    try {
+      Bootstrap b = new Bootstrap();
+      b.group(client)
+              .channel(NioDatagramChannel.class)
+              .option(ChannelOption.SO_BROADCAST, true)
+              .handler(new ChineseProverbClientHandler());
+      Channel channel = b.bind(0).sync().channel();
+      channel.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer("谚语", CharsetUtil.UTF_8)
+              , new InetSocketAddress("255.255.255.255", 8080))).sync();
+      if (!channel.closeFuture().await(15000)) {
+        System.out.println("消息查询超时！");
+      }
+    } finally {
+      client.shutdownGracefully();
     }
+  }
 }

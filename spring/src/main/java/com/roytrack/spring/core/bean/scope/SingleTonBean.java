@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 @Setter
 public class SingleTonBean {
 
-    @Autowired
-    PrototypeBean bean;
+  @Autowired
+  PrototypeBean bean;
 
-    public void showBean(){
-        System.out.println(bean+"  name "+bean.getName()+"  age "+bean.getAge());
-    }
+  public void showBean() {
+    System.out.println(bean + "  name " + bean.getName() + "  age " + bean.getAge());
+  }
 }

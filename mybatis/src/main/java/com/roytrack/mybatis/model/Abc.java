@@ -7,22 +7,22 @@ import lombok.ToString;
  */
 @ToString
 public class Abc {
-    private String myname;
-    private Integer myage;
+  private String myname;
+  private Integer myage;
 
-    public String getMyname() {
-        return myname;
-    }
+  public String getMyname() {
+    return myname;
+  }
 
-    public void setMyname(String myname) {
-        this.myname = myname;
-    }
+  public void setMyname(String myname) {
+    this.myname = myname;
+  }
 
-    public Integer getMyage() {
-        return myage;
-    }
+  public Integer getMyage() {
+    return myage;
+  }
 
-    public void setMyage(Integer myage) {
-        this.myage = myage;
-    }
+  public void setMyage(Integer myage) {
+    this.myage = myage;
+  }
 }

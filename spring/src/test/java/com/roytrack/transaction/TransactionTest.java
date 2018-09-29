@@ -14,18 +14,18 @@ import javax.annotation.Resource;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/transaction/application.xml"})
 public class TransactionTest {
-    @Resource
-    MyService myService;
+  @Resource
+  MyService myService;
 
-    @Test
-    public void CrossWithMysqlTransaction(){
-        myService.makeCrossTransaction();
-    }
+  @Test
+  public void CrossWithMysqlTransaction() {
+    myService.makeCrossTransaction();
+  }
 
-    @Test
-    public void crossWithMysqlOracle(){
-        myService.makeCrossTransactionWithOracleMysql();
-    }
+  @Test
+  public void crossWithMysqlOracle() {
+    myService.makeCrossTransactionWithOracleMysql();
+  }
 
 
 }

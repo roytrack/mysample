@@ -10,25 +10,25 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-  <jsp:include page="import.jsp"/>
+    <jsp:include page="import.jsp"/>
     <title></title>
 </head>
 <body>
 <div class="form-group has-success col-md-4">
-  <label class="control-label" for="username">username</label>
-  <input type="text" class="form-control" id="username">
+    <label class="control-label" for="username">username</label>
+    <input type="text" class="form-control" id="username">
 </div>
 <div class="form-group has-success col-md-4">
-  <label class="control-label" for="subject">order subject</label>
-  <input type="text" class="form-control" id="subject">
+    <label class="control-label" for="subject">order subject</label>
+    <input type="text" class="form-control" id="subject">
 </div>
 <div class="form-group has-success col-md-4">
-  <label class="control-label" for="total">total</label>
-  <input type="text" class="form-control" id="total">
+    <label class="control-label" for="total">total</label>
+    <input type="text" class="form-control" id="total">
 </div>
 <div class="form-group has-success col-md-4">
-  <label class="control-label" for="order_id">order number</label>
-  <input type="text" class="form-control" id="order_id">
+    <label class="control-label" for="order_id">order number</label>
+    <input type="text" class="form-control" id="order_id">
 </div>
 
 <jsp:include page="bodyjs.jsp"/>

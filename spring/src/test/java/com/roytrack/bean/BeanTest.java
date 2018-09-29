@@ -15,11 +15,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
         locations = {"classpath:bean/instantiationBean.xml"})
 public class BeanTest {
 
-    @Autowired
-    private InstantiationBean ib;
+  @Autowired
+  private InstantiationBean ib;
 
-    @Test
-    public  void getConstructorBean(){
-        System.out.println("name:"+ib.getName()+",sex:"+ib.getSex());
-    }
+  @Test
+  public void getConstructorBean() {
+    System.out.println("name:" + ib.getName() + ",sex:" + ib.getSex());
+  }
 }

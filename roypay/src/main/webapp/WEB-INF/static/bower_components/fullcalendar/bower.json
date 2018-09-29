@@ -1,11 +1,13 @@
 {
   "name": "fullcalendar",
   "version": "2.0.2",
-
   "description": "Full-sized drag & drop event calendar",
-  "keywords": [ "calendar", "event", "full-sized" ],
+  "keywords": [
+    "calendar",
+    "event",
+    "full-sized"
+  ],
   "homepage": "http://arshaw.com/fullcalendar/",
-
   "dependencies": {
     "jquery": ">=1.7.1",
     "moment": ">=2.5.0"
@@ -18,7 +20,6 @@
     "jasmine-fixture": "~1.2.0",
     "moment-timezone": "~0.0.6"
   },
-
   "main": [
     "/dist/fullcalendar.js",
     "/dist/fullcalendar.css"

@@ -10,9 +10,9 @@ import lombok.Setter;
 @Setter
 public class FrontModel {
 
-    private String username;
-    private String subject;
-    private String total;
-    private String order_id;
+  private String username;
+  private String subject;
+  private String total;
+  private String order_id;
 
 }

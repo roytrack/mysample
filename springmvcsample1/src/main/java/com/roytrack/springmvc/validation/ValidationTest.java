@@ -10,17 +10,17 @@ import org.junit.Test;
  */
 public class ValidationTest {
 
-    @Test
-    public void test(){
-        AnnotationDescriptor<BeanValidation> descriptor=new AnnotationDescriptor<BeanValidation>(BeanValidation.class);
-        BeanValidation bv= AnnotationFactory.create(descriptor);
-        BeanValidator beanValidator=new BeanValidator();
-        beanValidator.initialize(bv);
-        Assert.assertTrue(beanValidator.isValid(null, null));
-        Assert.assertTrue(beanValidator.isValid("",null));
-        Assert.assertTrue(beanValidator.isValid("哈哈哈1",null));
-        Assert.assertFalse(beanValidator.isValid("哈哈哈",null));
+  @Test
+  public void test() {
+    AnnotationDescriptor<BeanValidation> descriptor = new AnnotationDescriptor<BeanValidation>(BeanValidation.class);
+    BeanValidation bv = AnnotationFactory.create(descriptor);
+    BeanValidator beanValidator = new BeanValidator();
+    beanValidator.initialize(bv);
+    Assert.assertTrue(beanValidator.isValid(null, null));
+    Assert.assertTrue(beanValidator.isValid("", null));
+    Assert.assertTrue(beanValidator.isValid("哈哈哈1", null));
+    Assert.assertFalse(beanValidator.isValid("哈哈哈", null));
 
 
-    }
+  }
 }

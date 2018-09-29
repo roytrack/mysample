@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 @Service("logHandler")
 public class LogHandler implements EventHandler<LogEntity> {
 
-    @Autowired
-    LogEntityMapper logEntityMapper;
+  @Autowired
+  LogEntityMapper logEntityMapper;
 
-    @Override
-    public void onEvent(LogEntity event, long sequence, boolean endOfBatch) throws Exception {
-        System.out.println("====="+event.toString());
-        System.out.println(endOfBatch);
-        logEntityMapper.insert(event);
-    }
+  @Override
+  public void onEvent(LogEntity event, long sequence, boolean endOfBatch) throws Exception {
+    System.out.println("=====" + event.toString());
+    System.out.println(endOfBatch);
+    logEntityMapper.insert(event);
+  }
 }

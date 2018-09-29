@@ -8,15 +8,15 @@ import org.junit.Test;
 public class LambdaOp {
 
 
-    @Test
-    public  void withoutParam(){
-        StringOpInterfaceWithoutParam param=()->"return the right String";
-        System.out.println(param.func());
-    }
+  @Test
+  public void withoutParam() {
+    StringOpInterfaceWithoutParam param = () -> "return the right String";
+    System.out.println(param.func());
+  }
 
-    @Test
-    public void withParam(){
-        OpWithParam<Integer> iOp=(n)->n*15;
-        System.out.println(iOp.func(2));
-    }
+  @Test
+  public void withParam() {
+    OpWithParam<Integer> iOp = (n) -> n * 15;
+    System.out.println(iOp.func(2));
+  }
 }

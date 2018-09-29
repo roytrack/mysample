@@ -10,18 +10,19 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  */
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
-    int count=0;
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        cause.printStackTrace();
-        ctx.close();
-    }
+  int count = 0;
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        String body=(String)msg;
-        System.out.println("This is"+ ++count+" times receive client:["+body+"]");
-        ByteBuf echo= Unpooled.copiedBuffer(body.getBytes());
-        ctx.writeAndFlush(echo);
-    }
+  @Override
+  public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    cause.printStackTrace();
+    ctx.close();
+  }
+
+  @Override
+  public void channelRead(ChannelHandlerContext ctx, Object msg) {
+    String body = (String) msg;
+    System.out.println("This is" + ++count + " times receive client:[" + body + "]");
+    ByteBuf echo = Unpooled.copiedBuffer(body.getBytes());
+    ctx.writeAndFlush(echo);
+  }
 }

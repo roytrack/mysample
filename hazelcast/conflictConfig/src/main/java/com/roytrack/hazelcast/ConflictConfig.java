@@ -9,13 +9,13 @@ import com.hazelcast.core.HazelcastInstance;
  * @time 2018/7/23 上午11:27
  */
 public class ConflictConfig {
-    public static void main(String[] args) {
-        HazelcastInstance instance = Hazelcast.newHazelcastInstance();
-        MapConfig sessionMapConfig = new MapConfig("sessions").setBackupCount(0);
-        instance.getConfig().addMapConfig(sessionMapConfig);
-        MapConfig sessionMapConfigWithBackup = new MapConfig("sessions").setBackupCount(1);
-        instance.getConfig().addMapConfig(sessionMapConfigWithBackup);
-        MapConfig sessionMapConfigWithoutBackup = new MapConfig("sessions").setBackupCount(0);
-        instance.getConfig().addMapConfig(sessionMapConfigWithoutBackup);
-    }
+  public static void main(String[] args) {
+    HazelcastInstance instance = Hazelcast.newHazelcastInstance();
+    MapConfig sessionMapConfig = new MapConfig("sessions").setBackupCount(0);
+    instance.getConfig().addMapConfig(sessionMapConfig);
+    MapConfig sessionMapConfigWithBackup = new MapConfig("sessions").setBackupCount(1);
+    instance.getConfig().addMapConfig(sessionMapConfigWithBackup);
+    MapConfig sessionMapConfigWithoutBackup = new MapConfig("sessions").setBackupCount(0);
+    instance.getConfig().addMapConfig(sessionMapConfigWithoutBackup);
+  }
 }

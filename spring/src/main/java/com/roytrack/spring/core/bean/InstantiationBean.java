@@ -12,11 +12,12 @@ import java.beans.ConstructorProperties;
 @Setter
 public class InstantiationBean {
 
-   private String name;
-    private String sex;
-    @ConstructorProperties({"name","sex"})
-    public InstantiationBean(String name,String sex){
-        this.name=name;
-        this.sex=sex;
-    }
+  private String name;
+  private String sex;
+
+  @ConstructorProperties({"name", "sex"})
+  public InstantiationBean(String name, String sex) {
+    this.name = name;
+    this.sex = sex;
+  }
 }

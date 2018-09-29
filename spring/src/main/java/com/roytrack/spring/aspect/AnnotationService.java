@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Configuration
-@EnableAspectJAutoProxy(proxyTargetClass=true)
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class AnnotationService {
 
-    public void say(){
-        System.out.println("with annotation");
-    }
+  public void say() {
+    System.out.println("with annotation");
+  }
 
-    public void sayWithParam(String aa){
-        System.out.println("with param "+aa);
-    }
+  public void sayWithParam(String aa) {
+    System.out.println("with param " + aa);
+  }
 }

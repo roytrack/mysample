@@ -11,8 +11,8 @@ import lombok.ToString;
 @Setter
 @ToString(callSuper = true)
 public class Comment {
-    private int commentId;
-    private int commentPostId;
-    private String commentName;
-    private String commentText;
+  private int commentId;
+  private int commentPostId;
+  private String commentName;
+  private String commentText;
 }

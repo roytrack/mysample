@@ -17,17 +17,17 @@ import java.util.Map;
 public class ExcelView extends AbstractExcelView {
 
 
-    @Override
-    protected void buildExcelDocument(Map<String, Object> map, HSSFWorkbook hssfWorkbook, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-        HSSFSheet hssfsheet=hssfWorkbook.createSheet();
-        Map m=this.getAttributesMap();
-        HSSFRow row=hssfsheet.createRow(0);
-        HSSFCell cell= row.createCell(0);
-        cell.setCellValue("foo");
-        cell=row.createCell(1);
-        cell.setCellValue((String)m.get("str"));
-        cell=row.createCell(2);
-        cell.setCellValue(((BigDecimal)m.get("bd")).toPlainString());
+  @Override
+  protected void buildExcelDocument(Map<String, Object> map, HSSFWorkbook hssfWorkbook, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+    HSSFSheet hssfsheet = hssfWorkbook.createSheet();
+    Map m = this.getAttributesMap();
+    HSSFRow row = hssfsheet.createRow(0);
+    HSSFCell cell = row.createCell(0);
+    cell.setCellValue("foo");
+    cell = row.createCell(1);
+    cell.setCellValue((String) m.get("str"));
+    cell = row.createCell(2);
+    cell.setCellValue(((BigDecimal) m.get("bd")).toPlainString());
 
-    }
+  }
 }

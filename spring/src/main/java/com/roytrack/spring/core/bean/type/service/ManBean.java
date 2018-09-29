@@ -5,11 +5,11 @@ import com.roytrack.spring.core.bean.type.Man;
 /**
  * Created by roytrack on 2015/8/24.
  */
-public class ManBean implements BaseBean<Man>{
+public class ManBean implements BaseBean<Man> {
 
 
-    @Override
-    public void saySomeThing(Man man) {
-        System.out.println("man say  ");
-    }
+  @Override
+  public void saySomeThing(Man man) {
+    System.out.println("man say  ");
+  }
 }

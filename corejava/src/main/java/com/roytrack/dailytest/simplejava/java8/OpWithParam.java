@@ -5,6 +5,6 @@ package com.roytrack.dailytest.simplejava.java8;
  */
 public interface OpWithParam<T extends Comparable> {
 
-    public  T func(T v);
+  public T func(T v);
 
 }

@@ -14,31 +14,31 @@ import com.hazelcast.query.SqlPredicate;
 public class MapListenerWithPredicate {
   public static void main(String[] args) {
     Config config = new Config();
-    config.setProperty("hazelcast.map.entry.filtering.natural.event.types","true");
+    config.setProperty("hazelcast.map.entry.filtering.natural.event.types", "true");
     HazelcastInstance hz = Hazelcast.newHazelcastInstance(config);
-    IMap<String,String> map = hz.getMap("map");
-    map.addEntryListener(new MyEntryListener(),new SqlPredicate("surname=smith"),true);
+    IMap<String, String> map = hz.getMap("map");
+    map.addEntryListener(new MyEntryListener(), new SqlPredicate("surname=smith"), true);
     System.out.println("Entry Listener registered");
   }
 
   static class MyEntryListener
-          implements EntryAddedListener<String,String>,
-          EntryUpdatedListener<String,String>,
-          EntryRemovedListener<String,String>{
+          implements EntryAddedListener<String, String>,
+          EntryUpdatedListener<String, String>,
+          EntryRemovedListener<String, String> {
 
     @Override
     public void entryAdded(EntryEvent<String, String> event) {
-      System.out.println("Entry Added :"+event);
+      System.out.println("Entry Added :" + event);
     }
 
     @Override
     public void entryRemoved(EntryEvent<String, String> event) {
-      System.out.println("Entry Removed :"+event);
+      System.out.println("Entry Removed :" + event);
     }
 
     @Override
     public void entryUpdated(EntryEvent<String, String> event) {
-      System.out.println("Entry Updated :"+event);
+      System.out.println("Entry Updated :" + event);
     }
   }
 }

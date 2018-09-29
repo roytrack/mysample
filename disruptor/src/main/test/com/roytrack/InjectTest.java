@@ -16,11 +16,12 @@ import java.security.NoSuchAlgorithmException;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:application.xml")
 public class InjectTest {
-    @Autowired
-    ApplicationContext context;
-    @Test
-    public void inject() throws NoSuchAlgorithmException {
-        NormalBusiness b=context.getBean("normalBusiness", NormalBusiness.class);
-        b.insertLog();
-    }
+  @Autowired
+  ApplicationContext context;
+
+  @Test
+  public void inject() throws NoSuchAlgorithmException {
+    NormalBusiness b = context.getBean("normalBusiness", NormalBusiness.class);
+    b.insertLog();
+  }
 }

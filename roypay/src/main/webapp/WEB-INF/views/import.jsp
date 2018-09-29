@@ -10,7 +10,6 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
 
-
 <link href="${ctx}/static/css/bootstrap-cerulean.min.css" rel="stylesheet">
 <link href="${ctx}/static/css/charisma-app.css" rel="stylesheet">
 <link href='${ctx}/static/bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>

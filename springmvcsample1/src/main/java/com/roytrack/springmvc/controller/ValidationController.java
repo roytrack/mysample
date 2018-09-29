@@ -16,19 +16,20 @@ import javax.validation.Valid;
 @RequestMapping("/validate")
 public class ValidationController {
 
-    @RequestMapping(value="/save",method = RequestMethod.POST)
-    public String save(@Valid Role role, BindingResult result,Model model){
+  @RequestMapping(value = "/save", method = RequestMethod.POST)
+  public String save(@Valid Role role, BindingResult result, Model model) {
 
-        if(result.hasErrors()){
-            model.addAttribute("entity",role);
-            model.addAttribute("error",result.getAllErrors());
-            return "base";
-        }
-        return "success";
+    if (result.hasErrors()) {
+      model.addAttribute("entity", role);
+      model.addAttribute("error", result.getAllErrors());
+      return "base";
     }
-    @RequestMapping("/form")
-    public String index(){
-        return "validationForm";
-    }
+    return "success";
+  }
+
+  @RequestMapping("/form")
+  public String index() {
+    return "validationForm";
+  }
 
 }

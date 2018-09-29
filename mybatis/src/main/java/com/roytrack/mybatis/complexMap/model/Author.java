@@ -11,10 +11,10 @@ import lombok.ToString;
 @Setter
 @ToString(callSuper = true)
 public class Author {
-    private int authorId;
-    private String authorUsername;
-    private String authorPassword;
-    private String authorEmail;
-    private String authorBio;
-    private String authorFavouriteSection;
+  private int authorId;
+  private String authorUsername;
+  private String authorPassword;
+  private String authorEmail;
+  private String authorBio;
+  private String authorFavouriteSection;
 }

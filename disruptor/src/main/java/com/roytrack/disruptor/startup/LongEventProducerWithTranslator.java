@@ -10,17 +10,19 @@ import java.nio.ByteBuffer;
  */
 public class LongEventProducerWithTranslator {
 
-    private final RingBuffer<LongEvent> ringBuffer;
-    public LongEventProducerWithTranslator(RingBuffer<LongEvent> ringBuffer){
-        this.ringBuffer=ringBuffer;
+  private static final EventTranslatorOneArg<LongEvent, ByteBuffer> TRANSLATOR = new EventTranslatorOneArg<LongEvent, ByteBuffer>() {
+    @Override
+    public void translateTo(LongEvent event, long sequence, ByteBuffer arg0) {
+      event.setValue(arg0.getLong());
     }
-    private static final EventTranslatorOneArg<LongEvent,ByteBuffer> TRANSLATOR=new EventTranslatorOneArg<LongEvent, ByteBuffer>() {
-        @Override
-        public void translateTo(LongEvent event, long sequence, ByteBuffer arg0) {
-            event.setValue(arg0.getLong());
-        }
-    };
-    public void onData(ByteBuffer bb){
-        ringBuffer.publishEvent(TRANSLATOR,bb);
-    }
+  };
+  private final RingBuffer<LongEvent> ringBuffer;
+
+  public LongEventProducerWithTranslator(RingBuffer<LongEvent> ringBuffer) {
+    this.ringBuffer = ringBuffer;
+  }
+
+  public void onData(ByteBuffer bb) {
+    ringBuffer.publishEvent(TRANSLATOR, bb);
+  }
 }

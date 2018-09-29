@@ -12,6 +12,6 @@ import lombok.ToString;
 @ToString
 public class BClass {
 
-    private String areaName;
-    private Integer channelId;
+  private String areaName;
+  private Integer channelId;
 }

@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
 @Getter
 @Setter
 public class PrototypeBean {
-    private String name ;
-    private int age;
+  private String name;
+  private int age;
 }

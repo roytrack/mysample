@@ -10,25 +10,26 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  */
 public class SubReqServerHandler2 extends ChannelInboundHandlerAdapter {
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx,Object msg){
-        SubscribeReqC.SubscribeReq req=(SubscribeReqC.SubscribeReq)msg;
-        if("roytrack".equalsIgnoreCase(req.getUserName())){
-            System.out.println("Service accept client subscribe req : ["+req.toString()+"]");
-            ctx.writeAndFlush(resp(req.getSubReqid()));
-        }
+  @Override
+  public void channelRead(ChannelHandlerContext ctx, Object msg) {
+    SubscribeReqC.SubscribeReq req = (SubscribeReqC.SubscribeReq) msg;
+    if ("roytrack".equalsIgnoreCase(req.getUserName())) {
+      System.out.println("Service accept client subscribe req : [" + req.toString() + "]");
+      ctx.writeAndFlush(resp(req.getSubReqid()));
     }
-    private Object resp(int subReqID) {
-        SubscribeRespC.SubscribeResp resp=SubscribeRespC.SubscribeResp.getDefaultInstance().toBuilder()
-                .setSubReqid(subReqID)
-                .setRespCode(0)
-                .setDesc("netty book order succeed, 3 days later, sent to the designated address").build();
-        return resp;
-    }
+  }
 
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx,Throwable cause){
-        cause.printStackTrace();
-        ctx.close();
-    }
+  private Object resp(int subReqID) {
+    SubscribeRespC.SubscribeResp resp = SubscribeRespC.SubscribeResp.getDefaultInstance().toBuilder()
+            .setSubReqid(subReqID)
+            .setRespCode(0)
+            .setDesc("netty book order succeed, 3 days later, sent to the designated address").build();
+    return resp;
+  }
+
+  @Override
+  public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    cause.printStackTrace();
+    ctx.close();
+  }
 }

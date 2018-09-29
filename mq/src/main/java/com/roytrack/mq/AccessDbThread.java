@@ -5,22 +5,22 @@ package com.roytrack.mq;
  */
 public class AccessDbThread implements Runnable {
 
-    private String msg;
+  private String msg;
 
-    public AccessDbThread(String msg){
-        this.msg=msg;
-    }
+  public AccessDbThread(String msg) {
+    this.msg = msg;
+  }
 
-    public String getMsg(){
-        return msg;
-    }
+  public String getMsg() {
+    return msg;
+  }
 
-    public void setMsg(String msg){
-        this.msg=msg;
-    }
+  public void setMsg(String msg) {
+    this.msg = msg;
+  }
 
-    @Override
-    public void run() {
-        System.out.println("Added the message :"+msg+"into the Database");
-    }
+  @Override
+  public void run() {
+    System.out.println("Added the message :" + msg + "into the Database");
+  }
 }

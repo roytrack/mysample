@@ -7,17 +7,18 @@ import org.junit.Test;
 
 /**
  * demo for learn disruptor
- *
+ * <p>
  * Created by roytrack on 2016-08-22.
  */
 public class MyfirstDisruptor {
 
-    EventFactory<LongEvent> factory=new LongEventFactory();
-    LongEventHandler handler=new LongEventHandler();
-    @Test
-    public void useDisruptor(){
-        Disruptor<LongEvent> disruptor=new Disruptor<LongEvent>(factory,1024, DaemonThreadFactory.INSTANCE);
-        disruptor.handleEventsWith(handler);
-    }
+  EventFactory<LongEvent> factory = new LongEventFactory();
+  LongEventHandler handler = new LongEventHandler();
+
+  @Test
+  public void useDisruptor() {
+    Disruptor<LongEvent> disruptor = new Disruptor<LongEvent>(factory, 1024, DaemonThreadFactory.INSTANCE);
+    disruptor.handleEventsWith(handler);
+  }
 
 }

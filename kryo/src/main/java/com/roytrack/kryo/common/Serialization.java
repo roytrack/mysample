@@ -1,4 +1,3 @@
-
 package com.roytrack.kryo.common;
 
 import java.io.IOException;
@@ -7,43 +6,45 @@ import java.io.OutputStream;
 
 /**
  * Serialization. (SPI, Singleton, ThreadSafe)
- * 
+ *
  * @author ding.lid
  * @author william.liangf
  */
 
 public interface Serialization {
 
-    /**
-     * get content type id
-     * 
-     * @return content type id
-     */
-    byte getContentTypeId();
+  /**
+   * get content type id
+   *
+   * @return content type id
+   */
+  byte getContentTypeId();
 
-    /**
-     * get content type
-     * 
-     * @return content type
-     */
-    String getContentType();
+  /**
+   * get content type
+   *
+   * @return content type
+   */
+  String getContentType();
 
-    /**
-     * create serializer
-     * @param output
-     * @return serializer
-     * @throws IOException
-     */
+  /**
+   * create serializer
+   *
+   * @param output
+   * @return serializer
+   * @throws IOException
+   */
 
-    ObjectOutput serialize( OutputStream output) throws IOException;
+  ObjectOutput serialize(OutputStream output) throws IOException;
 
-    /**
-     * create deserializer
-     * @param input
-     * @return deserializer
-     * @throws IOException
-     */
+  /**
+   * create deserializer
+   *
+   * @param input
+   * @return deserializer
+   * @throws IOException
+   */
 
-    ObjectInput deserialize(InputStream input) throws IOException;
+  ObjectInput deserialize(InputStream input) throws IOException;
 
 }

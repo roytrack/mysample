@@ -11,22 +11,22 @@ import java.util.stream.IntStream;
  */
 public class RandomTest {
 
-    @Test
-    public void testInt(){
-        Random r=new Random();
-        for(int i=0;i<100;i++){
-            System.out.println(r.nextInt());
-        }
+  @Test
+  public void testInt() {
+    Random r = new Random();
+    for (int i = 0; i < 100; i++) {
+      System.out.println(r.nextInt());
     }
+  }
 
-    // get randomAndFun number between 300-900
-    @Test
-    public  void getRangeRandom(){
-        SecureRandom random=new SecureRandom();
-        IntStream stream=random.ints(300, 900);
-        stream.forEach(s -> System.out.println(s));
+  // get randomAndFun number between 300-900
+  @Test
+  public void getRangeRandom() {
+    SecureRandom random = new SecureRandom();
+    IntStream stream = random.ints(300, 900);
+    stream.forEach(s -> System.out.println(s));
 
 
-    }
+  }
 
 }

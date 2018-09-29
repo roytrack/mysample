@@ -12,12 +12,12 @@ import java.util.Date;
  * Created by roytrack on 2015/1/11.
  */
 public class CommonLangDateParse {
-    @Test
-    public void parseDate() throws ParseException {
-        String date="2014/12/12";
-        Date d= DateUtils.parseDateStrictly(date, "yyyy/MM/dd");
-        System.out.println(DateFormatUtils.format(d,"yyyy-MM-dd"));
-    }
+  @Test
+  public void parseDate() throws ParseException {
+    String date = "2014/12/12";
+    Date d = DateUtils.parseDateStrictly(date, "yyyy/MM/dd");
+    System.out.println(DateFormatUtils.format(d, "yyyy-MM-dd"));
+  }
 
 }
 

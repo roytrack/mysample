@@ -14,41 +14,42 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class LongEventMainWithJava8 {
 
-    public static volatile int a=0;
-    public static AtomicInteger b=new AtomicInteger(0);
-    public static void main(String[] args) throws InterruptedException {
-        Thread.sleep(40000);
+  public static volatile int a = 0;
+  public static AtomicInteger b = new AtomicInteger(0);
+
+  public static void main(String[] args) throws InterruptedException {
+    Thread.sleep(40000);
 
 
-        Executor executor= Executors.newCachedThreadPool();
+    Executor executor = Executors.newCachedThreadPool();
 
-        int bufferSize=1024;
+    int bufferSize = 1024;
 
-        Disruptor<LongEvent> disruptor=new Disruptor<>(LongEvent::new,bufferSize, DaemonThreadFactory.INSTANCE);
+    Disruptor<LongEvent> disruptor = new Disruptor<>(LongEvent::new, bufferSize, DaemonThreadFactory.INSTANCE);
 
-        //Disruptor<LongEvent> disruptor=new Disruptor<>(LongEvent::new,bufferSize, executor);
+    //Disruptor<LongEvent> disruptor=new Disruptor<>(LongEvent::new,bufferSize, executor);
 
-        disruptor.handleEventsWith((event, sequence, endOfBatch) -> System.out.println("event "+event));
+    disruptor.handleEventsWith((event, sequence, endOfBatch) -> System.out.println("event " + event));
 
-        disruptor.start();
+    disruptor.start();
 
-        RingBuffer<LongEvent> ringBuffer=disruptor.getRingBuffer();
+    RingBuffer<LongEvent> ringBuffer = disruptor.getRingBuffer();
 
-        ByteBuffer bb=ByteBuffer.allocate(8);
-        long start=System.nanoTime();
-        System.out.println(start);
-        for(long l=0l;l<100000l;l++){
-            bb.putLong(0, l);
-            ringBuffer.publishEvent((event, sequence, arg0) -> event.setValue(arg0.getLong(0)), bb);
-
-        }
-        System.out.println("===============");
-        System.out.println(System.nanoTime()-start);
-        System.out.println("===============");
-        System.out.println("the value of a is "+a);
-        System.out.println("the value of b is "+b);
-        disruptor.shutdown();
-
+    ByteBuffer bb = ByteBuffer.allocate(8);
+    long start = System.nanoTime();
+    System.out.println(start);
+    for (long l = 0l; l < 100000l; l++) {
+      bb.putLong(0, l);
+      ringBuffer.publishEvent((event, sequence, arg0) -> event.setValue(arg0.getLong(0)), bb);
 
     }
+    System.out.println("===============");
+    System.out.println(System.nanoTime() - start);
+    System.out.println("===============");
+    System.out.println("the value of a is " + a);
+    System.out.println("the value of b is " + b);
+    disruptor.shutdown();
+
+
+  }
 }

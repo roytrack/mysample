@@ -16,41 +16,40 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
 
-
 /**
  * Created by roytrack on 2016/5/23.
  */
 public class EchoServer {
-    public void bind(int port) throws InterruptedException {
-        EventLoopGroup bossGroup=new NioEventLoopGroup();
-        EventLoopGroup workerGroup=new NioEventLoopGroup();
-        try{
-            ServerBootstrap b=new ServerBootstrap();
-            b.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class)
-                    .option(ChannelOption.SO_BACKLOG,100)
-                    .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            ByteBuf delimiter= Unpooled.copiedBuffer("$_".getBytes());
-                            //注释掉下面这一行就可以看到没有分隔符解码器的情况下发生的粘包现象
-                            socketChannel.pipeline().addLast(new DelimiterBasedFrameDecoder(1024,delimiter));
-                            socketChannel.pipeline().addLast(new StringDecoder());
-                            socketChannel.pipeline().addLast(new EchoServerHandler());
-                        }
-                    });
-            ChannelFuture f=b.bind(port).sync();
-            System.out.println("server start");
-            f.channel().closeFuture().sync();
-        }finally {
-                bossGroup.shutdownGracefully();
-                workerGroup.shutdownGracefully();
-        }
+  public static void main(String[] args) throws InterruptedException {
+    int port = 9009;
+    new EchoServer().bind(port);
+  }
 
+  public void bind(int port) throws InterruptedException {
+    EventLoopGroup bossGroup = new NioEventLoopGroup();
+    EventLoopGroup workerGroup = new NioEventLoopGroup();
+    try {
+      ServerBootstrap b = new ServerBootstrap();
+      b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
+              .option(ChannelOption.SO_BACKLOG, 100)
+              .handler(new LoggingHandler(LogLevel.INFO))
+              .childHandler(new ChannelInitializer<SocketChannel>() {
+                @Override
+                protected void initChannel(SocketChannel socketChannel) {
+                  ByteBuf delimiter = Unpooled.copiedBuffer("$_".getBytes());
+                  //注释掉下面这一行就可以看到没有分隔符解码器的情况下发生的粘包现象
+                  socketChannel.pipeline().addLast(new DelimiterBasedFrameDecoder(1024, delimiter));
+                  socketChannel.pipeline().addLast(new StringDecoder());
+                  socketChannel.pipeline().addLast(new EchoServerHandler());
+                }
+              });
+      ChannelFuture f = b.bind(port).sync();
+      System.out.println("server start");
+      f.channel().closeFuture().sync();
+    } finally {
+      bossGroup.shutdownGracefully();
+      workerGroup.shutdownGracefully();
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        int port=9009;
-        new EchoServer().bind(port);
-    }
+  }
 }

@@ -3,15 +3,16 @@
  */
 
 var articleData = {};
+
 function checkForValidUrl(tabId, changeInfo, tab) {
-    var abc=tab.url;
-    if(abc.indexOf("index")>-1){
-        abc=abc.replace("index","icPay");
+    var abc = tab.url;
+    if (abc.indexOf("index") > -1) {
+        abc = abc.replace("index", "icPay");
         //alert("new url:"+abc);
-        articleData.url=abc;
+        articleData.url = abc;
         chrome.pageAction.show(tabId);
-        var updateProperties={url:abc}
-        chrome.tabs.update(tabId,  updateProperties)
+        var updateProperties = {url: abc}
+        chrome.tabs.update(tabId, updateProperties)
     }
 };
 

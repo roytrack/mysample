@@ -11,5 +11,5 @@ import java.util.List;
 @Getter
 @Setter
 public class QueryModel {
-    private List<String> ids;
+  private List<String> ids;
 }

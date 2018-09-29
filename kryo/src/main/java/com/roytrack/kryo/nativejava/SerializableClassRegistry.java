@@ -8,16 +8,16 @@ import java.util.Set;
  */
 public abstract class SerializableClassRegistry {
 
-    private static final Set<Class> registrations = new LinkedHashSet<Class>();
+  private static final Set<Class> registrations = new LinkedHashSet<Class>();
 
-    /**
-     * only supposed to be called at startup time
-     */
-    public static void registerClass(Class clazz) {
-        registrations.add(clazz);
-    }
+  /**
+   * only supposed to be called at startup time
+   */
+  public static void registerClass(Class clazz) {
+    registrations.add(clazz);
+  }
 
-    public static Set<Class> getRegisteredClasses() {
-        return registrations;
-    }
+  public static Set<Class> getRegisteredClasses() {
+    return registrations;
+  }
 }

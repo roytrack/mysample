@@ -15,13 +15,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("classpath:aspect/aop3.xml")
 public class AspectTest3 {
 
-    @Autowired
-    ApplicationContext context;
+  @Autowired
+  ApplicationContext context;
 
-    @Test
-    public void showAspect(){
-        AnnotationService t=context.getBean("annotationService", AnnotationService.class);
-        t.say();
-        t.sayWithParam("ccc");
-    }
+  @Test
+  public void showAspect() {
+    AnnotationService t = context.getBean("annotationService", AnnotationService.class);
+    t.say();
+    t.sayWithParam("ccc");
+  }
 }

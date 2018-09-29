@@ -2,7 +2,6 @@ package com.roytrack.dailytest.simplejava;
 
 import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.LinkedTransferQueue;
 
 /**
  * Created by roytrack on 2015/7/28.
@@ -10,10 +9,10 @@ import java.util.concurrent.LinkedTransferQueue;
  */
 public class BinarySearchBug {
 
-    public static void main(String[] args) {
-        int[] intarrys={1,2,3,4,5,6,7,8,9,10};
-        System.out.println(Arrays.binarySearch(intarrys, 10));
-        ConcurrentHashMap map=new ConcurrentHashMap();
+  public static void main(String[] args) {
+    int[] intarrys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    System.out.println(Arrays.binarySearch(intarrys, 10));
+    ConcurrentHashMap map = new ConcurrentHashMap();
 
-    }
+  }
 }

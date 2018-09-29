@@ -8,6 +8,6 @@ import lombok.Data;
  */
 @Data
 public class FatherVO {
-    private String abc;
-    private String a12;
+  private String abc;
+  private String a12;
 }

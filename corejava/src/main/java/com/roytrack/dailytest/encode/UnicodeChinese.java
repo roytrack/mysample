@@ -7,57 +7,57 @@ import java.util.regex.Pattern;
  * Created by roytrack on 2016/10/18.
  */
 public class UnicodeChinese {
-    public static void main(String[] args) {
-        String demo="湘江北岸，橘子洲头";
+  public static void main(String[] args) {
+    String demo = "湘江北岸，橘子洲头";
 
-        System.out.println(stringToUnicode(demo));
-        System.out.println(unicodeToString(stringToUnicode(demo)));
+    System.out.println(stringToUnicode(demo));
+    System.out.println(unicodeToString(stringToUnicode(demo)));
+  }
+  /*
+
+   *  把中文字符串转换为十六进制Unicode编码字符串
+
+   */
+
+  public static String stringToUnicode(String s) {
+    String str = "";
+    for (int i = 0; i < s.length(); i++) {
+      int ch = (int) s.charAt(i);
+      if (ch > 255)
+        str += "\\u" + Integer.toHexString(ch);
+      else
+        str += "\\" + Integer.toHexString(ch);
     }
-    /*
-
- *  把中文字符串转换为十六进制Unicode编码字符串
-
- */
-
-    public static String stringToUnicode(String s) {
-        String str = "";
-        for (int i = 0; i < s.length(); i++) {
-            int ch = (int) s.charAt(i);
-            if (ch > 255)
-                str += "\\u" + Integer.toHexString(ch);
-            else
-                str += "\\" + Integer.toHexString(ch);
-        }
-        return str;
-    }
+    return str;
+  }
 
 
 
-/*
+  /*
 
- *  把十六进制Unicode编码字符串转换为中文字符串
+   *  把十六进制Unicode编码字符串转换为中文字符串
 
- */
+   */
 
-    public static String unicodeToString(String str) {
+  public static String unicodeToString(String str) {
 
-        Pattern pattern = Pattern.compile("(\\\\u(\\p{XDigit}{4}))");
+    Pattern pattern = Pattern.compile("(\\\\u(\\p{XDigit}{4}))");
 
-        Matcher matcher = pattern.matcher(str);
+    Matcher matcher = pattern.matcher(str);
 
-        char ch;
+    char ch;
 
-        while (matcher.find()) {
+    while (matcher.find()) {
 
-            ch = (char) Integer.parseInt(matcher.group(2), 16);
+      ch = (char) Integer.parseInt(matcher.group(2), 16);
 
-            str = str.replace(matcher.group(1), ch + "");
-
-        }
-
-        return str;
+      str = str.replace(matcher.group(1), ch + "");
 
     }
+
+    return str;
+
+  }
 
 
 }

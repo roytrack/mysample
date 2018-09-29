@@ -2,42 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>WebSocketClient  Netty 时间服务器</title>
+    <title>WebSocketClient Netty 时间服务器</title>
 </head>
 <body>
 <br>
 <script type="text/javascript">
     var socket;
-    if(!window.WebSocket){
-        window.WebSocket=window.MozWebSocket;
+    if (!window.WebSocket) {
+        window.WebSocket = window.MozWebSocket;
     }
-    if(window.WebSocket){
-        socket =new WebSocket("ws://10.87.156.46:8080/websocket");
-        socket.onmessage=function(event){
-            var ta=document.getElementById("responseText");
-            ta.value="";
+    if (window.WebSocket) {
+        socket = new WebSocket("ws://10.87.156.46:8080/websocket");
+        socket.onmessage = function (event) {
+            var ta = document.getElementById("responseText");
+            ta.value = "";
             ta.value = event.data;
         };
-        socket.onopen = function(event){
-            var ta=document.getElementById("responstText");
-            ta.value="打开WebSocket服务正常,浏览器支持WebSocket";
-        }
-        socket.onclose = function(event){
-            var ta=document.getElementById("responseText");
-            ta.value="";
+        socket.onopen = function (event) {
+            var ta = document.getElementById("responstText");
+            ta.value = "打开WebSocket服务正常,浏览器支持WebSocket";
+        };
+        socket.onclose = function (event) {
+            var ta = document.getElementById("responseText");
+            ta.value = "";
             ta.value = "WebSocket关闭！";
         }
-    }else{
+    } else {
         alert("抱歉，您的浏览器不支持WebSocket协议！");
     }
 
-    function send(message){
-        if(!window.WebSocket){
+    function send(message) {
+        if (!window.WebSocket) {
             return;
         }
-        if(socket.readyState==WebSocket.OPEN){
+        if (socket.readyState == WebSocket.OPEN) {
             socket.send(message);
-        }else{
+        } else {
             alert("WebSocket链接没有建立成功！");
         }
     }

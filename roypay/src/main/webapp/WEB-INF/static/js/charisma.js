@@ -25,7 +25,7 @@ $(document).ready(function () {
             && !$('.navbar-toggle').is(e.target)
             && $('.navbar-toggle').has(e.target).length === 0
             && $sidebarNav.hasClass('active')
-            )// ... nor a descendant of the container
+        )// ... nor a descendant of the container
         {
             e.stopPropagation();
             $('.navbar-toggle').click();
@@ -116,7 +116,7 @@ $(document).ready(function () {
         var $ul = $(this).siblings('ul');
         var $li = $(this).parent();
         if ($ul.is(':visible')) $li.removeClass('active');
-        else                    $li.addClass('active');
+        else $li.addClass('active');
         $ul.slideToggle();
     });
 
@@ -287,7 +287,7 @@ function docReady() {
         e.preventDefault();
         var $target = $(this).parent().parent().next('.box-content');
         if ($target.is(':visible')) $('i', $(this)).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
-        else                       $('i', $(this)).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+        else $('i', $(this)).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
         $target.slideToggle();
     });
     $('.btn-setting').click(function (e) {
@@ -358,7 +358,7 @@ $.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
         "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
         "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
     };
-}
+};
 $.extend($.fn.dataTableExt.oPagination, {
     "bootstrap": {
         "fnInit": function (oSettings, nPaging, fnDraw) {
@@ -372,13 +372,13 @@ $.extend($.fn.dataTableExt.oPagination, {
 
             $(nPaging).addClass('pagination').append(
                 '<ul class="pagination">' +
-                    '<li class="prev disabled"><a href="#">&larr; ' + oLang.sPrevious + '</a></li>' +
-                    '<li class="next disabled"><a href="#">' + oLang.sNext + ' &rarr; </a></li>' +
-                    '</ul>'
+                '<li class="prev disabled"><a href="#">&larr; ' + oLang.sPrevious + '</a></li>' +
+                '<li class="next disabled"><a href="#">' + oLang.sNext + ' &rarr; </a></li>' +
+                '</ul>'
             );
             var els = $('a', nPaging);
-            $(els[0]).bind('click.DT', { action: "previous" }, fnClickHandler);
-            $(els[1]).bind('click.DT', { action: "next" }, fnClickHandler);
+            $(els[0]).bind('click.DT', {action: "previous"}, fnClickHandler);
+            $(els[1]).bind('click.DT', {action: "next"}, fnClickHandler);
         },
 
         "fnUpdate": function (oSettings, fnDraw) {

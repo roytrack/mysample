@@ -12,6 +12,6 @@ import lombok.ToString;
 @Setter
 @ToString(callSuper = true, includeFieldNames = true)
 public class Role {
-    @BeanValidation(field = "角色名称")
-    private String name;
+  @BeanValidation(field = "角色名称")
+  private String name;
 }

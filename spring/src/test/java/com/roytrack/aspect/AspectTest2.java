@@ -15,17 +15,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("classpath:aspect/aop2.xml")
 public class AspectTest2 {
 
-    @Autowired
-    ApplicationContext context;
+  @Autowired
+  ApplicationContext context;
 
 
-    /**
-     * before and after  with xml config is ok
-     *
-     */
-    @Test
-    public void showAspect(){
-        TargetService t=context.getBean("targetService", TargetService.class);
-        t.noParam();
-    }
+  /**
+   * before and after  with xml config is ok
+   */
+  @Test
+  public void showAspect() {
+    TargetService t = context.getBean("targetService", TargetService.class);
+    t.noParam();
+  }
 }

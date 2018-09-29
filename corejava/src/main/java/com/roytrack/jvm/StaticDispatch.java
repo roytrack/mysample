@@ -2,42 +2,42 @@ package com.roytrack.jvm;
 
 /**
  * 关于java的多态中的静态分派 Method Overload Resolution
- *
+ * <p>
  * Created by roytrack on 2015/8/12.
  */
 public class StaticDispatch {
 
-    static abstract class HuMan {
+  public static void main(String[] args) {
+    HuMan a = new Woman();
+    HuMan b = new Man();
+    StaticDispatch sd = new StaticDispatch();
+    sd.sayHello(a);
+    sd.sayHello(b);
+  }
 
-    }
+  public void sayHello(HuMan man) {
+    System.out.println("hello human");
+  }
 
-    static class Woman extends HuMan {
+  public void sayHello(Woman man) {
+    System.out.println("hello woman");
+  }
 
-    }
+  public void sayHello(Man man) {
+    System.out.println("hello man");
+  }
 
-    static class Man extends HuMan {
+  static abstract class HuMan {
 
-    }
+  }
 
-    public void sayHello(HuMan man) {
-        System.out.println("hello human");
-    }
+  static class Woman extends HuMan {
 
-    public void sayHello(Woman man) {
-        System.out.println("hello woman");
-    }
+  }
 
-    public void sayHello(Man man) {
-        System.out.println("hello man");
-    }
+  static class Man extends HuMan {
 
-    public static void main(String[] args) {
-        HuMan a = new Woman();
-        HuMan b = new Man();
-        StaticDispatch sd = new StaticDispatch();
-        sd.sayHello(a);
-        sd.sayHello(b);
-    }
+  }
 
 
 }

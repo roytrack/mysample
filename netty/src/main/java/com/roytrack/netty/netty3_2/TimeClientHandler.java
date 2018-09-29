@@ -11,37 +11,36 @@ import java.util.logging.Logger;
  * Created by roytrack on 2016-05-04.
  */
 public class TimeClientHandler extends ChannelInboundHandlerAdapter {
-    private static final Logger logger=Logger.getLogger(TimeClientHandler.class.getName());
+  private static final Logger logger = Logger.getLogger(TimeClientHandler.class.getName());
 
-    private final ByteBuf firstMessage;
+  private final ByteBuf firstMessage;
 
-    public TimeClientHandler() {
-        byte[] seq="time".getBytes();
-        firstMessage= Unpooled.buffer(seq.length);
-        firstMessage.writeBytes(seq);
-    }
+  public TimeClientHandler() {
+    byte[] seq = "time".getBytes();
+    firstMessage = Unpooled.buffer(seq.length);
+    firstMessage.writeBytes(seq);
+  }
 
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-            logger.warning("Unexpected exception  from downstream :"+cause.getMessage());
-            ctx.close();
-    }
+  @Override
+  public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    logger.warning("Unexpected exception  from downstream :" + cause.getMessage());
+    ctx.close();
+  }
 
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ctx.writeAndFlush(firstMessage);
-    }
+  @Override
+  public void channelActive(ChannelHandlerContext ctx) {
+    ctx.writeAndFlush(firstMessage);
+  }
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf buf=(ByteBuf)msg;
-        byte[] req=new byte[buf.readableBytes()];
-        buf.readBytes(req);
-        String body=new String(req,"UTF-8");
-        System.out.println("Now is : "+body);
+  @Override
+  public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+    ByteBuf buf = (ByteBuf) msg;
+    byte[] req = new byte[buf.readableBytes()];
+    buf.readBytes(req);
+    String body = new String(req, "UTF-8");
+    System.out.println("Now is : " + body);
 
-    }
-
+  }
 
 
 }

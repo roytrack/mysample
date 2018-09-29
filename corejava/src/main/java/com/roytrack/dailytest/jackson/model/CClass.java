@@ -12,6 +12,6 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class CClass extends BClass {
 
-    private String movieName;
-    private Integer movieId;
+  private String movieName;
+  private Integer movieId;
 }

@@ -9,6 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Boo {
-    private String myname;
-    private int myaccount;
+  private String myname;
+  private int myaccount;
 }

@@ -10,11 +10,14 @@ import java.lang.annotation.*;
  */
 @Documented
 @Constraint(validatedBy = {BeanValidator.class})
-@Target({ElementType.METHOD, ElementType.FIELD,ElementType.ANNOTATION_TYPE,ElementType.CONSTRUCTOR,ElementType.PARAMETER})
+@Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface BeanValidation {
-    String message() default "ssss";
-    Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default {};
-    String field() default "";
+  String message() default "ssss";
+
+  Class<?>[] groups() default {};
+
+  Class<? extends Payload>[] payload() default {};
+
+  String field() default "";
 }

@@ -12,11 +12,11 @@ import java.io.Writer;
  */
 public class MdConvertToHtml {
 
-    public static void main(String[] args) throws Exception{
-        Reader in = new FileReader("D:\\wp\\sample\\corejava\\src\\main\\java\\com\\roytrack\\dailytest\\mdtohtml\\142.md");
-        Writer out = new FileWriter("D:\\wp\\sample\\corejava\\src\\main\\java\\com\\roytrack\\dailytest\\mdtohtml\\out.html");
+  public static void main(String[] args) throws Exception {
+    Reader in = new FileReader("D:\\wp\\sample\\corejava\\src\\main\\java\\com\\roytrack\\dailytest\\mdtohtml\\142.md");
+    Writer out = new FileWriter("D:\\wp\\sample\\corejava\\src\\main\\java\\com\\roytrack\\dailytest\\mdtohtml\\out.html");
 
-        Markdown md = new Markdown();
-        md.transform(in, out);
-    }
+    Markdown md = new Markdown();
+    md.transform(in, out);
+  }
 }

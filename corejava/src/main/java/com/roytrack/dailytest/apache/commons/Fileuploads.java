@@ -15,18 +15,18 @@ import java.util.Random;
  * Created by roytrack on 2015/1/6.
  */
 public class Fileuploads {
-    private static Logger logger = LoggerFactory.getLogger(Fileuploads.class);
+  private static Logger logger = LoggerFactory.getLogger(Fileuploads.class);
 
-    public static void main(String[] args) throws IOException {
-        Resource r = new DefaultResourceLoader().getResource("sample/excel/import_sample.xls");
-        String path = r.getFile().getAbsolutePath().substring(0, r.getFile().getAbsolutePath().length() - r.getFilename().length());
-        logger.info("全路径:{},不带文件的路径:{}", r.getFile().getAbsolutePath()
-                , path);
-        byte[] resource = FileUtils.readFileToByteArray(r.getFile());
-        String toFile=path + (new Random()).nextInt() + ".xls";
-        logger.info("写入文件：{}",toFile);
-        FileUtils.writeByteArrayToFile(new File(toFile), resource);
-        logger.info("写入结束");
+  public static void main(String[] args) throws IOException {
+    Resource r = new DefaultResourceLoader().getResource("sample/excel/import_sample.xls");
+    String path = r.getFile().getAbsolutePath().substring(0, r.getFile().getAbsolutePath().length() - r.getFilename().length());
+    logger.info("全路径:{},不带文件的路径:{}", r.getFile().getAbsolutePath()
+            , path);
+    byte[] resource = FileUtils.readFileToByteArray(r.getFile());
+    String toFile = path + (new Random()).nextInt() + ".xls";
+    logger.info("写入文件：{}", toFile);
+    FileUtils.writeByteArrayToFile(new File(toFile), resource);
+    logger.info("写入结束");
 
-    }
+  }
 }

@@ -14,16 +14,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = {"classpath:application.xml"})
 public class UseSpringTemplate {
 
-    private String hash="1212";
-    private String key ="bbb";
-    @Autowired
-    RedisTemplate redisTemplate;
+  @Autowired
+  RedisTemplate redisTemplate;
+  private String hash = "1212";
+  private String key = "bbb";
 
-    @Test
-    public  void hashIncrement(){
+  @Test
+  public void hashIncrement() {
 //        redisTemplate.opsForHash().put(hash,key,5.44d);
-        redisTemplate.opsForHash().increment(hash,key,2.2d);
-    }
+    redisTemplate.opsForHash().increment(hash, key, 2.2d);
+  }
 
 
 }

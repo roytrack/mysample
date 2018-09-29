@@ -11,6 +11,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class AClass {
-    private String orderId;
-    private CClass cClass;
+  private String orderId;
+  private CClass cClass;
 }

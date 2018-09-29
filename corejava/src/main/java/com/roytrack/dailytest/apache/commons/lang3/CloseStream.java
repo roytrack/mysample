@@ -13,21 +13,21 @@ import java.io.IOException;
  */
 public class CloseStream {
 
-    @Test
-    public void eleganceClose(){
-        File f=new File("local.txt");
-        FileWriter writer=null;
-        try {
-            writer=new FileWriter(f);
-            writer.write("abcdefghighjklmn");
-            writer.flush();
-        } catch (IOException e) {
-            IOUtils.closeQuietly(writer);
-            e.printStackTrace();
-        }finally {
-            IOUtils.closeQuietly(writer);
-        }
-        System.out.println(f.getAbsolutePath());
-
+  @Test
+  public void eleganceClose() {
+    File f = new File("local.txt");
+    FileWriter writer = null;
+    try {
+      writer = new FileWriter(f);
+      writer.write("abcdefghighjklmn");
+      writer.flush();
+    } catch (IOException e) {
+      IOUtils.closeQuietly(writer);
+      e.printStackTrace();
+    } finally {
+      IOUtils.closeQuietly(writer);
     }
+    System.out.println(f.getAbsolutePath());
+
+  }
 }

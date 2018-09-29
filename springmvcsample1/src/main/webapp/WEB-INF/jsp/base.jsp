@@ -12,9 +12,9 @@
     <title></title>
 </head>
 <body>
-${entity.name}  has error :
+${entity.name} has error :
 <c:forEach var="item" items="${error}" varStatus="status">
-$status.count:${item}
+    $status.count:${item}
 
 </c:forEach>
 </body>

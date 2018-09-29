@@ -55,7 +55,7 @@
         backgroundShown: false
         overlayElementShown: false
 
-    # Set a state in storage
+# Set a state in storage
     setState: (key, value) ->
       if @_options.storage
         keyName = "#{@_options.name}_#{key}"
@@ -68,7 +68,7 @@
         @_state ?= {}
         @_state[key] = value
 
-    # Remove the current state from the storage layer
+# Remove the current state from the storage layer
     removeState: (key) ->
       if @_options.storage
         keyName = "#{@_options.name}_#{key}"
@@ -77,7 +77,7 @@
       else
         delete @_state[key] if @_state?
 
-    # Get the current state from the storage layer
+# Get the current state from the storage layer
     getState: (key) ->
       if @_options.storage
         keyName = "#{@_options.name}_#{key}"
@@ -90,15 +90,15 @@
       @_options.afterGetState(key, value)
       return value
 
-    # Add multiple steps
+# Add multiple steps
     addSteps: (steps) ->
       @addStep step for step in steps
 
-    # Add a new step
+# Add a new step
     addStep: (step) ->
       @_steps.push step
 
-    # Get a step by its indice
+# Get a step by its indice
     getStep: (i) ->
       $.extend({
         id: "step-#{i}"
@@ -125,7 +125,7 @@
         onResume: @_options.onResume
       }, @_steps[i]) if @_steps[i]?
 
-    # Setup event bindings and continue a tour that has already started
+# Setup event bindings and continue a tour that has already started
     init: (force) ->
       @_force = force
 
@@ -137,7 +137,7 @@
       @_setupKeyboardNavigation()
 
       # Reshow popover on window resize using debounced resize
-      @_onResize( => @showStep(@_current))
+      @_onResize(=> @showStep(@_current))
 
       # Continue a tour that had started on a previous page load
       @showStep(@_current) unless @_current == null
@@ -145,7 +145,7 @@
       @_inited = true
       @
 
-    # Start tour from current step
+# Start tour from current step
     start: (force = false) ->
       @init(force) unless @_inited # Backward compatibility
 
@@ -153,14 +153,14 @@
         promise = @_makePromise(@_options.onStart(@) if @_options.onStart?)
         @_callOnPromiseDone(promise, @showStep, 0)
 
-    # Hide current step and show next step
+# Hide current step and show next step
     next: ->
       return @_debug "Tour ended, next prevented." if @ended()
 
       promise = @hideStep(@_current)
       @_callOnPromiseDone(promise, @_showNextStep)
 
-    # Hide current step and show prev step
+# Hide current step and show prev step
     prev: ->
       return @_debug "Tour ended, prev prevented." if @ended()
 
@@ -173,7 +173,7 @@
       promise = @hideStep(@_current)
       @_callOnPromiseDone(promise, @showStep, i)
 
-    # End tour
+# End tour
     end: ->
       endHelper = (e) =>
         $(document).off "click.tour-#{@_options.name}"
@@ -190,18 +190,18 @@
       promise = @hideStep(@_current)
       @_callOnPromiseDone(promise, endHelper)
 
-    # Verify if tour is enabled
+# Verify if tour is enabled
     ended: ->
-      ! @_force and !! @getState("end")
+      !@_force and !!@getState("end")
 
-    # Restart tour
+# Restart tour
     restart: ->
       @removeState("current_step")
       @removeState("end")
       @setCurrentStep(0)
       @start()
 
-    # Pause step timer
+# Pause step timer
     pause: ->
       step = @getStep(@_current)
       return unless step and step.duration
@@ -214,7 +214,7 @@
 
       step.onPause(@, @_duration) if step.onPause?
 
-    # Resume step timer
+# Resume step timer
     resume: ->
       step = @getStep(@_current)
       return unless step and step.duration
@@ -222,7 +222,7 @@
       @_paused = false
       @_start = new Date().getTime()
       @_duration = @_duration or step.duration
-      @_timer = window.setTimeout( =>
+      @_timer = window.setTimeout(=>
         if @_isLast() then @next() else @end()
       , @_duration)
 
@@ -230,7 +230,7 @@
 
       step.onResume(@, @_duration) if step.onResume? and @_duration isnt step.duration
 
-    # Hide the specified step
+# Hide the specified step
     hideStep: (i) ->
       step = @getStep(i)
       return unless step
@@ -255,7 +255,7 @@
 
       promise
 
-    # Show the specified step
+# Show the specified step
     showStep: (i) ->
       step = @getStep(i)
       return unless step
@@ -279,7 +279,7 @@
 
         # Skip if step is orphan and orphan options is false
         if @_isOrphan(step)
-          if ( ! step.orphan)
+          if (!step.orphan)
             @_debug "Skip the orphan step #{@_current + 1}. Orphan option is false and the element doesn't exist or is hidden."
             if skipToPrevious then @_showPrevStep() else @_showNextStep()
             return
@@ -305,7 +305,7 @@
 
       promise
 
-    # Setup current step variable
+# Setup current step variable
     setCurrentStep: (value) ->
       if value?
         @_current = value
@@ -315,7 +315,7 @@
         @_current = if @_current == null then null else parseInt(@_current, 10)
       @
 
-    # Show next step
+# Show next step
     _showNextStep: ->
       step = @getStep(@_current)
       showNextStepHelper = (e) => @showStep(step.next)
@@ -323,7 +323,7 @@
       promise = @_makePromise (step.onNext(@) if step.onNext?)
       @_callOnPromiseDone(promise, showNextStepHelper)
 
-    # Show prev step
+# Show prev step
     _showPrevStep: ->
       step = @getStep(@_current)
       showPrevStepHelper = (e) => @showStep(step.prev)
@@ -331,16 +331,16 @@
       promise = @_makePromise (step.onPrev(@) if step.onPrev?)
       @_callOnPromiseDone(promise, showPrevStepHelper)
 
-    # Print message in console
+# Print message in console
     _debug: (text) ->
       window.console.log "Bootstrap Tour '#{@_options.name}' | #{text}" if @_options.debug
 
-    # Check if step path equals current document path
+# Check if step path equals current document path
     _isRedirect: (path, currentPath) ->
       path? and path isnt "" and
         path.replace(/\?.*$/, "").replace(/\/?$/, "") isnt currentPath.replace(/\/?$/, "")
 
-    # Execute the redirect
+# Execute the redirect
     _redirect: (step, path) ->
       if $.isFunction(step.redirect)
         step.redirect.call(this, path)
@@ -350,13 +350,13 @@
         document.location.href = path
 
     _isOrphan: (step) ->
-      # Do not check for is(":hidden") on svg elements. jQuery does not work properly on svg.
-      ! step.element? || ! $(step.element).length || $(step.element).is(":hidden") && ($(step.element)[0].namespaceURI != "http://www.w3.org/2000/svg")
+# Do not check for is(":hidden") on svg elements. jQuery does not work properly on svg.
+      !step.element? || !$(step.element).length || $(step.element).is(":hidden") && ($(step.element)[0].namespaceURI != "http://www.w3.org/2000/svg")
 
     _isLast: ->
       @_current < @_steps.length - 1
 
-    # Show step popover
+# Show step popover
     _showPopover: (step, i) ->
       options = $.extend {}, @_options
       $template = if $.isFunction(step.template) then $(step.template(i, step)) else $(step.template)
@@ -402,7 +402,7 @@
 
       @_center($tip) if isOrphan
 
-    # Prevent popover from crossing over the edge of the window
+# Prevent popover from crossing over the edge of the window
     _reposition: ($tip, step) ->
       offsetWidth = $tip[0].offsetWidth
       offsetHeight = $tip[0].offsetHeight
@@ -426,17 +426,17 @@
       else
         @_replaceArrow($tip, (tipOffset.top - originalTop) * 2, offsetHeight, "top") if originalTop != tipOffset.top
 
-    # Center popover in the page
+# Center popover in the page
     _center: ($tip) ->
       $tip.css("top", $(window).outerHeight() / 2 - $tip.outerHeight() / 2)
 
-    # Copy pasted from bootstrap-tooltip.js with some alterations
+# Copy pasted from bootstrap-tooltip.js with some alterations
     _replaceArrow: ($tip, delta, dimension, position)->
       $tip
         .find(".arrow")
         .css(position, if delta then 50 * (1 - delta / dimension) + "%" else "")
 
-    # Scroll to the popup if it is not in the viewport
+# Scroll to the popup if it is not in the viewport
     _scrollIntoView: (element, callback) ->
       return callback() unless element
 
@@ -453,13 +453,13 @@
           callback()
           @_debug "Scroll into view. Animation end element offset: #{$element.offset().top}. Window height: #{$window.height()}."
 
-    # Debounced window resize
+# Debounced window resize
     _onResize: (callback, timeout) ->
       $(window).on "resize.tour-#{@_options.name}", ->
         clearTimeout(timeout)
         timeout = setTimeout(callback, 100)
 
-    # Event bindings for mouse navigation
+# Event bindings for mouse navigation
     _setupMouseNavigation: ->
       _this = @
 
@@ -467,30 +467,30 @@
       $(document)
         .off("click.tour-#{@_options.name}", ".popover.tour-#{@_options.name} *[data-role=next]:not(.disabled)")
         .on("click.tour-#{@_options.name}", ".popover.tour-#{@_options.name} *[data-role=next]:not(.disabled)", (e) =>
-          e.preventDefault()
-          @next()
-        )
+        e.preventDefault()
+        @next()
+      )
 
       # Go to previous step after click on element with attribute 'data-role=prev'
       $(document)
         .off("click.tour-#{@_options.name}", ".popover.tour-#{@_options.name} *[data-role=prev]:not(.disabled)")
         .on("click.tour-#{@_options.name}", ".popover.tour-#{@_options.name} *[data-role=prev]:not(.disabled)", (e) =>
-          e.preventDefault()
-          @prev()
-        )
+        e.preventDefault()
+        @prev()
+      )
 
       # End tour after click on element with attribute 'data-role=end'
       $(document)
         .off("click.tour-#{@_options.name}", ".popover.tour-#{@_options.name} *[data-role=end]")
         .on("click.tour-#{@_options.name}", ".popover.tour-#{@_options.name} *[data-role=end]", (e) =>
-          e.preventDefault()
-          @end()
-        )
+        e.preventDefault()
+        @end()
+      )
 
       # Pause/resume tour after click on element with attribute 'data-role=pause-resume'
       $(document)
-      .off("click.tour-#{@_options.name}", ".popover.tour-#{@_options.name} *[data-role=pause-resume]")
-      .on("click.tour-#{@_options.name}", ".popover.tour-#{@_options.name} *[data-role=pause-resume]", (e) ->
+        .off("click.tour-#{@_options.name}", ".popover.tour-#{@_options.name} *[data-role=pause-resume]")
+        .on("click.tour-#{@_options.name}", ".popover.tour-#{@_options.name} *[data-role=pause-resume]", (e) ->
         e.preventDefault()
 
         $this = $(@)
@@ -499,7 +499,7 @@
         if _this._paused then _this.resume() else _this.pause()
       )
 
-    # Keyboard navigation
+# Keyboard navigation
     _setupKeyboardNavigation: ->
       return unless @_options.keyboard
 
@@ -516,7 +516,7 @@
             e.preventDefault()
             @end()
 
-    # Checks if the result of a callback is a promise
+# Checks if the result of a callback is a promise
     _makePromise: (result) ->
       if result and $.isFunction(result.then) then result else null
 

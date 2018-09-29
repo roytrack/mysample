@@ -13,10 +13,10 @@ import static org.junit.Assert.assertEquals;
  */
 public class BeanFactoryTest {
 
-    @Test
-    public void testSimpleLoad(){
-        BeanFactory bf=new XmlBeanFactory(new ClassPathResource("bean/beanFactoryTest.xml"));
-        FirstBean bean=(FirstBean)bf.getBean("myTestBean");
-        assertEquals("testStr",bean.getTestStr());
-    }
+  @Test
+  public void testSimpleLoad() {
+    BeanFactory bf = new XmlBeanFactory(new ClassPathResource("bean/beanFactoryTest.xml"));
+    FirstBean bean = (FirstBean) bf.getBean("myTestBean");
+    assertEquals("testStr", bean.getTestStr());
+  }
 }

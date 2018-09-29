@@ -12,35 +12,39 @@ import java.lang.reflect.InvocationTargetException;
  */
 @Service("logPublisher")
 public class LogPublisher {
-    private RingBuffer<LogEntity> ringBuffer;
+  private RingBuffer<LogEntity> ringBuffer;
 
-    public LogPublisher(){
-        super();
-    }
-    public void setRingBuffer(RingBuffer<LogEntity> ringBuffer){
-        this.ringBuffer=ringBuffer;
-    }
-    public  RingBuffer<LogEntity> getRingBuffer(){
-        return ringBuffer;
-    }
-    public LogPublisher(RingBuffer<LogEntity> ringBuffer){
-        this.ringBuffer=ringBuffer;
-    }
-    public void publish(LogEntity log){
-        long sequence=ringBuffer.next();
-        try{
-            LogEntity q=ringBuffer.get(sequence);
-            BeanUtils.copyProperties(q,log);
+  public LogPublisher() {
+    super();
+  }
+
+  public LogPublisher(RingBuffer<LogEntity> ringBuffer) {
+    this.ringBuffer = ringBuffer;
+  }
+
+  public RingBuffer<LogEntity> getRingBuffer() {
+    return ringBuffer;
+  }
+
+  public void setRingBuffer(RingBuffer<LogEntity> ringBuffer) {
+    this.ringBuffer = ringBuffer;
+  }
+
+  public void publish(LogEntity log) {
+    long sequence = ringBuffer.next();
+    try {
+      LogEntity q = ringBuffer.get(sequence);
+      BeanUtils.copyProperties(q, log);
 //            q.setCustomerNo(log.getCustomerNo());
 //            q.setAmount(log.getAmount());
 //            q.setSheetNo(log.getSheetNo());
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } finally {
-            ringBuffer.publish(sequence);
-        }
-
+    } catch (InvocationTargetException e) {
+      e.printStackTrace();
+    } catch (IllegalAccessException e) {
+      e.printStackTrace();
+    } finally {
+      ringBuffer.publish(sequence);
     }
+
+  }
 }

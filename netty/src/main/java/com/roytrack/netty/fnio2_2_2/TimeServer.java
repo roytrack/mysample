@@ -10,37 +10,37 @@ import java.net.Socket;
  * Created by roytrack on 2016/03/21.
  */
 public class TimeServer {
-    public static void main(String[] args) {
-        int port=9009;
-        if(args!=null&&args.length>0){
-            try{
-                port=Integer.valueOf(args[0]);
-            }catch (NumberFormatException e){
+  public static void main(String[] args) {
+    int port = 9009;
+    if (args != null && args.length > 0) {
+      try {
+        port = Integer.valueOf(args[0]);
+      } catch (NumberFormatException e) {
 
-            }
-        }
-        ServerSocket server=null;
-        try{
-            server=new ServerSocket(port);
-            TimeServerHandlerExecutePool executePool=new TimeServerHandlerExecutePool(50,10000);
-            Socket s=null;
-            while (true){
-                s=server.accept();
-                executePool.execute(new TimeServerHandler(s));
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if(server!=null){
-                try {
-                    server.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                server=null;
-            }
-        }
+      }
     }
+    ServerSocket server = null;
+    try {
+      server = new ServerSocket(port);
+      TimeServerHandlerExecutePool executePool = new TimeServerHandlerExecutePool(50, 10000);
+      Socket s = null;
+      while (true) {
+        s = server.accept();
+        executePool.execute(new TimeServerHandler(s));
+      }
+
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      if (server != null) {
+        try {
+          server.close();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        server = null;
+      }
+    }
+  }
 }

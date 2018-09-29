@@ -5,15 +5,15 @@ package com.roytrack.mq;
  */
 public class MqTest {
 
-    ThreadPoolManager tpm=ThreadPoolManager.newInstance();
+  ThreadPoolManager tpm = ThreadPoolManager.newInstance();
 
-    public void sendMsg(String msg){
-        tpm.addLogMsg(msg);
+  public static void main(String[] args) {
+    for (int i = 0; i < 1000; i++) {
+      new MqTest().sendMsg("第" + i + "条信息");
     }
+  }
 
-    public static void main(String[] args) {
-        for(int i=0;i<1000;i++){
-            new MqTest().sendMsg("第"+i+"条信息");
-        }
-    }
+  public void sendMsg(String msg) {
+    tpm.addLogMsg(msg);
+  }
 }

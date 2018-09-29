@@ -10,5 +10,5 @@ import lombok.Setter;
 @Setter
 public class BBean {
 
-    private String name;
+  private String name;
 }

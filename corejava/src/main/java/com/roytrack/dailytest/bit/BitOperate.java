@@ -5,23 +5,23 @@ package com.roytrack.dailytest.bit;
  */
 public class BitOperate {
 
-    public static void main(String[] args) {
-        int a=128;
-        System.out.println(Integer.toBinaryString(a));
-        a=a-1;
-        System.out.println(Integer.toBinaryString(a));
-        a=a&128;
-        System.out.println(Integer.toBinaryString(a));
-        a=129;
-        a=a>>1;
-        System.out.println(Integer.toBinaryString(a));
-        a=a<<1;
-        System.out.println(Integer.toBinaryString(a));
+  public static void main(String[] args) {
+    int a = 128;
+    System.out.println(Integer.toBinaryString(a));
+    a = a - 1;
+    System.out.println(Integer.toBinaryString(a));
+    a = a & 128;
+    System.out.println(Integer.toBinaryString(a));
+    a = 129;
+    a = a >> 1;
+    System.out.println(Integer.toBinaryString(a));
+    a = a << 1;
+    System.out.println(Integer.toBinaryString(a));
 
-        a=100;
-        System.out.println(a&1);
-        a=191;
-        System.out.println(a&1);
+    a = 100;
+    System.out.println(a & 1);
+    a = 191;
+    System.out.println(a & 1);
 
-    }
+  }
 }

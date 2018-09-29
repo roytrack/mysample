@@ -1,9 +1,9 @@
 'use strict'
 
 module.exports = (grunt)->
-  # project configuration
+# project configuration
   grunt.initConfig
-    # load package information
+# load package information
     pkg: grunt.file.readJSON 'package.json'
 
     meta:
@@ -138,15 +138,15 @@ module.exports = (grunt)->
     copy:
       default:
         files: [
-            expand: true
-            cwd: "build/js"
-            dest: "docs/assets/js"
-            src: ["*.js"]
-          ,
-            expand: true
-            cwd: "build/css"
-            dest: "docs/assets/css"
-            src: ["*.css"]
+          expand: true
+          cwd: "build/js"
+          dest: "docs/assets/js"
+          src: ["*.js"]
+        ,
+          expand: true
+          cwd: "build/css"
+          dest: "docs/assets/css"
+          src: ["*.css"]
         ]
 
     connect:

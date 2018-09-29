@@ -5,18 +5,18 @@ package com.roytrack.disruptor.startup;
  */
 public class LongEvent {
 
-    private long value;
+  private long value;
 
-    public long getValue() {
-        return value;
-    }
+  public long getValue() {
+    return value;
+  }
 
-    public void setValue(long value) {
-        this.value = value;
-    }
+  public void setValue(long value) {
+    this.value = value;
+  }
 
-    @Override
-    public String toString(){
-        return getClass().getName() + "@" + Integer.toHexString(hashCode())+"@"+value;
-    }
+  @Override
+  public String toString() {
+    return getClass().getName() + "@" + Integer.toHexString(hashCode()) + "@" + value;
+  }
 }

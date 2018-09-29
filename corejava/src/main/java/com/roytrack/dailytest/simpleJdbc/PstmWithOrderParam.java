@@ -13,35 +13,35 @@ import java.sql.SQLException;
  */
 public class PstmWithOrderParam {
 
-    @Test
-    public void OrderInParam() throws SQLException {
-        Connection con=Aconnection.getInstance().getConn();
-        PreparedStatement pstm=con.prepareStatement("select * from help_keyword order by ?");
-        pstm.setString(1,"name");
-        ResultSet rs=pstm.getResultSet();
-        System.out.println(rs);
-        if(rs!=null){
-            rs.next();
-            System.out.println(rs.getString("name"));
-        }
-
+  @Test
+  public void OrderInParam() throws SQLException {
+    Connection con = Aconnection.getInstance().getConn();
+    PreparedStatement pstm = con.prepareStatement("select * from help_keyword order by ?");
+    pstm.setString(1, "name");
+    ResultSet rs = pstm.getResultSet();
+    System.out.println(rs);
+    if (rs != null) {
+      rs.next();
+      System.out.println(rs.getString("name"));
     }
 
-    @Test
-    public void LimitInParam() throws SQLException {
-        Connection con=Aconnection.getInstance().getConn();
-        PreparedStatement pstm=con.prepareStatement("select * from help_keyword limit ?,?");
-        pstm.setInt(1, 5);
-        pstm.setInt(2,5);
-        ResultSet rs=pstm.getResultSet();
-        System.out.println(rs);
-        while (rs.next()){
-            System.out.println(rs.getString("name"));
-        }
-        if(rs!=null){
-            rs.next();
-            System.out.println(rs.getString("name"));
-        }
+  }
 
+  @Test
+  public void LimitInParam() throws SQLException {
+    Connection con = Aconnection.getInstance().getConn();
+    PreparedStatement pstm = con.prepareStatement("select * from help_keyword limit ?,?");
+    pstm.setInt(1, 5);
+    pstm.setInt(2, 5);
+    ResultSet rs = pstm.getResultSet();
+    System.out.println(rs);
+    while (rs.next()) {
+      System.out.println(rs.getString("name"));
     }
+    if (rs != null) {
+      rs.next();
+      System.out.println(rs.getString("name"));
+    }
+
+  }
 }

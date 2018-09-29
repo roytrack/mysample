@@ -5,12 +5,12 @@ package com.roytrack.dailytest.simplejava.exception;
  */
 public class TryWithSingleLine {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
-        try{
-            int a=10/(5-5);
-        }catch (ArithmeticException e){
-            System.out.println(e);
-        }
+    try {
+      int a = 10 / (5 - 5);
+    } catch (ArithmeticException e) {
+      System.out.println(e);
     }
+  }
 }

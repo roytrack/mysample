@@ -6,46 +6,49 @@ import java.nio.ByteBuffer;
 /**
  * Created by roytrack on 2016-10-17.
  */
-public class UserInfo implements Serializable{
-    private static final long serialVersionUID=1L;
-    private String userName;
-    private int userId;
-    public UserInfo buildUserName(String userName){
-        this.userName=userName;
-        return this;
-    }
-    public UserInfo buildUserId(int userId){
-        this.userId=userId;
-        return this;
-    }
+public class UserInfo implements Serializable {
+  private static final long serialVersionUID = 1L;
+  private String userName;
+  private int userId;
 
-    public final void setUserName(String userName) {
-        this.userName = userName;
-    }
+  public UserInfo buildUserName(String userName) {
+    this.userName = userName;
+    return this;
+  }
 
-    public final void setUserId(int userId) {
-        this.userId = userId;
-    }
+  public UserInfo buildUserId(int userId) {
+    this.userId = userId;
+    return this;
+  }
 
-    public final String getUserName(){
+  public final String getUserName() {
 
-        return this.userName;
-    }
-    public final int getUserId(){
-        return this.userId;
-    }
+    return this.userName;
+  }
 
-    public byte[] codeC(){
-        ByteBuffer buffer=ByteBuffer.allocate(1024);
-        byte [] value=this.getUserName().getBytes();
-        buffer.putInt(value.length);
-        buffer.put(value);
-        buffer.putInt(this.userId);
-        buffer.flip();
-        value=null;
-        byte[] result=new byte[buffer.remaining()];
-        buffer.get(result);
-        return result;
-    }
+  public final void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public final int getUserId() {
+    return this.userId;
+  }
+
+  public final void setUserId(int userId) {
+    this.userId = userId;
+  }
+
+  public byte[] codeC() {
+    ByteBuffer buffer = ByteBuffer.allocate(1024);
+    byte[] value = this.getUserName().getBytes();
+    buffer.putInt(value.length);
+    buffer.put(value);
+    buffer.putInt(this.userId);
+    buffer.flip();
+    value = null;
+    byte[] result = new byte[buffer.remaining()];
+    buffer.get(result);
+    return result;
+  }
 
 }

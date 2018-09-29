@@ -6,8 +6,8 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
  * Created by roytrack on 2015/5/19.
  */
 public class RoyNamespaceHandlerSupport extends NamespaceHandlerSupport {
-    @Override
-    public void init() {
-            registerBeanDefinitionParser("roy",new RoyDefinitionParser());
-    }
+  @Override
+  public void init() {
+    registerBeanDefinitionParser("roy", new RoyDefinitionParser());
+  }
 }

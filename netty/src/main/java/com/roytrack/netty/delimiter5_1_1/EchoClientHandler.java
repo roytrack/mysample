@@ -9,29 +9,30 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  */
 public class EchoClientHandler extends ChannelInboundHandlerAdapter {
 
-    private int count;
-    static  final String ECHO_REQ="Hi,welcome to Netty.$_";
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        for (int i = 0; i <10 ; i++) {
-            ctx.writeAndFlush(Unpooled.copiedBuffer(ECHO_REQ.getBytes()));
-            System.out.println("client write to server "+i);
-        }
-    }
+  static final String ECHO_REQ = "Hi,welcome to Netty.$_";
+  private int count;
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("This is "+ ++count+" times  receive server:["+msg+"]");
+  @Override
+  public void channelActive(ChannelHandlerContext ctx) {
+    for (int i = 0; i < 10; i++) {
+      ctx.writeAndFlush(Unpooled.copiedBuffer(ECHO_REQ.getBytes()));
+      System.out.println("client write to server " + i);
     }
+  }
 
-    @Override
-    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        ctx.flush();
-    }
+  @Override
+  public void channelRead(ChannelHandlerContext ctx, Object msg) {
+    System.out.println("This is " + ++count + " times  receive server:[" + msg + "]");
+  }
 
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        cause.printStackTrace();
-        ctx.close();
-    }
+  @Override
+  public void channelReadComplete(ChannelHandlerContext ctx) {
+    ctx.flush();
+  }
+
+  @Override
+  public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    cause.printStackTrace();
+    ctx.close();
+  }
 }

@@ -8,17 +8,17 @@ import javax.validation.ConstraintValidatorContext;
 /**
  * Created by roytrack on 2015/1/21.
  */
-public class BeanValidator implements ConstraintValidator<BeanValidation, String > {
-    @Override
-    public void initialize(BeanValidation constraintAnnotation) {
+public class BeanValidator implements ConstraintValidator<BeanValidation, String> {
+  @Override
+  public void initialize(BeanValidation constraintAnnotation) {
 
-    }
+  }
 
-    @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        if(StringUtils.isBlank(value)) return Boolean.TRUE;
-        return  !StringUtils.trim(value).equals("哈哈哈");
-    }
+  @Override
+  public boolean isValid(String value, ConstraintValidatorContext context) {
+    if (StringUtils.isBlank(value)) return Boolean.TRUE;
+    return !StringUtils.trim(value).equals("哈哈哈");
+  }
 
 
 }

@@ -5,10 +5,11 @@ package com.roytrack.dailytest.jni;
  */
 public class JNICall {
 
-        static {
-            System.loadLibrary("MediumDll");
-        }
-        public native String CallTheDll();
+  static {
+    System.loadLibrary("MediumDll");
+  }
 
-    }
+  public native String CallTheDll();
+
+}
 

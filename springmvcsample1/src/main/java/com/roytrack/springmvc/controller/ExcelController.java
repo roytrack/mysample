@@ -10,21 +10,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * Created by roytrack on 2015/1/13.
  */
 @Controller
 @RequestMapping("/excel")
-public class ExcelController  {
+public class ExcelController {
 
-    @RequestMapping("/e")
-    public ModelAndView generateExcel(){
-        ExcelView v=new ExcelView();
-        Map m=new HashMap();
-        m.put("str","str");
-        m.put("bd",new BigDecimal("55.22"));
-        v.setAttributesMap(m);
-        return new ModelAndView(v);
-    }
+  @RequestMapping("/e")
+  public ModelAndView generateExcel() {
+    ExcelView v = new ExcelView();
+    Map m = new HashMap();
+    m.put("str", "str");
+    m.put("bd", new BigDecimal("55.22"));
+    v.setAttributesMap(m);
+    return new ModelAndView(v);
+  }
 
 }

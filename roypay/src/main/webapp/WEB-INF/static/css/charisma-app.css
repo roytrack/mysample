@@ -302,7 +302,6 @@ div.center, p.center, img.center {
     padding: 5px;
 }
 
-
 .sidebar-nav {
     min-height: 0;
     box-shadow: 0 0 10px #BDBDBD;
@@ -352,8 +351,6 @@ div.center, p.center, img.center {
     height: 60px;
 }
 
-
-
 .navbar-inner .btn-group {
     margin: 7px 5px 0 5px;
 }
@@ -394,7 +391,6 @@ ul.ajax-loaders {
     margin-right: -10px;
     margin-left: -10px;
 }
-
 
 .login-header {
     padding-top: 30px;

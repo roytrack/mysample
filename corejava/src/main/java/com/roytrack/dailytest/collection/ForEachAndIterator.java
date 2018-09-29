@@ -10,16 +10,16 @@ import java.util.HashMap;
  */
 public class ForEachAndIterator {
 
-@Test
-    public void WhichIteratorByList(){
-    ArrayList<Integer> a=new ArrayList<>();
+  @Test
+  public void WhichIteratorByList() {
+    ArrayList<Integer> a = new ArrayList<>();
     a.add(null);
     a.add(null);
     a.add(5);
-    HashMap<String,String> b=new HashMap<>();
-    b.put(null,"ss");
-    b.put("ss","ddd");
-    System.out.println(a.size()+"   "+a.get(0)+"   "+a.get(1)+"   "+a.get(2));
-    System.out.println(b.size()+"   "+b.get(null)+"   "+b.get(b.get(null)));
-}
+    HashMap<String, String> b = new HashMap<>();
+    b.put(null, "ss");
+    b.put("ss", "ddd");
+    System.out.println(a.size() + "   " + a.get(0) + "   " + a.get(1) + "   " + a.get(2));
+    System.out.println(b.size() + "   " + b.get(null) + "   " + b.get(b.get(null)));
+  }
 }

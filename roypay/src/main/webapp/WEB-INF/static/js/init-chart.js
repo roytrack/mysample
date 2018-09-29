@@ -9,15 +9,15 @@ if ($("#sincos").length) {
 
     var plot = $.plot($("#sincos"),
         [
-            { data: sin, label: "sin(x)/x"},
-            { data: cos, label: "cos(x)" }
+            {data: sin, label: "sin(x)/x"},
+            {data: cos, label: "cos(x)"}
         ], {
             series: {
-                lines: { show: true  },
-                points: { show: true }
+                lines: {show: true},
+                points: {show: true}
             },
-            grid: { hoverable: true, clickable: true, backgroundColor: { colors: ["#fff", "#eee"] } },
-            yaxis: { min: -1.2, max: 1.2 },
+            grid: {hoverable: true, clickable: true, backgroundColor: {colors: ["#fff", "#eee"]}},
+            yaxis: {min: -1.2, max: 1.2},
             colors: ["#539F2E", "#3C67A5"]
         });
 
@@ -81,13 +81,13 @@ if ($("#flotchart").length) {
         d3.push([i, Math.tan(i)]);
 
     $.plot($("#flotchart"), [
-        { label: "sin(x)", data: d1},
-        { label: "cos(x)", data: d2},
-        { label: "tan(x)", data: d3}
+        {label: "sin(x)", data: d1},
+        {label: "cos(x)", data: d2},
+        {label: "tan(x)", data: d3}
     ], {
         series: {
-            lines: { show: true },
-            points: { show: true }
+            lines: {show: true},
+            points: {show: true}
         },
         xaxis: {
             ticks: [0, [Math.PI / 2, "\u03c0/2"], [Math.PI, "\u03c0"], [Math.PI * 3 / 2, "3\u03c0/2"], [Math.PI * 2, "2\u03c0"]]
@@ -98,7 +98,7 @@ if ($("#flotchart").length) {
             max: 2
         },
         grid: {
-            backgroundColor: { colors: ["#fff", "#eee"] }
+            backgroundColor: {colors: ["#fff", "#eee"]}
         }
     });
 }
@@ -120,11 +120,11 @@ if ($("#stackchart").length) {
     var stack = 0, bars = true, lines = false, steps = false;
 
     function plotWithOptions() {
-        $.plot($("#stackchart"), [ d1, d2, d3 ], {
+        $.plot($("#stackchart"), [d1, d2, d3], {
             series: {
                 stack: stack,
-                lines: { show: lines, fill: true, steps: steps },
-                bars: { show: bars, barWidth: 0.6 }
+                lines: {show: lines, fill: true, steps: steps},
+                bars: {show: bars, barWidth: 0.6}
             }
         });
     }
@@ -147,12 +147,12 @@ if ($("#stackchart").length) {
 
 //pie chart
 var data = [
-    { label: "Internet Explorer", data: 12},
-    { label: "Mobile", data: 27},
-    { label: "Safari", data: 85},
-    { label: "Opera", data: 64},
-    { label: "Firefox", data: 90},
-    { label: "Chrome", data: 112}
+    {label: "Internet Explorer", data: 12},
+    {label: "Mobile", data: 27},
+    {label: "Safari", data: 85},
+    {label: "Opera", data: 64},
+    {label: "Firefox", data: 90},
+    {label: "Chrome", data: 112}
 ];
 
 if ($("#piechart").length) {
@@ -242,14 +242,14 @@ $("#updateInterval").val(updateInterval).change(function () {
 //realtime chart
 if ($("#realtimechart").length) {
     var options = {
-        series: { shadowSize: 1 }, // drawing is faster without shadows
-        yaxis: { min: 0, max: 100 },
-        xaxis: { show: false }
+        series: {shadowSize: 1}, // drawing is faster without shadows
+        yaxis: {min: 0, max: 100},
+        xaxis: {show: false}
     };
-    var plot = $.plot($("#realtimechart"), [ getRandomData() ], options);
+    var plot = $.plot($("#realtimechart"), [getRandomData()], options);
 
     function update() {
-        plot.setData([ getRandomData() ]);
+        plot.setData([getRandomData()]);
         // since the axes don't change, we don't need to call plot.setupGrid()
         plot.draw();
 

@@ -1,13 +1,6 @@
 package com.pingplusplus.model;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
-import com.google.gson.LongSerializationPolicy;
+import com.google.gson.*;
 import com.pingplusplus.exception.APIConnectionException;
 import com.pingplusplus.exception.APIException;
 import com.pingplusplus.exception.AuthenticationException;
@@ -15,219 +8,215 @@ import com.pingplusplus.exception.InvalidRequestException;
 import com.pingplusplus.net.APIResource;
 
 import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.Map;
 
-public class RedEnvelope extends APIResource  {
-    String id;
-    String object;
-    Long created;
-    Boolean livemode;
-    Boolean paid;
-    Object app;
-    String channel;
-    String orderNo;
-    Integer amount;
-    String currency;
-    String recipient;
-    String subject;
-    String body;
-    String description;
-    Map<String, String> extra;
-    public static final Gson PRETTY_PRINT_GSON = new GsonBuilder().
-            setPrettyPrinting().
-            serializeNulls().
-            disableHtmlEscaping().
-            setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).
-            setLongSerializationPolicy(LongSerializationPolicy.STRING).
-            registerTypeAdapter(Double.class, new JsonSerializer<Double>() {
-                @Override
-                public JsonElement serialize(Double src, Type typeOfSrc, JsonSerializationContext context) {
-                    if (src == src.longValue())
-                        return new JsonPrimitive(src.longValue());
-                    return new JsonPrimitive(src);
-                }
-            }).
-            create();
+public class RedEnvelope extends APIResource {
+  public static final Gson PRETTY_PRINT_GSON = new GsonBuilder().
+          setPrettyPrinting().
+          serializeNulls().
+          disableHtmlEscaping().
+          setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).
+          setLongSerializationPolicy(LongSerializationPolicy.STRING).
+          registerTypeAdapter(Double.class, new JsonSerializer<Double>() {
+            @Override
+            public JsonElement serialize(Double src, Type typeOfSrc, JsonSerializationContext context) {
+              if (src == src.longValue())
+                return new JsonPrimitive(src.longValue());
+              return new JsonPrimitive(src);
+            }
+          }).
+          create();
+  String id;
+  String object;
+  Long created;
+  Boolean livemode;
+  Boolean paid;
+  Object app;
+  String channel;
+  String orderNo;
+  Integer amount;
+  String currency;
+  String recipient;
+  String subject;
+  String body;
+  String description;
+  Map<String, String> extra;
 
-    public String getId() {
-        return id;
-    }
+  public static RedEnvelope create(Map<String, Object> params)
+          throws AuthenticationException, InvalidRequestException,
+          APIConnectionException, APIException {
+    return create(params, null);
+  }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  public static RedEnvelope retrieve(String id) throws AuthenticationException,
+          InvalidRequestException, APIConnectionException,
+          APIException {
+    return retrieve(id, null, null);
+  }
 
-    public Integer getAmount() {
-        return amount;
-    }
+  public static RedEnvelope retrieve(String id, Map<String, Object> params) throws AuthenticationException,
+          InvalidRequestException, APIConnectionException,
+          APIException {
+    return retrieve(id, params, null);
+  }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
+  public static RedEnvelopeCollection all(Map<String, Object> params)
+          throws AuthenticationException, InvalidRequestException,
+          APIConnectionException, APIException {
+    return all(params, null);
+  }
 
-    public Long getCreated() {
-        return created;
-    }
+  public static RedEnvelope create(Map<String, Object> params, String apiKey)
+          throws AuthenticationException, InvalidRequestException,
+          APIConnectionException, APIException {
+    return request(RequestMethod.POST, classURL(RedEnvelope.class), params,
+            RedEnvelope.class, apiKey);
+  }
 
-    public void setCreated(Long created) {
-        this.created = created;
-    }
+  public static RedEnvelope retrieve(String id, Map<String, Object> params, String apiKey)
+          throws AuthenticationException, InvalidRequestException,
+          APIConnectionException, APIException {
+    return request(RequestMethod.GET, instanceURL(RedEnvelope.class, id), params,
+            RedEnvelope.class, apiKey);
+  }
 
-    public String getCurrency() {
-        return currency;
-    }
+  public static RedEnvelopeCollection all(Map<String, Object> params, String apiKey)
+          throws AuthenticationException, InvalidRequestException,
+          APIConnectionException, APIException {
+    return request(RequestMethod.GET, classURL(RedEnvelope.class), params,
+            RedEnvelopeCollection.class, apiKey);
+  }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-    
-    public String getRecipient() {
-        return recipient;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setRecipient(String recipient) {
-        this.recipient = recipient;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public Boolean getLivemode() {
-        return livemode;
-    }
+  public Integer getAmount() {
+    return amount;
+  }
 
-    public void setLivemode(Boolean livemode) {
-        this.livemode = livemode;
-    }
+  public void setAmount(Integer amount) {
+    this.amount = amount;
+  }
 
-    public Boolean getPaid() {
-        return paid;
-    }
+  public Long getCreated() {
+    return created;
+  }
 
-    public void setPaid(Boolean paid) {
-        this.paid = paid;
-    }
+  public void setCreated(Long created) {
+    this.created = created;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getCurrency() {
+    return currency;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
 
-    public String getObject() {
-        return object;
-    }
+  public String getRecipient() {
+    return recipient;
+  }
 
-    public void setObject(String object) {
-        this.object = object;
-    }
+  public void setRecipient(String recipient) {
+    this.recipient = recipient;
+  }
 
-    public String getChannel() {
-        return channel;
-    }
+  public Boolean getLivemode() {
+    return livemode;
+  }
 
-    public void setChannel(String channel) {
-        this.channel = channel;
-    }
+  public void setLivemode(Boolean livemode) {
+    this.livemode = livemode;
+  }
 
-    public Object getApp() {
-        return app;
-    }
+  public Boolean getPaid() {
+    return paid;
+  }
 
-    public void setApp(Object app) {
-        this.app = app;
-    }
+  public void setPaid(Boolean paid) {
+    this.paid = paid;
+  }
 
-    public Map<String, String> getExtra() {
-        return extra;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setExtra(Map<String, String> extra) {
-        this.extra = extra;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public String getOrderNo() {
-        return orderNo;
-    }
+  public String getObject() {
+    return object;
+  }
 
-    public void setOrderNo(String orderNo) {
-        this.orderNo = orderNo;
-    }
+  public void setObject(String object) {
+    this.object = object;
+  }
 
+  public String getChannel() {
+    return channel;
+  }
 
-    public String getSubject() {
-        return subject;
-    }
+  public void setChannel(String channel) {
+    this.channel = channel;
+  }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
+  public Object getApp() {
+    return app;
+  }
 
-    public String getBody() {
-        return body;
-    }
+  public void setApp(Object app) {
+    this.app = app;
+  }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
+  public Map<String, String> getExtra() {
+    return extra;
+  }
 
+  public void setExtra(Map<String, String> extra) {
+    this.extra = extra;
+  }
 
+  public String getOrderNo() {
+    return orderNo;
+  }
 
-    public static RedEnvelope create(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
-        return create(params, null);
-    }
+  public void setOrderNo(String orderNo) {
+    this.orderNo = orderNo;
+  }
 
-    public static RedEnvelope retrieve(String id) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException {
-        return retrieve(id, null, null);
-    }
+  public String getSubject() {
+    return subject;
+  }
 
-    public static RedEnvelope retrieve(String id, Map<String, Object> params) throws AuthenticationException,
-            InvalidRequestException, APIConnectionException,
-            APIException {
-        return retrieve(id, params, null);
-    }
+  public void setSubject(String subject) {
+    this.subject = subject;
+  }
 
-    public RedEnvelope update(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
-        return update(params, null);
-    }
+  public String getBody() {
+    return body;
+  }
 
-    public static RedEnvelopeCollection all(Map<String, Object> params)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
-        return all(params, null);
-    }
+  public void setBody(String body) {
+    this.body = body;
+  }
 
-    public static RedEnvelope create(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
-        return request(RequestMethod.POST, classURL(RedEnvelope.class), params,
-                RedEnvelope.class, apiKey);
-    }
+  public RedEnvelope update(Map<String, Object> params)
+          throws AuthenticationException, InvalidRequestException,
+          APIConnectionException, APIException {
+    return update(params, null);
+  }
 
-    public static RedEnvelope retrieve(String id, Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
-        return request(RequestMethod.GET, instanceURL(RedEnvelope.class, id), params,
-                RedEnvelope.class, apiKey);
-    }
-
-    public RedEnvelope update(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
-        return request(RequestMethod.POST, instanceURL(RedEnvelope.class, id), params,
-                RedEnvelope.class, apiKey);
-    }
-
-    public static RedEnvelopeCollection all(Map<String, Object> params, String apiKey)
-            throws AuthenticationException, InvalidRequestException,
-            APIConnectionException, APIException {
-        return request(RequestMethod.GET, classURL(RedEnvelope.class), params,
-        		RedEnvelopeCollection.class, apiKey);
-    }
+  public RedEnvelope update(Map<String, Object> params, String apiKey)
+          throws AuthenticationException, InvalidRequestException,
+          APIConnectionException, APIException {
+    return request(RequestMethod.POST, instanceURL(RedEnvelope.class, id), params,
+            RedEnvelope.class, apiKey);
+  }
 }

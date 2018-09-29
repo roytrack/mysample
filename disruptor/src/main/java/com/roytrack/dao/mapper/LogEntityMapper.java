@@ -8,11 +8,11 @@ import com.roytrack.dao.model.LogEntity;
 public interface LogEntityMapper {
 
 
-    int insert(LogEntity record);
+  int insert(LogEntity record);
 
-    int insertSelective(LogEntity record);
+  int insertSelective(LogEntity record);
 
-    int updateByPrimaryKeySelective(LogEntity record);
+  int updateByPrimaryKeySelective(LogEntity record);
 
-    int updateByPrimaryKey(LogEntity record);
+  int updateByPrimaryKey(LogEntity record);
 }

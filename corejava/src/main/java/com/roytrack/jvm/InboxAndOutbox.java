@@ -10,24 +10,24 @@ package com.roytrack.jvm;
  * 运算结束也不会进行自动的类型转换
  */
 public class InboxAndOutbox {
-    public static void main(String[] args) {
-        Integer a=1;
-        Integer b=2;
-        Integer c=3;
-        Integer d=3;
-        Integer e=321;
-        Integer f=321;
-        Long g=3L;
-        System.out.println(c==d);
-        System.out.println(e==f);
-        System.out.println("number to object 2=b:" + (2==b));
-        System.out.println(c==(a+b));
-        System.out.println(c.equals(a+b));
-        System.out.println(g==(a+b));
-        System.out.println(g.equals(a+b));
-        Integer _a=new Integer(4);
-        Integer _b=new Integer(4);
-        System.out.println(_a==_b);
-        System.out.println(_a.equals(_b));
-    }
+  public static void main(String[] args) {
+    Integer a = 1;
+    Integer b = 2;
+    Integer c = 3;
+    Integer d = 3;
+    Integer e = 321;
+    Integer f = 321;
+    Long g = 3L;
+    System.out.println(c == d);
+    System.out.println(e == f);
+    System.out.println("number to object 2=b:" + (2 == b));
+    System.out.println(c == (a + b));
+    System.out.println(c.equals(a + b));
+    System.out.println(g == (a + b));
+    System.out.println(g.equals(a + b));
+    Integer _a = new Integer(4);
+    Integer _b = new Integer(4);
+    System.out.println(_a == _b);
+    System.out.println(_a.equals(_b));
+  }
 }

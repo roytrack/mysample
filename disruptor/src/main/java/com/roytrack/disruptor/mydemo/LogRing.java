@@ -21,46 +21,46 @@ import java.security.SecureRandom;
 @Service("logRing")
 public class LogRing {
 
-    @Autowired
-    ApplicationContext context;
-    private Disruptor<LogEntity> disruptor;
+  @Autowired
+  ApplicationContext context;
+  private Disruptor<LogEntity> disruptor;
 
-
-
-    @PostConstruct
-    public void start(){
-        int bufferSize=512;
-         disruptor=new Disruptor<LogEntity>(LogEntity::new,bufferSize,DaemonThreadFactory.INSTANCE);
-        disruptor.handleEventsWith(context.getBean("logHandler",LogHandler.class));
-        RingBuffer<LogEntity> ringBuffer=disruptor.getRingBuffer();
-        LogPublisher logPublisher=context.getBean("logPublisher", LogPublisher.class);
-        logPublisher.setRingBuffer(ringBuffer);
-        disruptor.start();
+  public static void main(String[] args) throws NoSuchAlgorithmException, InterruptedException {
+    int bufferSize = 512;
+    Disruptor<LogEntity> disruptor = new Disruptor<LogEntity>(LogEntity::new, bufferSize, DaemonThreadFactory.INSTANCE);
+    disruptor.handleEventsWith(new LogHandler());
+    RingBuffer<LogEntity> ringBuffer = disruptor.getRingBuffer();
+    LogPublisher logPublisher = new LogPublisher(ringBuffer);
+    disruptor.start();
+    for (int i = 0; i < 1000; i++) {
+      LogEntity entity = new LogEntity();
+      entity.setSheetNo(String.valueOf(i));
+      entity.setAmount(new BigDecimal(SecureRandom.getInstanceStrong().nextDouble()));
+      entity.setCustomerNo(String.valueOf(SecureRandom.getInstanceStrong().nextLong()));
+      logPublisher.publish(entity);
+      System.out.println("put " + i + " entity ");
+      System.out.println(ringBuffer.getCursor());
+      System.out.println(ringBuffer.getMinimumGatingSequence());
+      //Thread.sleep(1000);
     }
-    @PreDestroy
-    public void stop(){
-        disruptor.shutdown();
-    }
-    public static void main(String[] args) throws NoSuchAlgorithmException, InterruptedException {
-        int bufferSize=512;
-        Disruptor<LogEntity> disruptor=new Disruptor<LogEntity>(LogEntity::new,bufferSize,DaemonThreadFactory.INSTANCE);
-        disruptor.handleEventsWith(new LogHandler());
-        RingBuffer<LogEntity> ringBuffer=disruptor.getRingBuffer();
-        LogPublisher logPublisher=new LogPublisher(ringBuffer);
-        disruptor.start();
-        for(int i=0;i<1000;i++){
-            LogEntity entity=new LogEntity();
-            entity.setSheetNo(String.valueOf(i));
-            entity.setAmount(new BigDecimal(SecureRandom.getInstanceStrong().nextDouble()));
-            entity.setCustomerNo(String.valueOf(SecureRandom.getInstanceStrong().nextLong()));
-            logPublisher.publish(entity);
-            System.out.println("put " + i + " entity ");
-            System.out.println(ringBuffer.getCursor());
-            System.out.println(ringBuffer.getMinimumGatingSequence());
-            //Thread.sleep(1000);
-        }
-        disruptor.shutdown();
+    disruptor.shutdown();
 
 
-    }
+  }
+
+  @PostConstruct
+  public void start() {
+    int bufferSize = 512;
+    disruptor = new Disruptor<LogEntity>(LogEntity::new, bufferSize, DaemonThreadFactory.INSTANCE);
+    disruptor.handleEventsWith(context.getBean("logHandler", LogHandler.class));
+    RingBuffer<LogEntity> ringBuffer = disruptor.getRingBuffer();
+    LogPublisher logPublisher = context.getBean("logPublisher", LogPublisher.class);
+    logPublisher.setRingBuffer(ringBuffer);
+    disruptor.start();
+  }
+
+  @PreDestroy
+  public void stop() {
+    disruptor.shutdown();
+  }
 }

@@ -7,12 +7,12 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 /**
  * Created by roytrack on 2015/9/24.
  */
-public class DiscardServerHandler extends ChannelInboundHandlerAdapter{
+public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx,Object arg){
+  @Override
+  public void channelRead(ChannelHandlerContext ctx, Object arg) {
 
-        System.out.println(((ByteBuf)arg).toString(io.netty.util.CharsetUtil.US_ASCII));
+    System.out.println(((ByteBuf) arg).toString(io.netty.util.CharsetUtil.US_ASCII));
 //        ByteBuf in=(ByteBuf)arg;
 //        try{
 
@@ -25,15 +25,15 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter{
 //            ReferenceCountUtil.release(arg);
 //        }
 //        ctx.writeAndFlush(arg);
-        ctx.write(arg);
-        ctx.flush();
-    }
+    ctx.write(arg);
+    ctx.flush();
+  }
 
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx,Throwable cause){
-        cause.printStackTrace();
-        ctx.close();
-    }
+  @Override
+  public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    cause.printStackTrace();
+    ctx.close();
+  }
 
 
 }

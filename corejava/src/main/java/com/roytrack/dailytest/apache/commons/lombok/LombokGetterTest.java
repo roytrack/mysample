@@ -7,11 +7,11 @@ import org.junit.Test;
  * Created by roytrack on 2015/1/11.
  */
 public class LombokGetterTest {
-    @Test
-    public  void  HowToDoWithAClassHaveGetter(){
-        AbeanHaveGetter bean=new AbeanHaveGetter();
+  @Test
+  public void HowToDoWithAClassHaveGetter() {
+    AbeanHaveGetter bean = new AbeanHaveGetter();
 //        bean.setFoo("sss");
 //        bean.setName("ooo");
-        System.out.println(bean.toString());
-    }
+    System.out.println(bean.toString());
+  }
 }

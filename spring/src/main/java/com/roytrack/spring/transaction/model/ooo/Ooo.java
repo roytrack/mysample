@@ -9,6 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Ooo {
-    private String orderName;
-    private int orderSum;
+  private String orderName;
+  private int orderSum;
 }

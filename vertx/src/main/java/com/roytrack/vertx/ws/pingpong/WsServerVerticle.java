@@ -1,11 +1,8 @@
 package com.roytrack.vertx.ws.pingpong;
 
-import com.roytrack.vertx.ws.full.condition.WebSocketClientVerticle;
-import com.roytrack.vertx.ws.full.condition.WebSocketServerVerticle;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
-import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerOptions;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +22,28 @@ public class WsServerVerticle extends AbstractVerticle {
   public WsServerVerticle(String host, int port) {
     this.host = host;
     this.port = port;
+  }
+
+  public static void main(String[] args) {
+    System.setProperty("vertx.logger-delegate-factory-class-name", "io.vertx.core.logging.SLF4JLogDelegateFactory");
+    String theHost = "localhost";
+    int thePort = 10617;
+    WsServerVerticle serverVerticle = new WsServerVerticle(theHost, thePort);
+    WsClientVerticle clientVerticle = new WsClientVerticle(theHost, thePort);
+
+    VertxOptions options = new VertxOptions().setBlockedThreadCheckInterval(10_000L).setWarningExceptionTime(9_000L)
+            .setMaxEventLoopExecuteTime(30L * 1000 * 1000000);
+    Vertx vertx = Vertx.vertx(options);
+
+    vertx.deployVerticle(serverVerticle, v -> {
+      if (v.succeeded()) {
+        vertx.deployVerticle(clientVerticle);
+      }
+    });
+    vertx.exceptionHandler(t -> {
+      log.error("vertx error :", t);
+    });
+
   }
 
   @Override
@@ -53,28 +72,6 @@ public class WsServerVerticle extends AbstractVerticle {
     } catch (Throwable e) {
       log.error("server error:", e);
     }
-
-  }
-
-  public static void main(String[] args) {
-    System.setProperty("vertx.logger-delegate-factory-class-name", "io.vertx.core.logging.SLF4JLogDelegateFactory");
-    String theHost="localhost";
-    int thePort = 10617;
-    WsServerVerticle serverVerticle = new WsServerVerticle(theHost,thePort);
-    WsClientVerticle clientVerticle = new WsClientVerticle(theHost,thePort);
-
-    VertxOptions options=new VertxOptions().setBlockedThreadCheckInterval(10_000L).setWarningExceptionTime(9_000L)
-            .setMaxEventLoopExecuteTime(30L * 1000 * 1000000);
-    Vertx vertx = Vertx.vertx(options);
-
-    vertx.deployVerticle(serverVerticle, v -> {
-      if (v.succeeded()) {
-        vertx.deployVerticle(clientVerticle);
-      }
-    });
-    vertx.exceptionHandler(t -> {
-      log.error("vertx error :", t);
-    });
 
   }
 }

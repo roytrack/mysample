@@ -51,7 +51,19 @@ public class HashMapTest {
     i = 0;
     while (itr.hasNext()) {
       Map.Entry<String, String> entry = itr.next();
+      if (i % 2 == 0) {
+        itr.remove();
+      }
+      if (i % 4 == 0) {
+        b.put("g" + i, "c");
+      }
       System.out.println("打印第" + i + "ge key $" + entry.getKey() + "$ val $" + entry.getValue() + "$");
+      i++;
+    }
+    itr = b.entrySet().iterator();
+    while (itr.hasNext()) {
+      Map.Entry<String, String> entry = itr.next();
+      System.out.println("b after 打印第" + i + "ge key $" + entry.getKey() + "$ val $" + entry.getValue() + "$");
       i++;
     }
   }

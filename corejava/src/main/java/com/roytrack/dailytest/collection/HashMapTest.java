@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class HashMapTest {
   public static void main(String[] args) {
@@ -54,18 +55,29 @@ public class HashMapTest {
       if (i % 2 == 0) {
         itr.remove();
       }
-      if (i % 4 == 0) {
-        b.put("g" + i, "c");
-      }
+//      if (i % 4 == 0) {
+//        b.put("g" + i, "c");
+//      }
       System.out.println("打印第" + i + "ge key $" + entry.getKey() + "$ val $" + entry.getValue() + "$");
       i++;
     }
+    i = 0;
     itr = b.entrySet().iterator();
     while (itr.hasNext()) {
       Map.Entry<String, String> entry = itr.next();
       System.out.println("b after 打印第" + i + "ge key $" + entry.getKey() + "$ val $" + entry.getValue() + "$");
       i++;
     }
+    AtomicInteger ii = new AtomicInteger();
+    b.forEach((k, v) -> {
+      if (ii.get() % 2 == 0) {
+        b.remove(k);
+      }
+//      if(ii.get()%3 ==0){
+//        b.put("q"+ii.get(),"c");
+//      }
+      ii.incrementAndGet();
+    });
   }
 
 

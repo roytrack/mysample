@@ -66,13 +66,14 @@
         <module>net</module>
     </modules>
     <properties>
-        <spring.version>4.1.4.RELEASE</spring.version>
+        <spring.version>4.3.17.RELEASE</spring.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Logging -->
         <logback.version>1.0.13</logback.version>
         <slf4j.version>1.7.5</slf4j.version>
         <mysql.version>5.1.26</mysql.version>
-        <jackson.version>2.8.10</jackson.version>
+        <jackson.version>2.8.11.1</jackson.version>
+        <lucene.version>7.1.0</lucene.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -187,12 +188,12 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-web</artifactId>
-                <version>3.2.5.RELEASE</version>
+                <version>4.1.1.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-core</artifactId>
-                <version>3.2.5.RELEASE</version>
+                <version>4.1.1.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>

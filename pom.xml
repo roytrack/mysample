@@ -66,7 +66,7 @@
         <module>net</module>
     </modules>
     <properties>
-        <spring.version>4.3.17.RELEASE</spring.version>
+        <spring.version>4.3.18.RELEASE</spring.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Logging -->
         <logback.version>1.0.13</logback.version>
@@ -193,7 +193,7 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-core</artifactId>
-                <version>4.1.1.RELEASE</version>
+                <version>4.2.10.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>

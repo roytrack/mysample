@@ -64,6 +64,7 @@
         <module>vertx</module>
         <module>hazelcast</module>
         <module>net</module>
+        <module>metrics</module>
     </modules>
     <properties>
         <spring.version>4.3.18.RELEASE</spring.version>

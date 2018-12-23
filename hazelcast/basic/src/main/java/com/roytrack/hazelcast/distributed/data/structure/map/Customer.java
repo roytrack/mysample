@@ -1,6 +1,7 @@
 package com.roytrack.hazelcast.distributed.data.structure.map;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 
 public class Customer implements Serializable {
@@ -36,11 +37,27 @@ public class Customer implements Serializable {
     this.age = age;
   }
 
-  public Customer clone(Customer c) {
+  public static Customer clone(Customer c) {
     Customer newOne = new Customer(c.getId());
     newOne.setAge(c.getAge());
     newOne.setName(c.getName());
     return newOne;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Customer customer = (Customer) o;
+    return Objects.equals(id, customer.id) &&
+            Objects.equals(name, customer.name) &&
+            Objects.equals(age, customer.age);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(id, name, age);
   }
 
   @Override

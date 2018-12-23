@@ -13,12 +13,15 @@ public class SampleForListener implements DistributedObjectListener {
     distributedObjects.stream().forEach(v -> {
       System.out.println("#####" + v.getName());
     });
-    ISemaphore semaphore = instance.getSemaphore("f1");
+    IMap<Integer, Integer> map = instance.getMap("map");
+    map.put(1, 1);
+    map.put(2, 2);
     IQueue queue = instance.getQueue("q1");
     queue.add("sd");
     queue.add("sd3");
     queue.poll();
     queue.destroy();
+    instance.shutdown();
   }
 
   @Override

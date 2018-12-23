@@ -46,6 +46,8 @@ public class BasicMapOperations {
         basicMapOperations.addCustomer(c);
         System.out.println(customerConcurrentMap.size());
         System.out.println(basicMapOperations.getCustomer("2"));
+      basicMapOperations.instance.shutdown();
+      ;
     }
 
     public Customer getCustomer(String id) {

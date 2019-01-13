@@ -1,6 +1,7 @@
 package com.roytrack.hazelcast.distributed.data.structure.ringbuffer;
 
 import java.util.HashMap;
+import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -13,6 +14,7 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.ICompletableFuture;
 import com.hazelcast.ringbuffer.OverflowPolicy;
 import com.hazelcast.ringbuffer.Ringbuffer;
+import com.hazelcast.ringbuffer.StaleSequenceException;
 
 public class RingbufferDemo {
   public static void main(String[] args) {
@@ -20,6 +22,7 @@ public class RingbufferDemo {
     RingbufferConfig ringbufferConfig = new RingbufferConfig();
     ringbufferConfig.setCapacity(100);
     ringbufferConfig.setName("rb");
+    ringbufferConfig.setTimeToLiveSeconds(10);
     HashMap configMap = new HashMap();
     configMap.put("rb", ringbufferConfig);
     config.setRingbufferConfigs(configMap);
@@ -42,6 +45,13 @@ public class RingbufferDemo {
         Thread.sleep(100);
       } catch (InterruptedException e) {
         e.printStackTrace();
+      } catch (StaleSequenceException e) {
+        e.printStackTrace();
+        System.out.println("old sequence is stale ,old sequence is " + sequence + " , new sequence is " + ringbuffer.headSequence());
+        sequence = ringbuffer.headSequence() - 1;
+      } catch (IllegalArgumentException e) {
+        sequence = ringbuffer.headSequence() - 1;
+        System.out.println("old sequence is illegal ,old sequence is " + sequence + " , new sequence is " + ringbuffer.headSequence());
       }
       sequence++;
       System.out.println(item + " headSequence is " + ringbuffer.headSequence()
@@ -72,6 +82,20 @@ public class RingbufferDemo {
       try {
         Long result = longICompletableFuture.get();
         System.out.println(i + " add result is position " + result);
+        if (result.longValue() == -1) {
+          long sleepMs = 100;
+          Random random = new Random();
+          while (true) {
+            sleepMs = Long.min(5000L, sleepMs * 2);
+            Thread.sleep(random.nextInt((int) sleepMs));
+            long retryResult = ringbuffer.addAsync("rb" + i, OverflowPolicy.FAIL).get();
+            if (retryResult != -1) {
+              System.out.println(i + " add result  retry is position " + retryResult);
+              break;
+            }
+
+          }
+        }
       } catch (InterruptedException e) {
         e.printStackTrace();
       } catch (ExecutionException e) {

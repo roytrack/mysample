@@ -31,8 +31,8 @@ public class RingbufferDemo {
         60L, TimeUnit.SECONDS,
         new ArrayBlockingQueue<>(10));
     executor.submit(() -> sampleRingbufferConsumer(instance));
-    executor.submit(() -> sampleRingbufferProducer(instance));
-//    executor.submit(() -> sampleRingbufferProducerWithFail(instance));
+//    executor.submit(() -> sampleRingbufferProducer(instance));
+    executor.submit(() -> sampleRingbufferProducerWithFail(instance));
   }
 
   public static void sampleRingbufferConsumer(HazelcastInstance instance) {

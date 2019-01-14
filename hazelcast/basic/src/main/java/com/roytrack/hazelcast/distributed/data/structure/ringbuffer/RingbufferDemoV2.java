@@ -31,8 +31,8 @@ public class RingbufferDemoV2 {
         60L, TimeUnit.SECONDS,
         new ArrayBlockingQueue<>(10));
     executor.submit(() -> sampleRingbufferConsumer(instance));
-    executor.submit(() -> sampleRingbufferProducer(instance));
-//    executor.submit(() -> sampleRingbufferProducerWithFail(instance));
+//    executor.submit(() -> sampleRingbufferProducer(instance));
+    executor.submit(() -> sampleRingbufferProducerWithFail(instance));
   }
 
   public static void sampleRingbufferConsumer(HazelcastInstance instance) {
@@ -41,7 +41,17 @@ public class RingbufferDemoV2 {
     while (true) {
       String item = "";
       try {
+        long headSequence = ringbuffer.headSequence();
+        long tailSequence = ringbuffer.tailSequence();
+        if (headSequence - tailSequence == 1) {
+          sequence = headSequence;
+          System.out.println(Thread.currentThread().getName() + " ringbuffer is empty move next seq is " + sequence);
+          sequence++;
+          Thread.sleep(100);
+          continue;
+        }
         item = ringbuffer.readOne(sequence);
+        sequence++;
         Thread.sleep(100);
       } catch (InterruptedException e) {
         e.printStackTrace();
@@ -53,7 +63,6 @@ public class RingbufferDemoV2 {
         sequence = ringbuffer.headSequence() - 1;
         System.out.println(Thread.currentThread().getName() + " old sequence is illegal ,old sequence is " + sequence + " , new sequence is " + ringbuffer.headSequence());
       }
-      sequence++;
       System.out.println(Thread.currentThread().getName() + " " + item + " headSequence is " + ringbuffer.headSequence()
           + " tailSequence is " + ringbuffer.tailSequence() + " nowSeq is " + sequence + " remain capacity is " + ringbuffer.remainingCapacity());
 
@@ -66,7 +75,9 @@ public class RingbufferDemoV2 {
     int i = 0;
     while (true) {
       long result = ringbuffer.add("rb" + (i++));
-      System.out.println(Thread.currentThread().getName() + " " + i + " add result is position " + result);
+      System.out.println(Thread.currentThread().getName() + " " + i + " add result is position " + result
+          + " headSequence is " + ringbuffer.headSequence()
+          + " tailSequence is " + ringbuffer.tailSequence());
       if (i > 1000) {
         break;
       }
@@ -82,7 +93,9 @@ public class RingbufferDemoV2 {
       ICompletableFuture<Long> longICompletableFuture = ringbuffer.addAsync("rb" + (i++), OverflowPolicy.FAIL);
       try {
         Long result = longICompletableFuture.get();
-        System.out.println(Thread.currentThread().getName() + " " + i + " add result is position " + result);
+        System.out.println(Thread.currentThread().getName() + " " + i + " add result is position " + result
+            + " headSequence is " + ringbuffer.headSequence()
+            + " tailSequence is " + ringbuffer.tailSequence());
         if (result.longValue() == -1) {
           long sleepMs = 100;
           Random random = new Random();
@@ -91,7 +104,9 @@ public class RingbufferDemoV2 {
             Thread.sleep(random.nextInt((int) sleepMs));
             long retryResult = ringbuffer.addAsync("rb" + i, OverflowPolicy.FAIL).get();
             if (retryResult != -1) {
-              System.out.println(Thread.currentThread().getName() + " " + i + " add result  retry is position " + retryResult);
+              System.out.println(Thread.currentThread().getName() + " " + i + " add result  retry is position " + retryResult
+                  + " headSequence is " + ringbuffer.headSequence()
+                  + " tailSequence is " + ringbuffer.tailSequence());
               break;
             }
 

@@ -16,7 +16,7 @@ import com.hazelcast.ringbuffer.OverflowPolicy;
 import com.hazelcast.ringbuffer.Ringbuffer;
 import com.hazelcast.ringbuffer.StaleSequenceException;
 
-public class RingbufferDemo {
+public class RingbufferDemoV2 {
   public static void main(String[] args) {
     Config config = new Config();
     RingbufferConfig ringbufferConfig = new RingbufferConfig();

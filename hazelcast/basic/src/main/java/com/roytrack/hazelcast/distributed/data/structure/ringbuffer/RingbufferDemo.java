@@ -55,7 +55,7 @@ public class RingbufferDemo {
       }
       sequence++;
       System.out.println(item + " headSequence is " + ringbuffer.headSequence()
-          + " tailSequence is " + ringbuffer.tailSequence() + " remain capacity is " + ringbuffer.remainingCapacity());
+          + " tailSequence is " + ringbuffer.tailSequence() + " nowSeq is " + sequence + " remain capacity is " + ringbuffer.remainingCapacity());
 
 
     }

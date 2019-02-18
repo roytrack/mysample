@@ -1,17 +1,13 @@
 package com.roytrack.hazelcast.distributed.data.structure.topic;
 
-import java.util.HashMap;
-import java.util.Random;
-
 import com.hazelcast.config.Config;
 import com.hazelcast.config.ReliableTopicConfig;
 import com.hazelcast.config.RingbufferConfig;
-import com.hazelcast.core.Hazelcast;
-import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.ITopic;
-import com.hazelcast.core.Message;
-import com.hazelcast.core.MessageListener;
+import com.hazelcast.core.*;
 import com.hazelcast.topic.TopicOverloadPolicy;
+
+import java.util.HashMap;
+import java.util.Random;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
@@ -50,7 +46,7 @@ public class ReliableTopicDemo {
       topic.publish(messageId);
       messageId++;
       System.out.println("Written: " + messageId);
-      sleepMillis(random.nextInt(100));
+        sleepMillis(random.nextInt(10));
     }
   }
 
@@ -68,11 +64,6 @@ public class ReliableTopicDemo {
 
     @Override
     public void onMessage(Message<Long> message) {
-      try {
-        MILLISECONDS.sleep(1000);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
       System.out.println("Received: " + message.getMessageObject());
     }
   }

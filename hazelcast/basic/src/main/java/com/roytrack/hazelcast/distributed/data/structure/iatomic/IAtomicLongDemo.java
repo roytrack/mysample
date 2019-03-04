@@ -1,5 +1,7 @@
 package com.roytrack.hazelcast.distributed.data.structure.iatomic;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IAtomicLong;
@@ -14,6 +16,7 @@ public class IAtomicLongDemo {
   private static void simpleUse() {
     HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance();
     IAtomicLong counter = hazelcastInstance.getAtomicLong("counter");
+    long start = System.currentTimeMillis();
     for (int i = 0; i < 1000_000; i++) {
       if (i % 50000 == 0) {
         System.out.println("At: " + i);
@@ -21,6 +24,14 @@ public class IAtomicLongDemo {
       counter.incrementAndGet();
     }
     System.out.printf("Count is %s\n", counter.get());
+    System.out.println("IAtomicLong cost " + (System.currentTimeMillis() - start));
+
+    AtomicLong jdkAtomicLong = new AtomicLong();
+    start = System.currentTimeMillis();
+    for (int i = 0; i < 1000_000; i++) {
+      jdkAtomicLong.incrementAndGet();
+    }
+    System.out.println("jdk AtomicLong cost " + (System.currentTimeMillis() - start));
     System.exit(0);
   }
 

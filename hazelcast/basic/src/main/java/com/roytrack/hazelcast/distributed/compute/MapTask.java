@@ -27,10 +27,13 @@ public class MapTask implements Callable, Serializable, HazelcastInstanceAware {
       TransactionContext context = instance.newTransactionContext(options);
       context.beginTransaction();
       try {
+        long startG = System.currentTimeMillis();
+        System.out.println("tx " + Thread.currentThread().getName() + "get for update start ### " + startG);
         String value = String.valueOf(context.getMap("roytrack").getForUpdate("roy2"));
+        System.out.println("tx " + Thread.currentThread().getName() + "get for update end ### " + (System.currentTimeMillis() - startG));
         int i = 0;
         if (!value.equals("nolock")) {
-          i = Integer.valueOf(value.substring(0, 6));
+          i = Integer.valueOf(value.substring(3, value.length()));
           i++;
         }
         Long start = System.currentTimeMillis();
@@ -38,13 +41,14 @@ public class MapTask implements Callable, Serializable, HazelcastInstanceAware {
         System.out.println(value);
         context.getMap("roytrack").replace("roy2", value, "roy" + i);
         try {
-          TimeUnit.SECONDS.sleep(10);
+          TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
         System.out.println("tx " + Thread.currentThread().getName() + " i is " + i + "  end " + (System.currentTimeMillis() - start));
         context.commitTransaction();
       } catch (Exception e) {
+        context.rollbackTransaction();
         e.printStackTrace();
       }
 

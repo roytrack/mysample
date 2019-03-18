@@ -1,4 +1,4 @@
-package com.roytrack.hazelcast.distributed.data.structure.map;
+package com.roytrack.hazelcast.distributed.compute;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -9,7 +9,6 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IExecutorService;
 import com.hazelcast.transaction.TransactionContext;
 import com.hazelcast.transaction.TransactionOptions;
-import com.roytrack.hazelcast.distributed.compute.MapTask;
 
 
 public class TransactionMapGetForUpdateDemo {

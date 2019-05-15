@@ -24,7 +24,7 @@
         <hibernate-validator.version>5.1.2.Final</hibernate-validator.version>
         <jedis.version>2.5.1</jedis.version>
         <jackson.version>2.4.4</jackson.version>
-        <guava.version>17.0</guava.version>
+        <guava.version>27.1-jre</guava.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <commons-io.version>2.4</commons-io.version>
         <!-- Logging -->
@@ -148,6 +148,12 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
